@@ -1,0 +1,1086 @@
+import { useState, useEffect, useRef, createContext, useContext } from "react";
+
+// ════════════════════════════════════════════════════════════════
+//  NEXTGEN ACADEMY — Complete React App
+//  Pages: Home, About, Courses, Digital Marketing, App Dev,
+//         SEO, Google Ads, Social Media, Testimonials, Contact,
+//         Admission Form, Privacy Policy
+//  Components: Navbar, Footer, WhatsAppBtn (shared)
+// ════════════════════════════════════════════════════════════════
+
+// ── Router Context ──────────────────────────────────────────────
+const RouterCtx = createContext(null);
+const useRouter = () => useContext(RouterCtx);
+
+// ── Global Styles ───────────────────────────────────────────────
+const GLOBAL_CSS = `
+
+`;
+
+// ── DATA ─────────────────────────────────────────────────────────
+const COURSES_DATA = [
+  {
+    id: "digital-marketing",
+    icon: "📈", iconBg: "rgba(0,229,255,0.12)", iconBorder: "rgba(0,229,255,0.22)",
+    tag: "Most Popular", tagBg: "rgba(0,229,255,0.13)", tagColor: "#00e5ff",
+    title: "Advanced Digital Marketing",
+    short: "Master SEO, Google Ads, Social Media, Email Marketing & Analytics with live projects.",
+    duration: "4 Months", batch: "Weekday / Weekend", fee: "₹ 25,000", level: "Beginner → Pro",
+    accent: "#00e5ff",
+    tools: ["Google Ads","SEMrush","Meta Ads","Canva","Mailchimp","Google Analytics","HubSpot","WordPress","Ahrefs","Hootsuite"],
+    syllabus: [
+      { title: "Digital Marketing Foundations", desc: "Overview, consumer behaviour, digital ecosystem" },
+      { title: "Search Engine Optimization", desc: "On-page, off-page, technical SEO & link building" },
+      { title: "Google Ads (PPC)", desc: "Search, Display, Shopping & YouTube campaigns" },
+      { title: "Social Media Marketing", desc: "Facebook, Instagram, LinkedIn strategy & ads" },
+      { title: "Content Marketing", desc: "Blogging, video, infographics, content calendars" },
+      { title: "Email Marketing", desc: "Campaigns, automation, drip sequences" },
+      { title: "Web Analytics", desc: "Google Analytics 4, Search Console, data interpretation" },
+      { title: "Capstone Project", desc: "Live brand campaign with real results" },
+    ],
+    outcomes: ["Digital Marketing Manager","SEO Specialist","PPC Executive","Social Media Manager","Content Strategist","Freelance Consultant"],
+  },
+  {
+    id: "app-development",
+    icon: "📱", iconBg: "rgba(255,171,0,0.12)", iconBorder: "rgba(255,171,0,0.22)",
+    tag: "High Demand", tagBg: "rgba(255,171,0,0.13)", tagColor: "#ffab00",
+    title: "Flutter App Development",
+    short: "Build cross-platform Android & iOS apps using Flutter & Dart. Real client projects.",
+    duration: "3 Months", batch: "Flexible Schedule", fee: "₹ 30,000", level: "Beginner → Mid",
+    accent: "#ffab00",
+    tools: ["Flutter","Dart","Firebase","Android Studio","VS Code","GitHub","Figma","REST APIs","SQLite","Google Play Console"],
+    syllabus: [
+      { title: "Dart Programming Language", desc: "Syntax, OOP, async/await, data types" },
+      { title: "Flutter Fundamentals", desc: "Widgets, state management, layouts" },
+      { title: "UI/UX in Flutter", desc: "Material Design, animations, custom themes" },
+      { title: "State Management", desc: "Provider, Riverpod, Bloc pattern" },
+      { title: "Firebase Integration", desc: "Auth, Firestore, Storage, Push Notifications" },
+      { title: "API Integration", desc: "REST APIs, JSON, HTTP requests" },
+      { title: "App Deployment", desc: "Play Store, App Store, signing & publishing" },
+      { title: "Capstone Project", desc: "Full featured app for client or portfolio" },
+    ],
+    outcomes: ["Flutter Developer","Mobile App Developer","React Native Dev","Android Developer","App UI Designer","Freelance Dev"],
+  },
+  {
+    id: "seo",
+    icon: "🔍", iconBg: "rgba(255,109,0,0.12)", iconBorder: "rgba(255,109,0,0.22)",
+    tag: "Trending", tagBg: "rgba(255,109,0,0.13)", tagColor: "#ff6d00",
+    title: "SEO Mastery Course",
+    short: "Deep-dive into Search Engine Optimization. Learn to rank websites and drive organic traffic.",
+    duration: "2 Months", batch: "Online / Offline", fee: "₹ 12,000", level: "Beginner → Advanced",
+    accent: "#ff6d00",
+    tools: ["Ahrefs","SEMrush","Moz","Screaming Frog","Google Search Console","Google Analytics","Yoast","Surfer SEO","Keyword Planner"],
+    syllabus: [
+      { title: "SEO Fundamentals", desc: "How search engines work, ranking factors" },
+      { title: "Keyword Research", desc: "Tools, intent mapping, competitive analysis" },
+      { title: "On-Page SEO", desc: "Title tags, meta, headings, schema, internal linking" },
+      { title: "Technical SEO", desc: "Site speed, crawlability, Core Web Vitals" },
+      { title: "Off-Page & Link Building", desc: "Outreach, guest posting, DA/DR" },
+      { title: "Local SEO", desc: "Google Business Profile, local citations, maps" },
+      { title: "SEO Analytics", desc: "Tracking, reporting, Search Console deep dive" },
+      { title: "Live SEO Project", desc: "Rank a real website from scratch" },
+    ],
+    outcomes: ["SEO Specialist","SEO Analyst","Content SEO Manager","Technical SEO Engineer","Freelance SEO Consultant","Digital Marketing Lead"],
+  },
+  {
+    id: "google-ads",
+    icon: "📣", iconBg: "rgba(0,229,255,0.12)", iconBorder: "rgba(0,229,255,0.22)",
+    tag: "High ROI", tagBg: "rgba(0,229,255,0.13)", tagColor: "#00e5ff",
+    title: "Google Ads Mastery",
+    short: "Run profitable Google Search, Display, Shopping, and YouTube campaigns from day one.",
+    duration: "6 Weeks", batch: "Weekday Evenings", fee: "₹ 10,000", level: "Beginner → Pro",
+    accent: "#00e5ff",
+    tools: ["Google Ads","Google Analytics 4","Google Keyword Planner","Google Merchant Center","YouTube Studio","Data Studio","Tag Manager"],
+    syllabus: [
+      { title: "Google Ads Overview", desc: "Account structure, billing, campaign types" },
+      { title: "Search Campaigns", desc: "Keywords, match types, Quality Score" },
+      { title: "Display Campaigns", desc: "Targeting, banners, remarketing" },
+      { title: "Shopping Ads", desc: "Merchant Center, product feeds, Pmax" },
+      { title: "YouTube Advertising", desc: "Video ad formats, targeting, bumper ads" },
+      { title: "Conversion Tracking", desc: "Tag Manager, goals, micro conversions" },
+      { title: "Optimization & Scaling", desc: "Bidding strategies, A/B testing, ROAS" },
+      { title: "Live Campaign Project", desc: "Manage a real budget, report results" },
+    ],
+    outcomes: ["PPC Manager","Google Ads Specialist","Media Buyer","Performance Marketer","E-commerce Ads Manager","Agency Executive"],
+  },
+  {
+    id: "social-media",
+    icon: "📲", iconBg: "rgba(255,171,0,0.12)", iconBorder: "rgba(255,171,0,0.22)",
+    tag: "Creator Economy", tagBg: "rgba(255,171,0,0.13)", tagColor: "#ffab00",
+    title: "Social Media Marketing",
+    short: "Build brand presence on Instagram, Facebook, LinkedIn & YouTube with strategy and paid ads.",
+    duration: "2 Months", batch: "Weekend Batch", fee: "₹ 10,000", level: "Beginner → Advanced",
+    accent: "#ffab00",
+    tools: ["Meta Business Suite","Canva","CapCut","Buffer","Hootsuite","Later","LinkedIn Campaign Manager","YouTube Analytics","Creator Studio"],
+    syllabus: [
+      { title: "Social Media Strategy", desc: "Platform selection, audience personas, content pillars" },
+      { title: "Instagram Marketing", desc: "Reels, Stories, growth hacks, collab posts" },
+      { title: "Facebook Marketing", desc: "Pages, groups, organic reach, events" },
+      { title: "Meta Ads (Paid)", desc: "Audiences, campaign objectives, creatives, retargeting" },
+      { title: "LinkedIn Marketing", desc: "B2B strategy, company pages, LinkedIn Ads" },
+      { title: "YouTube & Video", desc: "Channel optimisation, shorts, monetisation" },
+      { title: "Content Creation", desc: "Canva, CapCut, copy-writing for social" },
+      { title: "Analytics & Reporting", desc: "Insights, KPIs, performance dashboards" },
+    ],
+    outcomes: ["Social Media Manager","Content Creator","Community Manager","Influencer Manager","Brand Strategist","Digital Marketing Executive"],
+  },
+  {
+    id: "wordpress",
+    icon: "🌐", iconBg: "rgba(255,109,0,0.12)", iconBorder: "rgba(255,109,0,0.22)",
+    tag: "Practical Skills", tagBg: "rgba(255,109,0,0.13)", tagColor: "#ff6d00",
+    title: "WordPress Website Creation",
+    short: "Build fast, professional websites using WordPress without writing a single line of code.",
+    duration: "1 Month", batch: "Online / Offline", fee: "₹ 7,000", level: "Complete Beginner",
+    accent: "#ff6d00",
+    tools: ["WordPress","Elementor","WooCommerce","Divi","Yoast SEO","cPanel","Cloudflare","PayU","Razorpay","Google Analytics"],
+    syllabus: [
+      { title: "Domain & Hosting", desc: "Setup, cPanel, SSL, file manager" },
+      { title: "WordPress Basics", desc: "Dashboard, themes, plugins, settings" },
+      { title: "Elementor Page Builder", desc: "Drag & drop, templates, custom sections" },
+      { title: "WooCommerce", desc: "Product listing, cart, payment gateway" },
+      { title: "SEO Setup", desc: "Yoast, site speed, image optimisation" },
+      { title: "Security & Maintenance", desc: "Backups, updates, security plugins" },
+      { title: "Portfolio Website", desc: "Build a complete website as your project" },
+      { title: "Client Handling", desc: "Pitching, freelancing, pricing your work" },
+    ],
+    outcomes: ["WordPress Developer","Freelance Web Designer","WooCommerce Developer","Digital Agency Executive","Entrepreneur / Self-Brand"],
+  },
+];
+
+const TESTIMONIALS = [
+  { text: "The digital marketing course exceeded my expectations. Real-time project experience was invaluable. Got placed at a digital agency just a month after completing the course!", name: "Sneha Kulkarni", location: "Mumbai", initials: "SK", color: "#00e5ff" },
+  { text: "After struggling with my career path, the mentorship and career support helped me build confidence. Now I work as a PPC executive in a reputed firm.", name: "Rohit Patil", location: "Thane", initials: "RP", color: "#ffab00" },
+  { text: "The internship and placement support were 100% genuine. Built my portfolio website, ran ads, and landed a job interview within weeks. Worth every rupee!", name: "Siddharth Desai", location: "Kalyan", initials: "SD", color: "#ff6d00" },
+  { text: "Being from a non-technical background, I was nervous. This course made everything simple and hands-on. I received a paid internship offer during the last month of training!", name: "Anjali Sharma", location: "Bhandup", initials: "AS", color: "#00e5ff" },
+  { text: "I did the online course from Ambernath — as good as in-person! Interactive sessions, real tools, and constant mentor feedback helped me get my first freelance client.", name: "Priya Pandey", location: "Ambernath", initials: "PP", color: "#ffab00" },
+  { text: "From SEO to Facebook ads — this course covered everything. The SEO modules alone were worth the entire fee. Highly recommend to anyone serious about digital careers.", name: "Priti Shah", location: "Navi Mumbai", initials: "PS", color: "#ff6d00" },
+  { text: "I was a fresher with no idea about digital marketing. After 4 months, I am now working at a startup managing their entire digital strategy. NextGen changed my life!", name: "Aarav Mehta", location: "Dombivli", initials: "AM", color: "#00e5ff" },
+  { text: "The Flutter course gave me real confidence. I built two apps during training itself — both are now on the Play Store. My portfolio stood out in every interview.", name: "Kavya Nair", location: "Thane", initials: "KN", color: "#ffab00" },
+];
+
+const FEATURES = [
+  { icon: "🎯", title: "100% Internship Guarantee", text: "Every student gets a guaranteed paid internship with partner companies before completing the course." },
+  { icon: "🏆", title: "Industry Expert Trainers", text: "Learn from professionals with 8–15 years of hands-on digital marketing and development experience." },
+  { icon: "💼", title: "Job Placement Support", text: "Dedicated placement team, mock interviews, resume building and direct company referrals." },
+  { icon: "🛠️", title: "Live Project Training", text: "Work on real client campaigns and app projects — not just simulations. Build a portfolio employers love." },
+  { icon: "📜", title: "Globally Recognised Certifications", text: "Google, Meta, HubSpot and NextGen Academy certifications included with every course." },
+];
+
+// ── Intersection Observer hook ────────────────────────────────────
+function useFadeUp() {
+  const refs = useRef([]);
+  useEffect(() => {
+    const obs = new IntersectionObserver(
+      (entries) => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add("vis"); }),
+      { threshold: 0.1 }
+    );
+    refs.current.forEach(el => { if (el) obs.observe(el); });
+    return () => obs.disconnect();
+  }, []);
+  const addRef = (el) => { if (el && !refs.current.includes(el)) refs.current.push(el); };
+  return addRef;
+}
+
+// ════════════════════════════════════════════════════════════════
+//  NAVBAR COMPONENT
+// ════════════════════════════════════════════════════════════════
+function Navbar() {
+  const { page, navigate } = useRouter();
+  const [scrolled, setScrolled] = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
+
+  useEffect(() => {
+    const fn = () => setScrolled(window.scrollY > 30);
+    window.addEventListener("scroll", fn);
+    return () => window.removeEventListener("scroll", fn);
+  }, []);
+
+  useEffect(() => { setMobileOpen(false); }, [page]);
+
+  const go = (p) => { navigate(p); window.scrollTo({ top: 0, behavior: "smooth" }); };
+
+  const courseLinks = [
+    { label: "Digital Marketing", id: "digital-marketing" },
+    { label: "Flutter App Dev", id: "app-development" },
+    { label: "SEO Mastery", id: "seo" },
+    { label: "Google Ads", id: "google-ads" },
+    { label: "Social Media", id: "social-media" },
+    { label: "WordPress Dev", id: "wordpress" },
+  ];
+
+  const navItems = [
+    { label: "Home", id: "home" },
+    { label: "About Us", id: "about" },
+    { label: "Testimonials", id: "testimonials" },
+    { label: "Contact", id: "contact" },
+  ];
+
+  const isCourseActive = COURSES_DATA.some(c => c.id === page);
+
+  return (
+    <>
+      <nav className={`navbar${scrolled ? " scrolled" : ""}`}>
+        <div className="nav-logo" onClick={() => go("home")}>
+          <span>NEXT</span><span>GEN</span><span> ACADEMY</span>
+        </div>
+
+        {/* Desktop menu */}
+        <div className="nav-menu">
+          {navItems.map(item => (
+            <button key={item.id} className={`nav-link${page === item.id ? " active" : ""}`}
+              onClick={() => go(item.id)}>{item.label}</button>
+          ))}
+          {/* Courses dropdown */}
+          <div className="nav-dropdown">
+            <button className={`nav-link${isCourseActive ? " active" : ""}`}>
+              Courses ▾
+            </button>
+            <div className="nav-dropdown-menu">
+              <button className="nav-dropdown-item" onClick={() => go("courses")}>
+                All Courses
+              </button>
+              <div style={{ height: 1, background: "var(--border)", margin: "6px 0" }} />
+              {courseLinks.map(c => (
+                <button key={c.id} className="nav-dropdown-item" onClick={() => go(c.id)}>
+                  {c.label}
+                </button>
+              ))}
+            </div>
+          </div>
+          <button className="btn-nav" onClick={() => go("admission")}>Apply Now</button>
+        </div>
+
+        {/* Mobile toggle */}
+        <button className="mobile-toggle" onClick={() => setMobileOpen(o => !o)} aria-label="Menu">
+          {mobileOpen
+            ? <svg width="22" height="22" viewBox="0 0 22 22" fill="none" stroke="currentColor" strokeWidth="2"><path d="M2 2l18 18M20 2L2 20"/></svg>
+            : <svg width="22" height="22" viewBox="0 0 22 22" fill="none" stroke="currentColor" strokeWidth="2"><path d="M2 5h18M2 11h18M2 17h18"/></svg>
+          }
+        </button>
+      </nav>
+
+      {/* Mobile menu */}
+      <div className={`mobile-menu${mobileOpen ? " open" : ""}`}>
+        {navItems.map(item => (
+          <button key={item.id} className={`mobile-link${page === item.id ? " active" : ""}`}
+            onClick={() => go(item.id)}>{item.label}</button>
+        ))}
+        <div className="mobile-divider" />
+        <button className="mobile-link" style={{ color: "var(--amber)", fontWeight: 700, fontSize: ".8rem", letterSpacing: "1px", textTransform: "uppercase" }} disabled>
+          Courses
+        </button>
+        <button className="mobile-link" onClick={() => go("courses")}>All Courses</button>
+        {courseLinks.map(c => (
+          <button key={c.id} className={`mobile-link${page === c.id ? " active" : ""}`}
+            onClick={() => go(c.id)}>
+            {c.label}
+          </button>
+        ))}
+        <div className="mobile-divider" />
+        <button className="btn-nav" style={{ marginTop: 8 }} onClick={() => go("admission")}>Apply Now</button>
+      </div>
+    </>
+  );
+}
+
+// ════════════════════════════════════════════════════════════════
+//  FOOTER COMPONENT
+// ════════════════════════════════════════════════════════════════
+function Footer() {
+  const { navigate } = useRouter();
+  const go = (p) => { navigate(p); window.scrollTo({ top: 0, behavior: "smooth" }); };
+
+  return (
+    <footer>
+      <div className="footer-grid">
+        {/* Brand */}
+        <div className="footer-brand">
+          <div className="nav-logo" style={{ fontSize: "1.05rem" }}>
+            <span>NEXT</span><span>GEN</span><span> ACADEMY</span>
+          </div>
+          <p>Top-rated digital skills institute in Mumbai & Thane. Industry-focused training that turns learners into in-demand professionals.</p>
+          <div className="footer-contact">
+            <a href="tel:8976509267">📞 +91 89765 09267</a>
+            <a href="mailto:info@thenextgenacademy.co.in">✉️ info@thenextgenacademy.co.in</a>
+            <span style={{ color: "var(--muted)", fontSize: ".82rem" }}>📍 Thane, Mumbai & Online</span>
+          </div>
+        </div>
+
+        {/* Courses */}
+        <div className="footer-col">
+          <h5>Courses</h5>
+          <ul>
+            {COURSES_DATA.map(c => (
+              <li key={c.id}><button onClick={() => go(c.id)}>{c.title.split(" ").slice(0, 3).join(" ")}</button></li>
+            ))}
+          </ul>
+        </div>
+
+        {/* Company */}
+        <div className="footer-col">
+          <h5>Company</h5>
+          <ul>
+            {[{ label: "About Us", id: "about" }, { label: "All Courses", id: "courses" }, { label: "Testimonials", id: "testimonials" }, { label: "Contact Us", id: "contact" }, { label: "Admission Form", id: "admission" }].map(i => (
+              <li key={i.id}><button onClick={() => go(i.id)}>{i.label}</button></li>
+            ))}
+          </ul>
+        </div>
+
+        {/* Legal */}
+        <div className="footer-col">
+          <h5>Legal</h5>
+          <ul>
+            {[{ label: "Privacy Policy", id: "privacy" }].map(i => (
+              <li key={i.id}><button onClick={() => go(i.id)}>{i.label}</button></li>
+            ))}
+          </ul>
+          <h5 style={{ marginTop: 24 }}>Follow Us</h5>
+          <ul>
+            <li><a href="https://facebook.com" target="_blank" rel="noopener noreferrer" style={{ color: "var(--muted)", textDecoration: "none", fontSize: ".87rem" }}>Facebook</a></li>
+            <li><a href="https://instagram.com" target="_blank" rel="noopener noreferrer" style={{ color: "var(--muted)", textDecoration: "none", fontSize: ".87rem" }}>Instagram</a></li>
+            <li><a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" style={{ color: "var(--muted)", textDecoration: "none", fontSize: ".87rem" }}>LinkedIn</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div className="footer-bottom">
+        <p>© 2025 NextGen Academy. All rights reserved.</p>
+        <div className="footer-social">
+          <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">Facebook</a>
+          <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">Instagram</a>
+          <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        </div>
+      </div>
+    </footer>
+  );
+}
+
+// ════════════════════════════════════════════════════════════════
+//  WHATSAPP BUTTON COMPONENT
+// ════════════════════════════════════════════════════════════════
+function WhatsAppBtn() {
+  return (
+    <a href="https://wa.me/918976509267" className="wa-btn" target="_blank" rel="noopener noreferrer" title="Chat on WhatsApp">
+      <svg viewBox="0 0 32 32">
+        <path d="M16 0C7.163 0 0 7.163 0 16c0 2.846.748 5.516 2.055 7.83L0 32l8.37-2.028A15.932 15.932 0 0016 32c8.837 0 16-7.163 16-16S24.837 0 16 0zm8.202 22.178c-.344.97-2.01 1.857-2.77 1.973-.71.108-1.61.153-2.593-.163a23.73 23.73 0 01-2.347-.87c-4.13-1.787-6.83-5.918-7.035-6.19-.204-.27-1.666-2.214-1.666-4.225s1.054-2.995 1.43-3.405c.376-.41.82-.512 1.094-.512.273 0 .547.003.786.014.252.012.59-.096.923.703.344.82 1.167 2.836 1.27 3.04.101.204.169.443.033.716-.137.274-.205.443-.41.683-.204.24-.43.537-.615.72-.205.204-.418.424-.18.833.24.408 1.065 1.757 2.285 2.845 1.57 1.4 2.892 1.832 3.3 2.037.41.205.65.171.89-.102.24-.273 1.026-1.196 1.3-1.606.27-.41.545-.342.915-.205.37.137 2.35 1.108 2.76 1.31.41.205.682.308.783.478.102.171.102.983-.24 1.952z"/>
+      </svg>
+    </a>
+  );
+}
+
+// ════════════════════════════════════════════════════════════════
+//  SHARED: Page Hero Banner
+// ════════════════════════════════════════════════════════════════
+function PageHero({ label, title, sub, accent = "var(--cyan)" }) {
+  return (
+    <div className="page-hero grid-bg" style={{ borderBottom: "1px solid var(--border)" }}>
+      <div style={{ position: "absolute", width: 380, height: 380, borderRadius: "50%", filter: "blur(90px)", background: "rgba(0,229,255,.055)", top: -80, right: "10%", pointerEvents: "none", animation: "floatOrb 9s ease-in-out infinite" }} />
+      <div className="page-hero-inner">
+        <div className="badge" style={{ marginBottom: 20 }}>
+          <span className="badge-dot" />{label}
+        </div>
+        <h1>{title}</h1>
+        <p>{sub}</p>
+      </div>
+    </div>
+  );
+}
+
+// ════════════════════════════════════════════════════════════════
+//  PAGE: HOME
+// ════════════════════════════════════════════════════════════════
+function HomePage() {
+  const { navigate } = useRouter();
+  const go = (p) => { navigate(p); window.scrollTo({ top: 0, behavior: "smooth" }); };
+  const fade = useFadeUp();
+
+  return (
+    <>
+      {/* Hero */}
+      <section className="home-hero grid-bg">
+        <div className="hero-orb orb-1" />
+        <div className="hero-orb orb-2" />
+        <div className="hero-grid">
+          <div>
+            <div className="badge" style={{ marginBottom: 22 }}>
+              <span className="badge-dot" />Admissions Open · Batch 2025
+            </div>
+            <h1 className="hero-h1">
+              Launch Your<br />
+              <span className="grad-text">Digital Career</span><br />
+              with Confidence.
+            </h1>
+            <p className="hero-p">
+              Industry-focused Digital Marketing & App Development courses in Mumbai.
+              Hands-on training, guaranteed internship, and placement support — all under one roof.
+            </p>
+            <div className="btn-group">
+              <button className="btn-primary" onClick={() => go("contact")}>Get Free Counselling</button>
+              <button className="btn-secondary" onClick={() => go("courses")}>Explore Courses →</button>
+            </div>
+          </div>
+          <div className="stats-card fade-up" ref={fade}>
+            <div className="stat-grid">
+              {[{ n: "2500+", l: "Students Trained", c: "#00e5ff" }, { n: "100%", l: "Internship Rate", c: "#ffab00" }, { n: "50+", l: "Hiring Partners", c: "#ff6d00" }, { n: "4.9★", l: "Google Rating", c: "#00e5ff" }].map((s, i) => (
+                <div key={i} style={{ textAlign: "center" }}>
+                  <div className="stat-num" style={{ color: s.c }}>{s.n}</div>
+                  <div className="stat-label">{s.l}</div>
+                </div>
+              ))}
+            </div>
+            <div className="batch-info">
+              🚀 Next batch starts <strong style={{ color: "#fff" }}>March 10, 2025</strong> · Mumbai & Online
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Courses preview */}
+      <section style={{ background: "var(--navy-mid)" }}>
+        <div className="max-w">
+          <div className="sec-head fade-up" ref={fade}>
+            <div className="sec-label">// Our Programs</div>
+            <h2 className="sec-title">Courses Built for <span className="grad-text">Real-World Success</span></h2>
+            <p className="sec-sub">Every course is designed with industry input. Learn tools professionals actually use.</p>
+          </div>
+          <div className="courses-grid">
+            {COURSES_DATA.slice(0, 3).map((c, i) => (
+              <div className="course-card fade-up" key={c.id} ref={fade} style={{ transitionDelay: `${i * 80}ms` }}
+                onClick={() => go(c.id)}>
+                <div className="c-icon" style={{ background: c.iconBg, border: `1px solid ${c.iconBorder}` }}>{c.icon}</div>
+                <span className="c-tag" style={{ background: c.tagBg, color: c.tagColor }}>{c.tag}</span>
+                <h3>{c.title}</h3>
+                <p>{c.short}</p>
+                <div className="c-footer">
+                  <div>
+                    <div className="c-meta">Duration: <strong>{c.duration}</strong></div>
+                    <div className="c-meta">Batch: <strong>{c.batch}</strong></div>
+                  </div>
+                  <div className="arrow-btn">
+                    <svg width="13" height="13" viewBox="0 0 14 14" fill="none" stroke="currentColor" strokeWidth="2"><path d="M2 12L12 2M12 2H6M12 2V8"/></svg>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+          <div style={{ textAlign: "center", marginTop: 36 }}>
+            <button className="btn-secondary" onClick={() => go("courses")}>View All 6 Courses →</button>
+          </div>
+        </div>
+      </section>
+
+      {/* Why us */}
+      <section className="grid-bg">
+        <div className="max-w features-layout">
+          <div>
+            <div className="sec-label fade-up" ref={fade}>// Why NextGen Academy</div>
+            <h2 className="sec-title fade-up" ref={fade}>Everything You Need<br />to <span className="grad-text">Get Hired</span></h2>
+            <p className="sec-sub fade-up" ref={fade} style={{ marginBottom: 44 }}>From your first class to your first paycheck — we are with you every step of the way.</p>
+            <div className="timeline fade-up" ref={fade}>
+              {[{ s: "01 / Enrol", t: "Choose your course, fill the admission form and lock in your seat in minutes." }, { s: "02 / Learn", t: "Live sessions, hands-on labs, and real client projects under expert mentors." }, { s: "03 / Intern", t: "Kick off your guaranteed internship — earn experience and a stipend." }, { s: "04 / Get Hired", t: "Our placement cell connects you with 50+ hiring partners seeking talent." }].map((t, i) => (
+                <div className="tl-step" key={i}>
+                  <h4>{t.s}</h4>
+                  <p>{t.t}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+          <div className="feature-list">
+            {FEATURES.map((f, i) => (
+              <div className="feature-item fade-up" key={i} ref={fade} style={{ transitionDelay: `${i * 65}ms` }}>
+                <div className="f-icon">{f.icon}</div>
+                <div className="f-text"><h4>{f.title}</h4><p>{f.text}</p></div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Testimonials preview */}
+      <section style={{ background: "var(--navy-mid)", borderTop: "1px solid var(--border)" }}>
+        <div className="max-w">
+          <div className="sec-head fade-up" ref={fade} style={{ textAlign: "center" }}>
+            <div className="sec-label">// Student Stories</div>
+            <h2 className="sec-title">Real Results from <span className="grad-text">Real Students</span></h2>
+          </div>
+          <div className="testi-grid">
+            {TESTIMONIALS.slice(0, 3).map((t, i) => (
+              <div className="testi-card fade-up" key={i} ref={fade} style={{ transitionDelay: `${i * 60}ms` }}>
+                <div className="testi-stars">★★★★★</div>
+                <p className="testi-text">"{t.text}"</p>
+                <div className="testi-author">
+                  <div className="t-avatar" style={{ background: t.color }}>{t.initials}</div>
+                  <div><div className="t-name">{t.name}</div><div className="t-loc">📍 {t.location}</div></div>
+                </div>
+              </div>
+            ))}
+          </div>
+          <div style={{ textAlign: "center", marginTop: 36 }}>
+            <button className="btn-secondary" onClick={() => go("testimonials")}>Read All Reviews →</button>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section className="cta-section">
+        <div className="badge" style={{ marginBottom: 26 }}><span className="badge-dot" />Limited Seats Available</div>
+        <h2>Your Career Starts<br /><span className="grad-text">Right Now.</span></h2>
+        <p>Talk to our counsellors — zero sales pressure, just real advice on which course fits your goals best.</p>
+        <div className="btn-group" style={{ justifyContent: "center" }}>
+          <button className="btn-primary" style={{ padding: "16px 40px", fontSize: "1rem" }} onClick={() => go("contact")}>Book Free Counselling</button>
+          <a href="tel:8976509267" style={{ textDecoration: "none" }}>
+            <button className="btn-secondary" style={{ padding: "16px 40px", fontSize: "1rem" }}>📞 +91 89765 09267</button>
+          </a>
+        </div>
+      </section>
+    </>
+  );
+}
+
+// ════════════════════════════════════════════════════════════════
+//  PAGE: ABOUT
+// ════════════════════════════════════════════════════════════════
+function AboutPage() {
+  const { navigate } = useRouter();
+  const go = (p) => { navigate(p); window.scrollTo({ top: 0, behavior: "smooth" }); };
+  const fade = useFadeUp();
+  const team = [
+    { name: "Rajesh Sharma", role: "Founder & CEO", exp: "12 yrs in Digital Marketing", initials: "RS", color: "#00e5ff" },
+    { name: "Priya Iyer", role: "Head of SEO & Content", exp: "9 yrs, Ex-Agency Lead", initials: "PI", color: "#ffab00" },
+    { name: "Nikhil Verma", role: "App Dev Lead", exp: "8 yrs Flutter / React Native", initials: "NV", color: "#ff6d00" },
+    { name: "Sneha Joshi", role: "Placement Coordinator", exp: "6 yrs HR & Career Coaching", initials: "SJ", color: "#00e5ff" },
+  ];
+  const milestones = [
+    { year: "2018", event: "NextGen Academy founded in Thane with first batch of 12 students." },
+    { year: "2020", event: "Expanded curriculum to include App Development. 500+ students trained." },
+    { year: "2022", event: "Launched online learning platform. Now training students pan-India." },
+    { year: "2023", event: "50+ hiring partners onboarded. Placed 600+ students in 12 months." },
+    { year: "2025", event: "2500+ alumni, 4.9★ Google rating & growing every batch." },
+  ];
+  return (
+    <>
+      <PageHero label="About NextGen Academy" title={<>Where Learning<br /><span className="grad-text">Meets Innovation</span></>} sub="We specialise in providing industry-focused courses in Digital Marketing and App Development. Our programs blend theory with hands-on experience, preparing you for the real-world job market." />
+      <section>
+        <div className="max-w">
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 60, alignItems: "center", marginBottom: 80 }}>
+            <div className="fade-up" ref={fade}>
+              <div className="sec-label">// Our Story</div>
+              <h2 className="sec-title">Built on a Simple <span className="grad-text">Promise</span></h2>
+              <p style={{ color: "var(--muted)", lineHeight: 1.8, marginBottom: 16 }}>
+                NextGen Academy was born from a frustration with the gap between what colleges teach and what employers actually need.
+                Our founder, after years working at agencies in Mumbai, decided to build a training centre that focused on outcomes — not just certificates.
+              </p>
+              <p style={{ color: "var(--muted)", lineHeight: 1.8, marginBottom: 24 }}>
+                Today we train hundreds of students every year in Digital Marketing, App Development, SEO, and more — with a 100% internship guarantee that backs up every program we offer.
+              </p>
+              <button className="btn-primary" onClick={() => go("contact")}>Talk to Us Today</button>
+            </div>
+            <div>
+              <div className="info-bar" style={{ gridTemplateColumns: "1fr 1fr", gap: 16 }}>
+                {[{ v: "2500+", k: "Students Trained" }, { v: "100%", k: "Internship Rate" }, { v: "50+", k: "Hiring Partners" }, { v: "7 yrs", k: "In Operation" }].map((s, i) => (
+                  <div className="info-item fade-up" key={i} ref={fade} style={{ transitionDelay: `${i * 70}ms` }}>
+                    <div className="info-val">{s.v}</div>
+                    <div className="info-key">{s.k}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* Timeline */}
+          <div className="sec-head fade-up" ref={fade}>
+            <div className="sec-label">// Our Journey</div>
+            <h2 className="sec-title">Milestones That <span className="grad-text">Define Us</span></h2>
+          </div>
+          <div className="timeline fade-up" ref={fade} style={{ maxWidth: 680 }}>
+            {milestones.map((m, i) => (
+              <div className="tl-step" key={i}>
+                <h4>{m.year}</h4>
+                <p>{m.event}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Team */}
+      <section style={{ background: "var(--navy-mid)", borderTop: "1px solid var(--border)" }}>
+        <div className="max-w">
+          <div className="sec-head fade-up" ref={fade} style={{ textAlign: "center" }}>
+            <div className="sec-label">// Our Team</div>
+            <h2 className="sec-title">Meet the <span className="grad-text">Experts</span></h2>
+            <p className="sec-sub" style={{ margin: "0 auto" }}>Trainers who don't just teach — they've done it.</p>
+          </div>
+          <div className="team-grid">
+            {team.map((m, i) => (
+              <div className="team-card fade-up" key={i} ref={fade} style={{ transitionDelay: `${i * 80}ms` }}>
+                <div className="team-avatar" style={{ background: m.color }}>{m.initials}</div>
+                <div className="team-name">{m.name}</div>
+                <div className="team-role">{m.role}</div>
+                <div className="team-exp">{m.exp}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section className="cta-section">
+        <h2>Ready to be Part of<br /><span className="grad-text">Our Story?</span></h2>
+        <p>Join thousands of students who've transformed their careers with NextGen Academy.</p>
+        <div className="btn-group" style={{ justifyContent: "center" }}>
+          <button className="btn-primary" onClick={() => go("admission")}>Apply for a Course</button>
+          <button className="btn-secondary" onClick={() => go("contact")}>Get in Touch</button>
+        </div>
+      </section>
+    </>
+  );
+}
+
+// ════════════════════════════════════════════════════════════════
+//  PAGE: ALL COURSES
+// ════════════════════════════════════════════════════════════════
+function CoursesPage() {
+  const { navigate } = useRouter();
+  const go = (p) => { navigate(p); window.scrollTo({ top: 0, behavior: "smooth" }); };
+  const fade = useFadeUp();
+  return (
+    <>
+      <PageHero label="All Programs" title={<>Courses Built for<br /><span className="grad-text">Real-World Success</span></>} sub="Every course is designed with industry input. Learn tools professionals actually use, then apply them in live projects with guaranteed internship support." />
+      <section>
+        <div className="max-w">
+          <div className="courses-grid">
+            {COURSES_DATA.map((c, i) => (
+              <div className="course-card fade-up" key={c.id} ref={fade} style={{ transitionDelay: `${i * 70}ms` }}
+                onClick={() => go(c.id)}>
+                <div className="c-icon" style={{ background: c.iconBg, border: `1px solid ${c.iconBorder}` }}>{c.icon}</div>
+                <span className="c-tag" style={{ background: c.tagBg, color: c.tagColor }}>{c.tag}</span>
+                <h3>{c.title}</h3>
+                <p>{c.short}</p>
+                <div className="c-footer">
+                  <div>
+                    <div className="c-meta">Duration: <strong>{c.duration}</strong></div>
+                    <div className="c-meta">Fee: <strong>{c.fee}</strong></div>
+                  </div>
+                  <div className="arrow-btn">
+                    <svg width="13" height="13" viewBox="0 0 14 14" fill="none" stroke="currentColor" strokeWidth="2"><path d="M2 12L12 2M12 2H6M12 2V8"/></svg>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+          <div className="card fade-up" ref={fade} style={{ marginTop: 40, textAlign: "center", padding: 40 }}>
+            <div className="card-top-bar" />
+            <div style={{ fontSize: "1.4rem", marginBottom: 12 }}>🤔</div>
+            <h3 style={{ fontFamily: "'Space Mono',monospace", marginBottom: 12 }}>Not sure which course to pick?</h3>
+            <p style={{ color: "var(--muted)", maxWidth: 440, margin: "0 auto 24px", lineHeight: 1.7, fontSize: ".92rem" }}>
+              Talk to our expert counsellors for free. We'll help you figure out the perfect path based on your background and career goals.
+            </p>
+            <button className="btn-primary" onClick={() => go("contact")}>Book Free Counselling</button>
+          </div>
+        </div>
+      </section>
+    </>
+  );
+}
+
+// ════════════════════════════════════════════════════════════════
+//  PAGE: COURSE DETAIL (shared template)
+// ════════════════════════════════════════════════════════════════
+function CourseDetailPage({ courseId }) {
+  const { navigate } = useRouter();
+  const go = (p) => { navigate(p); window.scrollTo({ top: 0, behavior: "smooth" }); };
+  const fade = useFadeUp();
+  const c = COURSES_DATA.find(x => x.id === courseId);
+  if (!c) return null;
+  return (
+    <>
+      <PageHero label={c.tag} title={<>{c.title}</>} sub={c.short} />
+      <section>
+        <div className="max-w">
+          {/* Info bar */}
+          <div className="info-bar fade-up" ref={fade} style={{ marginBottom: 56 }}>
+            {[{ v: c.duration, k: "Duration" }, { v: c.fee, k: "Course Fee" }, { v: c.level, k: "Skill Level" }, { v: c.batch, k: "Batch Type" }, { v: "100%", k: "Internship" }, { v: "Placement", k: "Support" }].map((s, i) => (
+              <div className="info-item" key={i}><div className="info-val">{s.v}</div><div className="info-key">{s.k}</div></div>
+            ))}
+          </div>
+
+          <div style={{ display: "grid", gridTemplateColumns: "1.1fr 0.9fr", gap: 56, alignItems: "start" }}>
+            {/* Syllabus */}
+            <div>
+              <div className="sec-label fade-up" ref={fade}>// Curriculum</div>
+              <h2 className="sec-title fade-up" ref={fade} style={{ marginBottom: 28 }}>
+                What You'll <span className="grad-text">Learn</span>
+              </h2>
+              <div className="syllabus-list fade-up" ref={fade}>
+                {c.syllabus.map((s, i) => (
+                  <div className="syllabus-item" key={i}>
+                    <div className="syl-num">{String(i + 1).padStart(2, "0")}</div>
+                    <div className="syl-text"><strong>{s.title}</strong>{s.desc}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+            {/* Sidebar */}
+            <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>
+              {/* Tools */}
+              <div className="card fade-up" ref={fade}>
+                <div className="card-top-bar" />
+                <div className="sec-label" style={{ marginBottom: 16 }}>// Tools You'll Master</div>
+                <div className="tools-grid">
+                  {c.tools.map((t, i) => <span className="tool-chip" key={i}>{t}</span>)}
+                </div>
+              </div>
+              {/* Career outcomes */}
+              <div className="card fade-up" ref={fade}>
+                <div className="card-top-bar" style={{ background: "linear-gradient(90deg, var(--amber), var(--hot))" }} />
+                <div className="sec-label" style={{ marginBottom: 16, color: "var(--amber)" }}>// Career Outcomes</div>
+                <div style={{ display: "flex", flexDirection: "column", gap: 9 }}>
+                  {c.outcomes.map((o, i) => (
+                    <div key={i} style={{ display: "flex", alignItems: "center", gap: 10 }}>
+                      <span style={{ color: "var(--amber)", fontSize: ".75rem" }}>▸</span>
+                      <span style={{ fontSize: ".88rem", color: "var(--muted)" }}>{o}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+              {/* CTA card */}
+              <div className="card fade-up" ref={fade} style={{ textAlign: "center", background: "var(--navy-mid)" }}>
+                <div style={{ fontSize: "2rem", marginBottom: 10 }}>{c.icon}</div>
+                <h4 style={{ fontFamily: "'Space Mono',monospace", marginBottom: 8, fontSize: ".95rem" }}>Ready to Enrol?</h4>
+                <p style={{ color: "var(--muted)", fontSize: ".84rem", lineHeight: 1.65, marginBottom: 20 }}>Batch filling fast — secure your seat before it's gone.</p>
+                <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+                  <button className="btn-primary" onClick={() => go("admission")} style={{ width: "100%" }}>Apply Now</button>
+                  <button className="btn-secondary" onClick={() => go("contact")} style={{ width: "100%", padding: "12px" }}>Book Free Counselling</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Related courses */}
+      <section style={{ background: "var(--navy-mid)", borderTop: "1px solid var(--border)" }}>
+        <div className="max-w">
+          <div className="sec-head fade-up" ref={fade}>
+            <div className="sec-label">// Explore More</div>
+            <h2 className="sec-title">Other <span className="grad-text">Programs</span></h2>
+          </div>
+          <div className="courses-grid">
+            {COURSES_DATA.filter(x => x.id !== courseId).slice(0, 3).map((cr, i) => (
+              <div className="course-card fade-up" key={cr.id} ref={fade} style={{ transitionDelay: `${i * 70}ms` }}
+                onClick={() => go(cr.id)}>
+                <div className="c-icon" style={{ background: cr.iconBg, border: `1px solid ${cr.iconBorder}` }}>{cr.icon}</div>
+                <h3>{cr.title}</h3>
+                <p>{cr.short}</p>
+                <div className="c-footer">
+                  <div className="c-meta">Duration: <strong>{cr.duration}</strong></div>
+                  <div className="arrow-btn">
+                    <svg width="13" height="13" viewBox="0 0 14 14" fill="none" stroke="currentColor" strokeWidth="2"><path d="M2 12L12 2M12 2H6M12 2V8"/></svg>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+    </>
+  );
+}
+
+// ════════════════════════════════════════════════════════════════
+//  PAGE: TESTIMONIALS
+// ════════════════════════════════════════════════════════════════
+function TestimonialsPage() {
+  const { navigate } = useRouter();
+  const go = (p) => { navigate(p); window.scrollTo({ top: 0, behavior: "smooth" }); };
+  const fade = useFadeUp();
+  return (
+    <>
+      <PageHero label="Student Stories" title={<>Real Results from<br /><span className="grad-text">Real Students</span></>} sub="Over 2500 students trained. Here's what they say about their journey at NextGen Academy — in their own words." />
+      <section>
+        <div className="max-w">
+          <div className="info-bar fade-up" ref={fade} style={{ marginBottom: 60 }}>
+            {[{ v: "4.9★", k: "Google Rating" }, { v: "2500+", k: "Alumni" }, { v: "100%", k: "Internship Rate" }, { v: "600+", k: "Placed in 2023" }].map((s, i) => (
+              <div className="info-item" key={i}><div className="info-val">{s.v}</div><div className="info-key">{s.k}</div></div>
+            ))}
+          </div>
+          <div className="testi-grid">
+            {TESTIMONIALS.map((t, i) => (
+              <div className="testi-card fade-up" key={i} ref={fade} style={{ transitionDelay: `${i * 60}ms` }}>
+                <div className="testi-stars">★★★★★</div>
+                <p className="testi-text">"{t.text}"</p>
+                <div className="testi-author">
+                  <div className="t-avatar" style={{ background: t.color }}>{t.initials}</div>
+                  <div><div className="t-name">{t.name}</div><div className="t-loc">📍 {t.location}</div></div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+      <section className="cta-section">
+        <h2>Write Your Own<br /><span className="grad-text">Success Story.</span></h2>
+        <p>Join the next batch and become the testimonial that inspires someone else.</p>
+        <div className="btn-group" style={{ justifyContent: "center" }}>
+          <button className="btn-primary" onClick={() => go("admission")}>Apply for a Course</button>
+          <button className="btn-secondary" onClick={() => go("contact")}>Free Counselling →</button>
+        </div>
+      </section>
+    </>
+  );
+}
+
+// ════════════════════════════════════════════════════════════════
+//  PAGE: CONTACT
+// ════════════════════════════════════════════════════════════════
+function ContactPage() {
+  const fade = useFadeUp();
+  const [sent, setSent] = useState(false);
+  const handleSubmit = (e) => { e.preventDefault(); setSent(true); };
+  return (
+    <>
+      <PageHero label="Get in Touch" title={<>We're Here to<br /><span className="grad-text">Help You</span></>} sub="Have a question about our courses? Want to know which program fits your goals? Reach out — our counsellors respond within 2 hours." />
+      <section>
+        <div className="max-w contact-layout">
+          {/* Info */}
+          <div>
+            <div className="sec-label fade-up" ref={fade}>// Reach Us</div>
+            <h2 className="sec-title fade-up" ref={fade} style={{ marginBottom: 28 }}>Contact <span className="grad-text">Details</span></h2>
+            <div className="contact-info-card fade-up" ref={fade}>
+              {[
+                { icon: "📞", label: "Phone", val: <a href="tel:8976509267">+91 89765 09267</a> },
+                { icon: "✉️", label: "Email", val: <a href="mailto:info@thenextgenacademy.co.in">info@thenextgenacademy.co.in</a> },
+                { icon: "📍", label: "Address", val: "Thane West, Mumbai, Maharashtra" },
+                { icon: "🕐", label: "Hours", val: "Mon–Sat: 9:00 AM – 8:00 PM" },
+                { icon: "💬", label: "WhatsApp", val: <a href="https://wa.me/918976509267">Chat on WhatsApp</a> },
+              ].map((row, i) => (
+                <div className="c-info-row" key={i}>
+                  <div className="c-info-icon">{row.icon}</div>
+                  <div>
+                    <div className="c-info-label">{row.label}</div>
+                    <div className="c-info-val">{row.val}</div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+          {/* Form */}
+          <div>
+            <div className="sec-label fade-up" ref={fade}>// Send a Message</div>
+            <h2 className="sec-title fade-up" ref={fade} style={{ marginBottom: 28 }}>Book Free <span className="grad-text">Counselling</span></h2>
+            {sent ? (
+              <div className="card fade-up" ref={fade} style={{ textAlign: "center", padding: 48 }}>
+                <div className="card-top-bar" />
+                <div style={{ fontSize: "2.5rem", marginBottom: 14 }}>✅</div>
+                <h3 style={{ fontFamily: "'Space Mono',monospace", marginBottom: 10 }}>Message Sent!</h3>
+                <p style={{ color: "var(--muted)", lineHeight: 1.7 }}>Our counsellor will call you back within 2 hours. Check your WhatsApp too!</p>
+              </div>
+            ) : (
+              <form onSubmit={handleSubmit} className="card fade-up" ref={fade} style={{ padding: 36 }}>
+                <div className="card-top-bar" />
+                <div className="form-grid">
+                  <div className="form-group">
+                    <label className="form-label">Full Name *</label>
+                    <input className="form-input" placeholder="Your name" required />
+                  </div>
+                  <div className="form-group">
+                    <label className="form-label">Phone Number *</label>
+                    <input className="form-input" placeholder="+91 98765 43210" required />
+                  </div>
+                  <div className="form-group">
+                    <label className="form-label">Email Address</label>
+                    <input className="form-input" type="email" placeholder="you@email.com" />
+                  </div>
+                  <div className="form-group">
+                    <label className="form-label">Interested In</label>
+                    <select className="form-select">
+                      <option value="">Select a course</option>
+                      {COURSES_DATA.map(c => <option key={c.id} value={c.id}>{c.title}</option>)}
+                      <option value="not-sure">Not Sure Yet</option>
+                    </select>
+                  </div>
+                  <div className="form-group full">
+                    <label className="form-label">Message (Optional)</label>
+                    <textarea className="form-textarea" placeholder="Tell us about your background and career goals..." />
+                  </div>
+                </div>
+                <button className="btn-primary" type="submit" style={{ marginTop: 20, width: "100%", fontSize: "1rem", padding: "16px" }}>Send Message & Book Counselling</button>
+              </form>
+            )}
+          </div>
+        </div>
+      </section>
+    </>
+  );
+}
+
+// ════════════════════════════════════════════════════════════════
+//  PAGE: ADMISSION FORM
+// ════════════════════════════════════════════════════════════════
+function AdmissionPage() {
+  const fade = useFadeUp();
+  const [step, setStep] = useState(1);
+  const [submitted, setSubmitted] = useState(false);
+  const handleNext = (e) => { e.preventDefault(); setStep(2); window.scrollTo({ top: 0, behavior: "smooth" }); };
+  const handleSubmit = (e) => { e.preventDefault(); setSubmitted(true); window.scrollTo({ top: 0, behavior: "smooth" }); };
+  return (
+    <>
+      <PageHero label="Admission Form" title={<>Secure Your <span className="grad-text">Seat Today</span></>} sub="Fill in the admission form below. Our team will confirm your enrollment and share batch details within 24 hours." />
+      <section>
+        <div className="max-w" style={{ maxWidth: 740 }}>
+          {/* Progress */}
+          {!submitted && (
+            <div className="fade-up" ref={fade} style={{ display: "flex", gap: 0, marginBottom: 40, borderRadius: 10, overflow: "hidden", border: "1px solid var(--border)" }}>
+              {[{ n: "01", l: "Personal Info" }, { n: "02", l: "Course & Payment" }].map((s, i) => (
+                <div key={i} style={{ flex: 1, padding: "16px 20px", background: step > i ? (i + 1 === step ? "var(--navy-card)" : "rgba(0,229,255,.07)") : "transparent", borderRight: i === 0 ? "1px solid var(--border)" : "none", display: "flex", alignItems: "center", gap: 12 }}>
+                  <div style={{ width: 30, height: 30, borderRadius: "50%", background: step > i ? "var(--cyan)" : "var(--navy-card)", border: "1px solid var(--border)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: ".75rem", fontFamily: "'Space Mono',monospace", fontWeight: 700, color: step > i ? "var(--navy)" : "var(--muted)", flexShrink: 0 }}>{s.n}</div>
+                  <span style={{ fontSize: ".87rem", fontWeight: 600, color: step > i ? "var(--white)" : "var(--muted)" }}>{s.l}</span>
+                </div>
+              ))}
+            </div>
+          )}
+
+          {submitted ? (
+            <div className="card fade-up" ref={fade} style={{ textAlign: "center", padding: 56 }}>
+              <div className="card-top-bar" />
+              <div style={{ fontSize: "3rem", marginBottom: 16 }}>🎉</div>
+              <h2 style={{ fontFamily: "'Space Mono',monospace", marginBottom: 14 }}>Application Submitted!</h2>
+              <p style={{ color: "var(--muted)", lineHeight: 1.75, maxWidth: 400, margin: "0 auto 24px" }}>
+                Congratulations on taking the first step! Our team will call you within 24 hours to confirm your enrollment and share batch details.
+              </p>
+              <p style={{ color: "var(--cyan)", fontSize: ".9rem", marginBottom: 32 }}>Check your WhatsApp — we'll send a confirmation message shortly.</p>
+              <button className="btn-secondary" onClick={() => { setSubmitted(false); setStep(1); }}>Submit Another Application</button>
+            </div>
+          ) : step === 1 ? (
+            <form onSubmit={handleNext} className="card fade-up" ref={fade} style={{ padding: 40 }}>
+              <div className="card-top-bar" />
+              <h3 style={{ fontFamily: "'Space Mono',monospace", marginBottom: 28, fontSize: "1.1rem" }}>Personal Information</h3>
+              <div className="form-grid">
+                <div className="form-group"><label className="form-label">First Name *</label><input className="form-input" placeholder="Ravi" required /></div>
+                <div className="form-group"><label className="form-label">Last Name *</label><input className="form-input" placeholder="Sharma" required /></div>
+                <div className="form-group"><label className="form-label">Phone Number *</label><input className="form-input" placeholder="+91 98765 43210" required /></div>
+                <div className="form-group"><label className="form-label">Email Address *</label><input className="form-input" type="email" placeholder="ravi@email.com" required /></div>
+                <div className="form-group"><label className="form-label">Date of Birth *</label><input className="form-input" type="date" required /></div>
+                <div className="form-group"><label className="form-label">City *</label><input className="form-input" placeholder="Thane" required /></div>
+                <div className="form-group full"><label className="form-label">Highest Education</label><select className="form-select"><option>Select qualification</option><option>10th / SSC</option><option>12th / HSC</option><option>Graduate (B.A / B.Sc / B.Com)</option><option>Graduate (B.E / B.Tech)</option><option>Post Graduate</option><option>Other</option></select></div>
+              </div>
+              <button className="btn-primary" type="submit" style={{ marginTop: 24, padding: "15px 40px" }}>Continue to Course Details →</button>
+            </form>
+          ) : (
+            <form onSubmit={handleSubmit} className="card fade-up" ref={fade} style={{ padding: 40 }}>
+              <div className="card-top-bar" />
+              <h3 style={{ fontFamily: "'Space Mono',monospace", marginBottom: 28, fontSize: "1.1rem" }}>Course & Payment Details</h3>
+              <div className="form-grid">
+                <div className="form-group full"><label className="form-label">Course Interested In *</label><select className="form-select" required><option value="">Select a course</option>{COURSES_DATA.map(c => <option key={c.id} value={c.id}>{c.title} — {c.fee}</option>)}</select></div>
+                <div className="form-group"><label className="form-label">Preferred Batch</label><select className="form-select"><option>Select batch</option><option>Weekday Morning</option><option>Weekday Evening</option><option>Weekend</option><option>Online</option></select></div>
+                <div className="form-group"><label className="form-label">How Did You Hear About Us?</label><select className="form-select"><option>Select source</option><option>Google Search</option><option>Social Media</option><option>Friend / Family</option><option>WhatsApp</option><option>Other</option></select></div>
+                <div className="form-group full"><label className="form-label">Career Goal / Message</label><textarea className="form-textarea" placeholder="Tell us your current background and what you hope to achieve after the course..." /></div>
+                <div className="form-group full">
+                  <div style={{ padding: "16px 20px", background: "rgba(0,229,255,.06)", border: "1px solid var(--border)", borderRadius: 10 }}>
+                    <div style={{ fontSize: ".82rem", color: "var(--cyan)", fontWeight: 700, marginBottom: 8 }}>✅ What's Included</div>
+                    {["100% Internship Guarantee", "Course completion certificate", "Placement support & mock interviews", "Google / Meta certifications", "Lifetime course material access"].map((i, idx) => (
+                      <div key={idx} style={{ fontSize: ".85rem", color: "var(--muted)", padding: "4px 0", display: "flex", gap: 8 }}>
+                        <span style={{ color: "var(--cyan)" }}>▸</span>{i}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+              <div style={{ display: "flex", gap: 14, marginTop: 24 }}>
+                <button type="button" className="btn-secondary" onClick={() => setStep(1)} style={{ padding: "15px 28px" }}>← Back</button>
+                <button className="btn-primary" type="submit" style={{ flex: 1, fontSize: "1rem", padding: "15px" }}>Submit Application 🎉</button>
+              </div>
+            </form>
+          )}
+        </div>
+      </section>
+    </>
+  );
+}
+
+// ════════════════════════════════════════════════════════════════
+//  PAGE: PRIVACY POLICY
+// ════════════════════════════════════════════════════════════════
+function PrivacyPage() {
+  const fade = useFadeUp();
+  return (
+    <>
+      <PageHero label="Legal" title={<>Privacy <span className="grad-text">Policy</span></>} sub="Last updated: January 2025. Your privacy matters to us. This policy explains how we collect, use, and protect your information." />
+      <section>
+        <div className="max-w policy-content fade-up" ref={fade}>
+          <h2>1. Information We Collect</h2>
+          <p>When you use our website, fill out forms, or communicate with us, we may collect the following information:</p>
+          <ul>
+            <li>Full name, email address, and phone number</li>
+            <li>City and educational background</li>
+            <li>Course preferences and career goals</li>
+            <li>Browser type, IP address, and usage data (via analytics)</li>
+          </ul>
+          <h2>2. How We Use Your Information</h2>
+          <p>NextGen Academy uses your information to:</p>
+          <ul>
+            <li>Process admissions and course enrollments</li>
+            <li>Schedule free counselling sessions</li>
+            <li>Send batch updates, schedules, and study material</li>
+            <li>Improve our website, courses, and services</li>
+            <li>Send promotional communications (you may opt out at any time)</li>
+          </ul>
+          <h2>3. Data Sharing</h2>
+          <p>We do not sell or rent your personal information to third parties. We may share data with trusted partners (internship companies, placement partners) solely for the purpose of student placement, always with your consent.</p>
+          <h2>4. Data Security</h2>
+          <p>We implement industry-standard security measures including SSL encryption, access controls, and regular audits to protect your personal data from unauthorised access, disclosure, or alteration.</p>
+          <h2>5. Cookies</h2>
+          <p>Our website uses cookies to enhance your experience, remember your preferences, and analyse site traffic. You may disable cookies in your browser settings, though some features may not work as intended.</p>
+          <h2>6. Your Rights</h2>
+          <p>You have the right to access, correct, or delete your personal data at any time. To exercise these rights, please contact us at:</p>
+          <ul>
+            <li><strong>Email:</strong> info@thenextgenacademy.co.in</li>
+            <li><strong>Phone:</strong> +91 89765 09267</li>
+          </ul>
+          <h2>7. Third-Party Links</h2>
+          <p>Our website may contain links to third-party sites (social media, job portals). We are not responsible for the privacy practices of these external websites and encourage you to review their policies.</p>
+          <h2>8. Changes to This Policy</h2>
+          <p>We reserve the right to update this Privacy Policy at any time. Changes will be posted on this page with an updated date. Continued use of our website after changes constitutes acceptance of the updated policy.</p>
+          <h2>9. Contact Us</h2>
+          <p>For any privacy-related queries or concerns, please contact us at <a href="mailto:info@thenextgenacademy.co.in" style={{ color: "var(--cyan)", textDecoration: "none" }}>info@thenextgenacademy.co.in</a> or call <a href="tel:8976509267" style={{ color: "var(--cyan)", textDecoration: "none" }}>+91 89765 09267</a>.</p>
+        </div>
+      </section>
+    </>
+  );
+}
+
+// ════════════════════════════════════════════════════════════════
+//  APP ROOT — Client-side router
+// ════════════════════════════════════════════════════════════════
+export default function App() {
+  const [page, setPage] = useState("home");
+
+  const navigate = (p) => setPage(p);
+
+  const renderPage = () => {
+    if (page === "home")         return <HomePage />;
+    if (page === "about")        return <AboutPage />;
+    if (page === "courses")      return <CoursesPage />;
+    if (page === "testimonials") return <TestimonialsPage />;
+    if (page === "contact")      return <ContactPage />;
+    if (page === "admission")    return <AdmissionPage />;
+    if (page === "privacy")      return <PrivacyPage />;
+    // All 6 course detail pages
+    const course = COURSES_DATA.find(c => c.id === page);
+    if (course) return <CourseDetailPage courseId={page} />;
+    return <HomePage />;
+  };
+
+  return (
+    <RouterCtx.Provider value={{ page, navigate }}>
+      <style>{GLOBAL_CSS}</style>
+      <Navbar />
+      <main style={{ paddingTop: 70 }}>
+        {renderPage()}
+      </main>
+      <Footer />
+      <WhatsAppBtn />
+    </RouterCtx.Provider>
+  );
+}

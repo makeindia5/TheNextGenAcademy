@@ -1,0 +1,10 @@
+export const TESTIMONIALS = [
+  { text: "The digital marketing course exceeded my expectations. Real-time project experience was invaluable. Got placed at a digital agency just a month after completing the course!", name: "Sneha Kulkarni", location: "Mumbai", initials: "SK", color: "#00e5ff" },
+  { text: "After struggling with my career path, the mentorship and career support helped me build confidence. Now I work as a PPC executive in a reputed firm.", name: "Rohit Patil", location: "Thane", initials: "RP", color: "#ffab00" },
+  { text: "The internship and placement support were 100% genuine. Built my portfolio website, ran ads, and landed a job interview within weeks. Worth every rupee!", name: "Siddharth Desai", location: "Kalyan", initials: "SD", color: "#ff6d00" },
+  { text: "Being from a non-technical background, I was nervous. This course made everything simple and hands-on. I received a paid internship offer during the last month of training!", name: "Anjali Sharma", location: "Bhandup", initials: "AS", color: "#00e5ff" },
+  { text: "I did the online course from Ambernath — as good as in-person! Interactive sessions, real tools, and constant mentor feedback helped me get my first freelance client.", name: "Priya Pandey", location: "Ambernath", initials: "PP", color: "#ffab00" },
+  { text: "From SEO to Facebook ads — this course covered everything. The SEO modules alone were worth the entire fee. Highly recommend to anyone serious about digital careers.", name: "Priti Shah", location: "Navi Mumbai", initials: "PS", color: "#ff6d00" },
+  { text: "I was a fresher with no idea about digital marketing. After 4 months, I am now working at a startup managing their entire digital strategy. NextGen changed my life!", name: "Aarav Mehta", location: "Dombivli", initials: "AM", color: "#00e5ff" },
+  { text: "The Flutter course gave me real confidence. I built two apps during training itself — both are now on the Play Store. My portfolio stood out in every interview.", name: "Kavya Nair", location: "Thane", initials: "KN", color: "#ffab00" },
+];

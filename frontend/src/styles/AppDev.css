@@ -1,0 +1,325 @@
+/* ═══════════════════════════════════════════════════════════════
+   AppDevelopment.css — App Development course page styles
+   All classes prefixed with .apd- (AppDevelopment)
+═══════════════════════════════════════════════════════════════ */
+
+/* ── Section wrappers ── */
+.apd-section {
+  padding: 96px 5%;
+}
+
+.apd-section--mid {
+  background: var(--navy-mid);
+  border-top: 1px solid var(--border);
+}
+
+.apd-section--dark {
+  background: var(--navy);
+  border-top: 1px solid var(--border);
+}
+
+.apd-section--grid {
+  background: var(--navy);
+  border-top: 1px solid var(--border);
+}
+
+/* ── Intro two-col layout ── */
+.apd-intro-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: center;
+}
+
+.apd-intro-text p {
+  color: var(--muted);
+  font-size: 0.97rem;
+  line-height: 1.82;
+  margin-bottom: 16px;
+}
+
+.apd-intro-text p:last-child {
+  margin-bottom: 0;
+}
+
+/* ── Stats row ── */
+.apd-stats-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.apd-stat-card {
+  background: var(--navy-card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 24px 18px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.apd-stat-card-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+}
+
+.apd-stat-num {
+  font-family: "Space Mono", monospace;
+  font-size: 1.9rem;
+  font-weight: 700;
+  line-height: 1;
+  margin-bottom: 6px;
+}
+
+.apd-stat-num--cyan   { color: var(--cyan); }
+.apd-stat-num--amber  { color: var(--amber); }
+.apd-stat-num--hot    { color: var(--hot); }
+
+.apd-stat-label {
+  font-size: 0.74rem;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* ── "Why Android" demand section ── */
+.apd-demand-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 64px;
+  align-items: start;
+}
+
+.apd-demand-intro {
+  color: var(--muted);
+  font-size: 0.97rem;
+  line-height: 1.8;
+  margin-bottom: 28px;
+}
+
+/* ── Demand reason list ── */
+.apd-reason-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.apd-reason-item {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  padding: 18px 20px;
+  background: var(--navy-card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  transition: border-color 0.2s, transform 0.2s;
+}
+
+.apd-reason-item:hover {
+  border-color: rgba(0, 229, 255, 0.3);
+  transform: translateX(5px);
+}
+
+.apd-reason-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 9px;
+  background: linear-gradient(135deg, rgba(0,229,255,0.14), rgba(0,229,255,0.04));
+  border: 1px solid rgba(0,229,255,0.18);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  flex-shrink: 0;
+}
+
+.apd-reason-content h4 {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 5px;
+}
+
+.apd-reason-content p {
+  color: var(--muted);
+  font-size: 0.85rem;
+  line-height: 1.65;
+}
+
+.apd-reason-content strong {
+  color: var(--cyan);
+}
+
+/* ── Key features two-column ── */
+.apd-features-cols {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+.apd-feature-card {
+  background: var(--navy-card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 22px;
+  transition: border-color 0.2s, transform 0.22s;
+}
+
+.apd-feature-card:hover {
+  border-color: rgba(255,171,0,0.3);
+  transform: translateY(-4px);
+}
+
+.apd-feature-head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.apd-feature-emoji {
+  font-size: 1.35rem;
+  line-height: 1;
+}
+
+.apd-feature-title {
+  font-family: "Space Mono", monospace;
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--white);
+  letter-spacing: -0.2px;
+}
+
+.apd-feature-desc {
+  color: var(--muted);
+  font-size: 0.85rem;
+  line-height: 1.65;
+}
+
+.apd-feature-desc strong {
+  color: var(--amber);
+}
+
+/* ── Career opportunities chips ── */
+.apd-career-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.apd-career-chip {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 8px 16px;
+  border-radius: 8px;
+  background: rgba(0, 229, 255, 0.06);
+  border: 1px solid rgba(0, 229, 255, 0.16);
+  font-size: 0.83rem;
+  color: var(--muted);
+  font-weight: 500;
+  transition: border-color 0.2s, color 0.2s;
+}
+
+.apd-career-chip:hover {
+  border-color: rgba(0, 229, 255, 0.35);
+  color: var(--white);
+}
+
+.apd-career-chip-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--cyan);
+  flex-shrink: 0;
+}
+
+/* ── Courses grid ── */
+.apd-courses-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 24px;
+}
+
+/* ── CTA section ── */
+.apd-cta-section {
+  padding: 110px 5%;
+  background: var(--navy-mid);
+  border-top: 1px solid var(--border);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.apd-cta-glow {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 65% 55% at 50% 50%, rgba(0,229,255,0.05), transparent);
+  pointer-events: none;
+}
+
+.apd-cta-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 26px;
+}
+
+.apd-cta-title {
+  font-family: "Space Mono", monospace;
+  font-size: clamp(1.9rem, 4vw, 3rem);
+  font-weight: 700;
+  letter-spacing: -1.5px;
+  margin-bottom: 18px;
+  line-height: 1.2;
+  position: relative;
+  z-index: 1;
+}
+
+.apd-cta-sub {
+  color: var(--muted);
+  font-size: 1.05rem;
+  max-width: 500px;
+  margin: 0 auto 40px;
+  line-height: 1.77;
+  position: relative;
+  z-index: 1;
+}
+
+.apd-cta-buttons {
+  display: flex;
+  gap: 14px;
+  justify-content: center;
+  flex-wrap: wrap;
+  position: relative;
+  z-index: 1;
+}
+
+/* ── Responsive ── */
+@media (max-width: 960px) {
+  .apd-intro-grid,
+  .apd-demand-grid {
+    grid-template-columns: 1fr;
+    gap: 44px;
+  }
+
+  .apd-features-cols {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .apd-stats-row {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .apd-section {
+    padding: 72px 5%;
+  }
+}
+
