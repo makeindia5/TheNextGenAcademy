@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import {  Routes, Route } from "react-router-dom";
 import HomePage from "../pages/Home";
 import AboutPage from "../pages/About";
 import CoursesPage from "../pages/CoursesPage";
@@ -11,6 +11,7 @@ import AppDevelopmentPage from "../pages/AppDevelopment";
 import DigitalMarketingPage from "../pages/DigitalMarketing";
 import GoogleAdsPage from "../pages/Googleads";
 import SEOPage from "../pages/Seo";
+import SMMPage from "../pages/Smm";
 export default function AppRoutes() {
   return (
     
@@ -27,10 +28,12 @@ export default function AppRoutes() {
   <Route path="/digital-marketing" element={<DigitalMarketingPage />} />
   <Route path="/seo" element={<SEOPage />} />
   <Route path="/google-ads" element={<GoogleAdsPage />} />
+   <Route path="/social-media" element={<SMMPage />} />
   <Route path="/courses/app-development" element={<AppDevelopmentPage />} />
   <Route path="/courses/digital-marketing" element={<DigitalMarketingPage />} />
   <Route path="/courses/seo" element={<SEOPage />} />
   <Route path="/courses/google-ads" element={<GoogleAdsPage />} />
+  <Route path="/courses/social-media" element={<SMMPage />} />
 </Routes>
   );
 }
