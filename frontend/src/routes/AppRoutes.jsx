@@ -9,6 +9,7 @@ import AdmissionPage from "../pages/AdmissionPage";
 import PrivacyPage from "../pages/PrivacyPage";
 import AppDevelopmentPage from "../pages/AppDevelopment";
 import DigitalMarketingPage from "../pages/DigitalMarketing";
+import GoogleAdsPage from "../pages/Googleads";
 import SEOPage from "../pages/Seo";
 export default function AppRoutes() {
   return (
@@ -25,9 +26,11 @@ export default function AppRoutes() {
   <Route path="/app-development" element={<AppDevelopmentPage />} />
   <Route path="/digital-marketing" element={<DigitalMarketingPage />} />
   <Route path="/seo" element={<SEOPage />} />
+  <Route path="/google-ads" element={<GoogleAdsPage />} />
   <Route path="/courses/app-development" element={<AppDevelopmentPage />} />
   <Route path="/courses/digital-marketing" element={<DigitalMarketingPage />} />
   <Route path="/courses/seo" element={<SEOPage />} />
+  <Route path="/courses/google-ads" element={<GoogleAdsPage />} />
 </Routes>
   );
 }

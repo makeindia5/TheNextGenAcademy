@@ -1,0 +1,696 @@
+/* ═══════════════════════════════════════════════════════════════
+   GoogleAds.css
+   All classes prefixed .ga- to avoid global conflicts
+═══════════════════════════════════════════════════════════════ */
+
+/* ── Section wrappers ── */
+.ga-section {
+  padding: 96px 5%;
+}
+
+.ga-section--dark {
+  background: var(--navy);
+  border-top: 1px solid var(--border);
+}
+
+.ga-section--mid {
+  background: var(--navy-mid);
+  border-top: 1px solid var(--border);
+}
+
+/* ════════════════════════════════════════════════════════════
+   SECTION 1 — Intro hero block
+════════════════════════════════════════════════════════════ */
+
+.ga-intro-layout {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 72px;
+  align-items: start;
+}
+
+.ga-intro-location {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 16px;
+  border-radius: 100px;
+  background: rgba(0, 229, 255, 0.06);
+  border: 1px solid var(--border);
+  font-size: 0.78rem;
+  color: var(--muted);
+  font-style: italic;
+  margin-bottom: 22px;
+  letter-spacing: 0.2px;
+}
+
+.ga-intro-location-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--cyan);
+  animation: gaPulse 2s ease-in-out infinite;
+  flex-shrink: 0;
+}
+
+@keyframes gaPulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%       { opacity: 0.4; transform: scale(0.75); }
+}
+
+.ga-intro-body {
+  color: var(--muted);
+  font-size: 0.97rem;
+  line-height: 1.85;
+  margin-bottom: 16px;
+}
+
+.ga-intro-body strong {
+  color: var(--white);
+}
+
+.ga-intro-body:last-of-type {
+  margin-bottom: 28px;
+}
+
+/* ── Stat strip ── */
+.ga-stat-strip {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+
+.ga-stat-box {
+  background: var(--navy-card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 20px 14px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.22s, border-color 0.22s;
+}
+
+.ga-stat-box:hover {
+  transform: translateY(-4px);
+  border-color: rgba(0, 229, 255, 0.3);
+}
+
+.ga-stat-box-bar {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+}
+
+.ga-stat-box-bar--cyan  { background: linear-gradient(90deg, var(--cyan), var(--cyan-dim)); }
+.ga-stat-box-bar--amber { background: linear-gradient(90deg, var(--amber), #e65c00); }
+.ga-stat-box-bar--hot   { background: linear-gradient(90deg, var(--hot), var(--amber)); }
+
+.ga-stat-num {
+  font-family: "Space Mono", monospace;
+  font-size: 1.75rem;
+  font-weight: 700;
+  line-height: 1;
+  margin-bottom: 6px;
+}
+
+.ga-stat-num--cyan  { color: var(--cyan); }
+.ga-stat-num--amber { color: var(--amber); }
+.ga-stat-num--hot   { color: var(--hot); }
+
+.ga-stat-label {
+  font-size: 0.72rem;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* ════════════════════════════════════════════════════════════
+   SECTION 2 — What You'll Learn (5 modules)
+════════════════════════════════════════════════════════════ */
+
+.ga-learn-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 20px;
+}
+
+.ga-learn-card {
+  background: var(--navy-card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 28px;
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+  transition: transform 0.25s, border-color 0.25s, box-shadow 0.25s;
+}
+
+.ga-learn-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(0, 229, 255, 0.32);
+  box-shadow: 0 20px 56px rgba(0, 0, 0, 0.42);
+}
+
+.ga-learn-num-wrap {
+  flex-shrink: 0;
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 229, 255, 0.08);
+  border: 1px solid rgba(0, 229, 255, 0.2);
+}
+
+.ga-learn-num {
+  font-family: "Space Mono", monospace;
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--cyan);
+}
+
+.ga-learn-icon {
+  font-size: 1.6rem;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+
+
+.ga-learn-title {
+  font-family: "Space Mono", monospace;
+  font-size: 0.97rem;
+  font-weight: 700;
+  color: var(--white);
+  letter-spacing: -0.2px;
+  margin-bottom: 8px;
+}
+
+.ga-learn-desc {
+  color: var(--muted);
+  font-size: 0.865rem;
+  line-height: 1.72;
+  margin-bottom: 14px;
+}
+
+.ga-learn-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.ga-chip {
+  padding: 3px 10px;
+  border-radius: 5px;
+  background: rgba(0, 229, 255, 0.07);
+  border: 1px solid rgba(0, 229, 255, 0.16);
+  color: var(--cyan);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  transition: background 0.18s;
+}
+
+.ga-chip:hover {
+  background: rgba(0, 229, 255, 0.14);
+}
+
+.ga-chip--amber {
+  background: rgba(255, 171, 0, 0.07);
+  border-color: rgba(255, 171, 0, 0.18);
+  color: var(--amber);
+}
+
+.ga-chip--amber:hover {
+  background: rgba(255, 171, 0, 0.14);
+}
+
+.ga-chip--hot {
+  background: rgba(255, 109, 0, 0.07);
+  border-color: rgba(255, 109, 0, 0.18);
+  color: var(--hot);
+}
+
+.ga-chip--hot:hover {
+  background: rgba(255, 109, 0, 0.14);
+}
+
+/* ════════════════════════════════════════════════════════════
+   SECTION 3 — Why choose this course (feature cards)
+════════════════════════════════════════════════════════════ */
+
+.ga-features-layout {
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: 72px;
+  align-items: start;
+}
+
+.ga-features-sticky {
+  position: sticky;
+  top: 90px;
+}
+
+.ga-features-desc {
+  color: var(--muted);
+  font-size: 0.97rem;
+  line-height: 1.82;
+  margin-bottom: 28px;
+}
+
+.ga-features-callout {
+  background: var(--navy-card);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--amber);
+  border-radius: 0 12px 12px 0;
+  padding: 18px 20px;
+  margin-bottom: 28px;
+}
+
+.ga-features-callout p {
+  color: var(--muted);
+  font-size: 0.87rem;
+  line-height: 1.72;
+  margin: 0;
+}
+
+.ga-features-callout strong {
+  color: var(--amber);
+}
+
+.ga-features-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.ga-feature-item {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  padding: 18px 20px;
+  background: var(--navy-card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  transition: border-color 0.22s, transform 0.22s;
+}
+
+.ga-feature-item:hover {
+  border-color: rgba(255, 171, 0, 0.28);
+  transform: translateX(5px);
+}
+
+.ga-feature-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 9px;
+  background: linear-gradient(135deg, rgba(255,171,0,0.14), rgba(255,171,0,0.04));
+  border: 1px solid rgba(255, 171, 0, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  flex-shrink: 0;
+}
+
+.ga-feature-content h4 {
+  font-family: "Space Mono", monospace;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 5px;
+  letter-spacing: -0.2px;
+}
+
+.ga-feature-content p {
+  color: var(--muted);
+  font-size: 0.845rem;
+  line-height: 1.65;
+}
+
+/* ════════════════════════════════════════════════════════════
+   SECTION 4 — Campaign types (3 cards)
+════════════════════════════════════════════════════════════ */
+
+.ga-campaign-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+}
+
+.ga-campaign-card {
+  background: var(--navy-card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 28px;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.25s, border-color 0.25s, box-shadow 0.25s;
+}
+
+.ga-campaign-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 56px rgba(0, 0, 0, 0.42);
+}
+
+.ga-campaign-card--cyan:hover   { border-color: rgba(0, 229, 255, 0.35); }
+.ga-campaign-card--amber:hover  { border-color: rgba(255, 171, 0, 0.35); }
+.ga-campaign-card--hot:hover    { border-color: rgba(255, 109, 0, 0.35); }
+
+.ga-campaign-bar {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+}
+
+.ga-campaign-bar--cyan  { background: linear-gradient(90deg, var(--cyan), var(--cyan-dim)); }
+.ga-campaign-bar--amber { background: linear-gradient(90deg, var(--amber), #e65c00); }
+.ga-campaign-bar--hot   { background: linear-gradient(90deg, var(--hot), var(--amber)); }
+
+.ga-campaign-icon {
+  font-size: 2rem;
+  margin-bottom: 16px;
+  line-height: 1;
+}
+
+.ga-campaign-title {
+  font-family: "Space Mono", monospace;
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: -0.3px;
+  margin-bottom: 10px;
+}
+
+.ga-campaign-title--cyan  { color: var(--cyan); }
+.ga-campaign-title--amber { color: var(--amber); }
+.ga-campaign-title--hot   { color: var(--hot); }
+
+.ga-campaign-desc {
+  color: var(--muted);
+  font-size: 0.875rem;
+  line-height: 1.72;
+  margin-bottom: 16px;
+}
+
+.ga-campaign-formats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+/* ════════════════════════════════════════════════════════════
+   SECTION 5 — Tools
+════════════════════════════════════════════════════════════ */
+
+.ga-tools-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.ga-tool-pill {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 10px 18px;
+  border-radius: 8px;
+  background: var(--navy-card);
+  border: 1px solid var(--border);
+  font-size: 0.855rem;
+  color: var(--muted);
+  font-weight: 500;
+  transition: border-color 0.2s, color 0.2s, transform 0.18s;
+}
+
+.ga-tool-pill:hover {
+  border-color: rgba(0, 229, 255, 0.3);
+  color: var(--white);
+  transform: translateY(-2px);
+}
+
+.ga-tool-icon {
+  font-size: 1rem;
+}
+
+/* ════════════════════════════════════════════════════════════
+   SECTION 6 — Career outcomes + Who should join
+════════════════════════════════════════════════════════════ */
+
+.ga-outcomes-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: start;
+}
+
+.ga-outcomes-intro {
+  color: var(--muted);
+  font-size: 0.97rem;
+  line-height: 1.82;
+  margin-bottom: 28px;
+}
+
+.ga-career-roles {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.ga-career-role {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 18px;
+  background: var(--navy-card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  transition: border-color 0.2s, transform 0.2s;
+}
+
+.ga-career-role:hover {
+  border-color: rgba(0, 229, 255, 0.28);
+  transform: translateX(5px);
+}
+
+.ga-career-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--cyan);
+  box-shadow: 0 0 8px rgba(0, 229, 255, 0.5);
+  flex-shrink: 0;
+}
+
+.ga-career-name {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--white);
+}
+
+.ga-career-pay {
+  margin-left: auto;
+  font-family: "Space Mono", monospace;
+  font-size: 0.75rem;
+  color: var(--amber);
+  font-weight: 700;
+}
+
+/* ── Who should join ── */
+.ga-who-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.ga-who-item {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  padding: 14px 16px;
+  background: var(--navy-card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  font-size: 0.875rem;
+  color: var(--muted);
+  line-height: 1.62;
+  transition: border-color 0.2s;
+}
+
+.ga-who-item:hover {
+  border-color: rgba(255, 171, 0, 0.25);
+}
+
+.ga-who-icon {
+  font-size: 1.15rem;
+  flex-shrink: 0;
+  line-height: 1;
+}
+
+/* ════════════════════════════════════════════════════════════
+   SECTION 7 — Certification strip
+════════════════════════════════════════════════════════════ */
+
+.ga-cert-strip {
+  padding: 56px 5%;
+  background: var(--navy-mid);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+.ga-cert-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 28px;
+  flex-wrap: wrap;
+}
+
+.ga-cert-headline {
+  font-family: "Space Mono", monospace;
+  font-size: clamp(1.3rem, 2.5vw, 1.9rem);
+  font-weight: 700;
+  letter-spacing: -0.8px;
+  line-height: 1.25;
+  margin-bottom: 8px;
+}
+
+.ga-cert-sub {
+  color: var(--muted);
+  font-size: 0.92rem;
+  line-height: 1.65;
+  max-width: 480px;
+}
+
+.ga-cert-badges {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.ga-cert-badge {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 9px 16px;
+  border-radius: 8px;
+  background: rgba(0, 229, 255, 0.06);
+  border: 1px solid rgba(0, 229, 255, 0.18);
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--cyan);
+}
+
+.ga-cert-badge-icon {
+  font-size: 1rem;
+}
+
+/* ════════════════════════════════════════════════════════════
+   SECTION 8 — CTA
+════════════════════════════════════════════════════════════ */
+
+.ga-cta-section {
+  padding: 110px 5%;
+  background: var(--navy);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.ga-cta-glow {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 65% 55% at 50% 50%, rgba(255,171,0,0.05), transparent);
+  pointer-events: none;
+}
+
+.ga-cta-content {
+  position: relative;
+  z-index: 1;
+}
+
+.ga-cta-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 26px;
+}
+
+.ga-cta-title {
+  font-family: "Space Mono", monospace;
+  font-size: clamp(1.9rem, 4vw, 3rem);
+  font-weight: 700;
+  letter-spacing: -1.5px;
+  margin-bottom: 18px;
+  line-height: 1.2;
+}
+
+.ga-cta-sub {
+  color: var(--muted);
+  font-size: 1.05rem;
+  max-width: 500px;
+  margin: 0 auto 40px;
+  line-height: 1.77;
+}
+
+.ga-cta-buttons {
+  display: flex;
+  gap: 14px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.ga-tel-link {
+  text-decoration: none;
+}
+
+/* ════════════════════════════════════════════════════════════
+   Stagger delay classes
+════════════════════════════════════════════════════════════ */
+
+.ga-delay-0 { transition-delay: 0ms; }
+.ga-delay-1 { transition-delay: 70ms; }
+.ga-delay-2 { transition-delay: 140ms; }
+.ga-delay-3 { transition-delay: 210ms; }
+.ga-delay-4 { transition-delay: 280ms; }
+.ga-delay-5 { transition-delay: 350ms; }
+
+/* ── Responsive ── */
+@media (max-width: 960px) {
+  .ga-intro-layout,
+  .ga-features-layout,
+  .ga-outcomes-layout {
+    grid-template-columns: 1fr;
+    gap: 44px;
+  }
+
+  .ga-features-sticky {
+    position: static;
+  }
+
+  .ga-cert-inner {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 640px) {
+  .ga-section {
+    padding: 72px 5%;
+  }
+
+  .ga-stat-strip {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .ga-learn-grid {
+    grid-template-columns: 1fr;
+  }
+}
