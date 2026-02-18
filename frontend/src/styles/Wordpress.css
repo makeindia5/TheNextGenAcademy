@@ -1,0 +1,669 @@
+/* ═══════════════════════════════════════════════════════════════
+   Wordpress.css
+   All classes prefixed .wp- to avoid global conflicts
+═══════════════════════════════════════════════════════════════ */
+
+/* ── Section wrappers ── */
+.wp-section {
+  padding: 96px 5%;
+}
+
+.wp-section--dark {
+  background: var(--navy);
+  border-top: 1px solid var(--border);
+}
+
+.wp-section--mid {
+  background: var(--navy-mid);
+  border-top: 1px solid var(--border);
+}
+
+/* ════════════════════════════════════════════════════════════
+   SECTION 1 — Intro + Stats
+════════════════════════════════════════════════════════════ */
+
+.wp-intro-layout {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 72px;
+  align-items: start;
+}
+
+.wp-intro-tagline {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  padding: 8px 18px;
+  border-radius: 100px;
+  background: rgba(0, 229, 255, 0.08);
+  border: 1px solid rgba(0, 229, 255, 0.2);
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--cyan);
+  margin-bottom: 22px;
+  letter-spacing: 0.3px;
+}
+
+.wp-intro-tagline-icon {
+  font-size: 0.95rem;
+}
+
+.wp-intro-body {
+  color: var(--muted);
+  font-size: 0.97rem;
+  line-height: 1.85;
+  margin-bottom: 16px;
+}
+
+.wp-intro-body strong {
+  color: var(--white);
+}
+
+.wp-intro-body:last-of-type {
+  margin-bottom: 28px;
+}
+
+/* ── Stat strip ── */
+.wp-stat-strip {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+
+.wp-stat-box {
+  background: var(--navy-card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 20px 14px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.22s, border-color 0.22s;
+}
+
+.wp-stat-box:hover {
+  transform: translateY(-4px);
+  border-color: rgba(0, 229, 255, 0.3);
+}
+
+.wp-stat-box-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+}
+
+.wp-stat-box-bar--cyan {
+  background: linear-gradient(90deg, var(--cyan), var(--cyan-dim));
+}
+
+.wp-stat-box-bar--amber {
+  background: linear-gradient(90deg, var(--amber), #e65c00);
+}
+
+.wp-stat-box-bar--hot {
+  background: linear-gradient(90deg, var(--hot), var(--amber));
+}
+
+.wp-stat-num {
+  font-family: "Space Mono", monospace;
+  font-size: 1.75rem;
+  font-weight: 700;
+  line-height: 1;
+  margin-bottom: 6px;
+}
+
+.wp-stat-num--cyan {
+  color: var(--cyan);
+}
+
+.wp-stat-num--amber {
+  color: var(--amber);
+}
+
+.wp-stat-num--hot {
+  color: var(--hot);
+}
+
+.wp-stat-label {
+  font-size: 0.72rem;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* ════════════════════════════════════════════════════════════
+   SECTION 2 — What You'll Learn (6 modules)
+════════════════════════════════════════════════════════════ */
+
+.wp-learn-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.wp-learn-card {
+  background: var(--navy-card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 28px;
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+  transition: transform 0.25s, border-color 0.25s, box-shadow 0.25s;
+}
+
+.wp-learn-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(0, 229, 255, 0.32);
+  box-shadow: 0 20px 56px rgba(0, 0, 0, 0.42);
+}
+
+.wp-learn-num-wrap {
+  flex-shrink: 0;
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 229, 255, 0.08);
+  border: 1px solid rgba(0, 229, 255, 0.2);
+}
+
+.wp-learn-num {
+  font-family: "Space Mono", monospace;
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--cyan);
+}
+
+.wp-learn-icon {
+  font-size: 1.6rem;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+
+
+.wp-learn-title {
+  font-family: "Space Mono", monospace;
+  font-size: 0.97rem;
+  font-weight: 700;
+  color: var(--white);
+  letter-spacing: -0.2px;
+  margin-bottom: 8px;
+}
+
+.wp-learn-desc {
+  color: var(--muted);
+  font-size: 0.865rem;
+  line-height: 1.72;
+  margin-bottom: 14px;
+}
+
+.wp-learn-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.wp-chip {
+  padding: 3px 10px;
+  border-radius: 5px;
+  background: rgba(0, 229, 255, 0.07);
+  border: 1px solid rgba(0, 229, 255, 0.16);
+  color: var(--cyan);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  transition: background 0.18s;
+}
+
+.wp-chip:hover {
+  background: rgba(0, 229, 255, 0.14);
+}
+
+.wp-chip--amber {
+  background: rgba(255, 171, 0, 0.07);
+  border-color: rgba(255, 171, 0, 0.18);
+  color: var(--amber);
+}
+
+.wp-chip--amber:hover {
+  background: rgba(255, 171, 0, 0.14);
+}
+
+/* ════════════════════════════════════════════════════════════
+   SECTION 3 — Key Features (5 cards)
+════════════════════════════════════════════════════════════ */
+
+.wp-features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 20px;
+}
+
+.wp-feature-card {
+  background: var(--navy-card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 28px;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.25s, border-color 0.25s, box-shadow 0.25s;
+}
+
+.wp-feature-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 56px rgba(0, 0, 0, 0.42);
+}
+
+.wp-feature-card--cyan:hover {
+  border-color: rgba(0, 229, 255, 0.35);
+}
+
+.wp-feature-card--amber:hover {
+  border-color: rgba(255, 171, 0, 0.35);
+}
+
+.wp-feature-card--hot:hover {
+  border-color: rgba(255, 109, 0, 0.35);
+}
+
+.wp-feature-card--purple:hover {
+  border-color: rgba(155, 89, 245, 0.35);
+}
+
+.wp-feature-top-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+}
+
+.wp-feature-top-bar--cyan {
+  background: linear-gradient(90deg, var(--cyan), var(--cyan-dim));
+}
+
+.wp-feature-top-bar--amber {
+  background: linear-gradient(90deg, var(--amber), #e65c00);
+}
+
+.wp-feature-top-bar--hot {
+  background: linear-gradient(90deg, var(--hot), var(--amber));
+}
+
+.wp-feature-top-bar--purple {
+  background: linear-gradient(90deg, #9b59f5, #00e5ff);
+}
+
+.wp-feature-icon {
+  font-size: 2rem;
+  margin-bottom: 16px;
+  line-height: 1;
+}
+
+.wp-feature-title {
+  font-family: "Space Mono", monospace;
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: -0.3px;
+  margin-bottom: 10px;
+  color: var(--white);
+}
+
+.wp-feature-desc {
+  color: var(--muted);
+  font-size: 0.875rem;
+  line-height: 1.72;
+}
+
+/* ════════════════════════════════════════════════════════════
+   SECTION 4 — Why WordPress (benefits cards)
+════════════════════════════════════════════════════════════ */
+
+.wp-why-layout {
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: 72px;
+  align-items: start;
+}
+
+.wp-why-sticky {
+  position: sticky;
+  top: 90px;
+}
+
+.wp-why-desc {
+  color: var(--muted);
+  font-size: 0.97rem;
+  line-height: 1.82;
+  margin-bottom: 28px;
+}
+
+.wp-why-callout {
+  background: var(--navy-card);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--cyan);
+  border-radius: 0 12px 12px 0;
+  padding: 18px 20px;
+  margin-bottom: 28px;
+}
+
+.wp-why-callout p {
+  color: var(--muted);
+  font-size: 0.87rem;
+  line-height: 1.72;
+  margin: 0;
+}
+
+.wp-why-callout strong {
+  color: var(--cyan);
+}
+
+.wp-why-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.wp-why-item {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  padding: 18px 20px;
+  background: var(--navy-card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  transition: border-color 0.22s, transform 0.22s;
+}
+
+.wp-why-item:hover {
+  border-color: rgba(0, 229, 255, 0.28);
+  transform: translateX(5px);
+}
+
+.wp-why-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 9px;
+  background: linear-gradient(
+    135deg,
+    rgba(0, 229, 255, 0.14),
+    rgba(0, 229, 255, 0.04)
+  );
+  border: 1px solid rgba(0, 229, 255, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  flex-shrink: 0;
+}
+
+.wp-why-content h4 {
+  font-family: "Space Mono", monospace;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 5px;
+  letter-spacing: -0.2px;
+}
+
+.wp-why-content p {
+  color: var(--muted);
+  font-size: 0.845rem;
+  line-height: 1.65;
+}
+
+/* ════════════════════════════════════════════════════════════
+   SECTION 5 — Tools & Plugins
+════════════════════════════════════════════════════════════ */
+
+.wp-tools-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.wp-tool-pill {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 10px 18px;
+  border-radius: 8px;
+  background: var(--navy-card);
+  border: 1px solid var(--border);
+  font-size: 0.855rem;
+  color: var(--muted);
+  font-weight: 500;
+  transition: border-color 0.2s, color 0.2s, transform 0.18s;
+}
+
+.wp-tool-pill:hover {
+  border-color: rgba(0, 229, 255, 0.3);
+  color: var(--white);
+  transform: translateY(-2px);
+}
+
+.wp-tool-icon {
+  font-size: 1rem;
+}
+
+/* ════════════════════════════════════════════════════════════
+   SECTION 6 — Career outcomes + Who should join
+════════════════════════════════════════════════════════════ */
+
+.wp-outcomes-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: start;
+}
+
+.wp-outcomes-intro {
+  color: var(--muted);
+  font-size: 0.97rem;
+  line-height: 1.82;
+  margin-bottom: 28px;
+}
+
+.wp-career-roles {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.wp-career-role {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 18px;
+  background: var(--navy-card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  transition: border-color 0.2s, transform 0.2s;
+}
+
+.wp-career-role:hover {
+  border-color: rgba(0, 229, 255, 0.28);
+  transform: translateX(5px);
+}
+
+.wp-career-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--cyan);
+  box-shadow: 0 0 8px rgba(0, 229, 255, 0.5);
+  flex-shrink: 0;
+}
+
+.wp-career-name {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--white);
+}
+
+.wp-career-pay {
+  margin-left: auto;
+  font-family: "Space Mono", monospace;
+  font-size: 0.75rem;
+  color: var(--amber);
+  font-weight: 700;
+}
+
+.wp-who-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.wp-who-item {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  padding: 14px 16px;
+  background: var(--navy-card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  font-size: 0.875rem;
+  color: var(--muted);
+  line-height: 1.62;
+  transition: border-color 0.2s;
+}
+
+.wp-who-item:hover {
+  border-color: rgba(255, 171, 0, 0.25);
+}
+
+.wp-who-icon {
+  font-size: 1.15rem;
+  flex-shrink: 0;
+  line-height: 1;
+}
+
+/* ════════════════════════════════════════════════════════════
+   SECTION 7 — CTA
+════════════════════════════════════════════════════════════ */
+
+.wp-cta-section {
+  padding: 110px 5%;
+  background: var(--navy-mid);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.wp-cta-glow {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse 65% 55% at 50% 50%,
+    rgba(0, 229, 255, 0.055),
+    transparent
+  );
+  pointer-events: none;
+}
+
+.wp-cta-content {
+  position: relative;
+  z-index: 1;
+}
+
+.wp-cta-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 26px;
+}
+
+.wp-cta-title {
+  font-family: "Space Mono", monospace;
+  font-size: clamp(1.9rem, 4vw, 3rem);
+  font-weight: 700;
+  letter-spacing: -1.5px;
+  margin-bottom: 18px;
+  line-height: 1.2;
+}
+
+.wp-cta-sub {
+  color: var(--muted);
+  font-size: 1.05rem;
+  max-width: 500px;
+  margin: 0 auto 40px;
+  line-height: 1.77;
+}
+
+.wp-cta-buttons {
+  display: flex;
+  gap: 14px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.wp-tel-link {
+  text-decoration: none;
+}
+
+/* ════════════════════════════════════════════════════════════
+   Stagger delay classes
+════════════════════════════════════════════════════════════ */
+
+.wp-delay-0 {
+  transition-delay: 0ms;
+}
+
+.wp-delay-1 {
+  transition-delay: 70ms;
+}
+
+.wp-delay-2 {
+  transition-delay: 140ms;
+}
+
+.wp-delay-3 {
+  transition-delay: 210ms;
+}
+
+.wp-delay-4 {
+  transition-delay: 280ms;
+}
+
+.wp-delay-5 {
+  transition-delay: 350ms;
+}
+
+/* ── Responsive ── */
+@media (max-width: 960px) {
+  .wp-intro-layout,
+  .wp-why-layout,
+  .wp-outcomes-layout {
+    grid-template-columns: 1fr;
+    gap: 44px;
+  }
+
+  .wp-why-sticky {
+    position: static;
+  }
+}
+
+@media (max-width: 640px) {
+  .wp-section {
+    padding: 72px 5%;
+  }
+
+  .wp-stat-strip {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .wp-learn-grid {
+    grid-template-columns: 1fr;
+  }
+}
