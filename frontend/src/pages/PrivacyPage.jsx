@@ -377,8 +377,8 @@ export default function PrivacyPage() {
                   your personal data.
                 </p>
                 <div className="privacy-contact-links">
-                  <a href="mailto:info@thenextgenacademy.co.in">
-                    ✉️ info@thenextgenacademy.co.in
+                  <a href="mailto:info.nextgenacadmy@gmail.com">
+                    ✉️ info.nextgenacadmy@gmail.com
                   </a>
                   <a href="tel:8976509267">
                     📞 +91 89765 09267

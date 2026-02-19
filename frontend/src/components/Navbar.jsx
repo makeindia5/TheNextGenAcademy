@@ -20,8 +20,26 @@ export default function Navbar() {
   }, [location.pathname]);  // 🔥 replaces [page]
 
   const go = (path) => {
-    navigate(path);
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    // If path has a hash (e.g. /CSR#section), handle it
+    if (path.includes("#")) {
+      const [route, hash] = path.split("#");
+
+      if (location.pathname === route) {
+        // Already on the page, just scroll
+        const el = document.getElementById(hash);
+        if (el) el.scrollIntoView({ behavior: "smooth" });
+      } else {
+        // Navigate first, then scroll (using state or timeout)
+        navigate(route);
+        setTimeout(() => {
+          const el = document.getElementById(hash);
+          if (el) el.scrollIntoView({ behavior: "smooth" });
+        }, 100);
+      }
+    } else {
+      navigate(path);
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
   };
 
   const courseLinks = [
@@ -33,17 +51,27 @@ export default function Navbar() {
     { label: "WordPress Dev", id: "wordpress" },
   ];
 
+  const csrLinks = [
+    { label: "Overview", id: "top" },
+    { label: "Programs", id: "csr-programs" },
+    { label: "Impact", id: "csr-impact" },
+    { label: "Funding", id: "csr-funding" },
+    { label: "Implementation", id: "csr-implementation" },
+    { label: "Contact", id: "csr-contact" },
+  ];
+
   const navItems = [
     { label: "Home", path: "/" },
     { label: "About Us", path: "/about" },
     { label: "Testimonials", path: "/testimonials" },
     { label: "Contact", path: "/contact" },
-    { label:"CSR", path:"/CSR"}
   ];
 
   const isCourseActive = COURSES_DATA.some(
     c => location.pathname === `/${c.id}`
   );
+
+  const isCsrActive = location.pathname === "/CSR";
 
   return (
     <>
@@ -63,6 +91,24 @@ export default function Navbar() {
               {item.label}
             </button>
           ))}
+
+          {/* CSR dropdown */}
+          <div className="nav-dropdown">
+            <button className={`nav-link${isCsrActive ? " active" : ""}`}>
+              CSR ▾
+            </button>
+            <div className="nav-dropdown-menu">
+              {csrLinks.map(link => (
+                <button
+                  key={link.id}
+                  className="nav-dropdown-item"
+                  onClick={() => go(link.id === "top" ? "/CSR" : `/CSR#${link.id}`)}
+                >
+                  {link.label}
+                </button>
+              ))}
+            </div>
+          </div>
 
           {/* Courses dropdown */}
           <div className="nav-dropdown">
@@ -100,8 +146,8 @@ export default function Navbar() {
           aria-label="Menu"
         >
           {mobileOpen
-            ? <svg width="22" height="22" viewBox="0 0 22 22" fill="none" stroke="currentColor" strokeWidth="2"><path d="M2 2l18 18M20 2L2 20"/></svg>
-            : <svg width="22" height="22" viewBox="0 0 22 22" fill="none" stroke="currentColor" strokeWidth="2"><path d="M2 5h18M2 11h18M2 17h18"/></svg>
+            ? <svg width="22" height="22" viewBox="0 0 22 22" fill="none" stroke="currentColor" strokeWidth="2"><path d="M2 2l18 18M20 2L2 20" /></svg>
+            : <svg width="22" height="22" viewBox="0 0 22 22" fill="none" stroke="currentColor" strokeWidth="2"><path d="M2 5h18M2 11h18M2 17h18" /></svg>
           }
         </button>
       </nav>
@@ -115,6 +161,26 @@ export default function Navbar() {
             onClick={() => go(item.path)}
           >
             {item.label}
+          </button>
+        ))}
+
+        <div className="mobile-divider" />
+
+        <button
+          className="mobile-link"
+          style={{ color: "var(--cyan)", fontWeight: 700, fontSize: ".8rem", letterSpacing: "1px", textTransform: "uppercase" }}
+          disabled
+        >
+          CSR Programs
+        </button>
+
+        {csrLinks.map(link => (
+          <button
+            key={link.id}
+            className={`mobile-link${location.pathname === "/CSR" && !location.hash ? " active" : ""}`}
+            onClick={() => go(link.id === "top" ? "/CSR" : `/CSR#${link.id}`)}
+          >
+            {link.label}
           </button>
         ))}
 

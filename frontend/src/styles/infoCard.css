@@ -62,7 +62,7 @@
 }
 
 .info-card-title {
-  font-family: "Space Mono", monospace;
+  font-family: "Inter", sans-serif;
   font-size: 1.05rem;
   font-weight: 700;
   color: var(--white);

@@ -28,21 +28,11 @@
 ════════════════════════════════════════════════════════════ */
 
 .csr-hero {
-  padding: 120px 5% 40px;
+  padding: 120px 5% 96px;
   background: var(--navy);
   text-align: center;
   position: relative;
   overflow: hidden;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-.csr-hero-cta {
-  display: flex;
-  justify-content: center;
-  margin-top: 32px;
 }
 
 .csr-hero-glow {
@@ -83,246 +73,95 @@
   line-height: 1.75;
 }
 
-/* ════════════════════════════════════════════════════════════
-   SECTION 1 — Who We Are
-════════════════════════════════════════════════════════════ */
-
-.csr-about-layout {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 64px;
-  align-items: start;
-}
-
-.csr-about-body p {
-  color: var(--muted);
-  font-size: 0.97rem;
-  line-height: 1.85;
-  margin-bottom: 18px;
-}
-
-.csr-about-body strong {
-  color: var(--white);
-}
-
-.csr-about-callout {
-  background: rgba(20, 184, 166, 0.08);
-  border: 1px solid rgba(20, 184, 166, 0.2);
-  border-left: 3px solid #14b8a6;
-  border-radius: 0 12px 12px 0;
-  padding: 20px 22px;
-  margin-top: 24px;
-}
-
-.csr-about-callout p {
-  color: var(--muted);
-  font-size: 0.9rem;
-  line-height: 1.72;
-  margin: 0;
-}
-
-.csr-about-callout strong {
-  color: #14b8a6;
-}
-
-.csr-mission-cards {
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-}
-
-.csr-mission-card {
-  background: var(--navy-card);
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  padding: 18px 20px;
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  transition: border-color 0.2s, transform 0.2s;
-}
-
-.csr-mission-card:hover {
-  border-color: rgba(20, 184, 166, 0.3);
-  transform: translateX(5px);
-}
-
-.csr-mission-icon {
-  width: 40px;
-  height: 40px;
-  border-radius: 10px;
-  background: rgba(20, 184, 166, 0.12);
-  border: 1px solid rgba(20, 184, 166, 0.2);
-  display: flex;
-  align-items: center;
+.csr-hero .btn-group {
   justify-content: center;
-  font-size: 1.2rem;
-  flex-shrink: 0;
-}
-
-.csr-mission-text {
-  font-size: 0.9rem;
-  color: var(--muted);
-  line-height: 1.6;
 }
 
 /* ════════════════════════════════════════════════════════════
-   SECTION 2 — College Tie-Ups
+   SECTION 1 — About (single text block)
 ════════════════════════════════════════════════════════════ */
 
-.csr-colleges-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 20px;
-  margin-bottom: 32px;
-}
-
-.csr-college-card {
-  background: var(--navy-card);
-  border: 1px solid var(--border);
-  border-radius: 14px;
-  padding: 24px;
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  transition: border-color 0.22s, transform 0.22s, box-shadow 0.22s;
-}
-
-.csr-college-card:hover {
-  border-color: rgba(0, 229, 255, 0.3);
-  transform: translateY(-4px);
-  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.35);
-}
-
-.csr-college-icon {
-  width: 48px;
-  height: 48px;
-  border-radius: 10px;
-  background: rgba(0, 229, 255, 0.1);
-  border: 1px solid rgba(0, 229, 255, 0.2);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.4rem;
-  flex-shrink: 0;
-}
-
-.csr-college-name {
-  font-family: "Inter", sans-serif;
-  font-size: 0.92rem;
-  font-weight: 700;
-  color: var(--white);
-  line-height: 1.4;
-}
-
-.csr-college-location {
-  font-size: 0.78rem;
-  color: var(--muted);
-  margin-top: 3px;
-}
-
-/* ════════════════════════════════════════════════════════════
-   SECTION 3 — Training Program Gallery
-════════════════════════════════════════════════════════════ */
-
-.csr-gallery-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 20px;
-}
-
-.csr-gallery-item {
-  background: var(--navy-card);
-  border: 1px solid var(--border);
-  border-radius: 16px;
-  overflow: hidden;
-  transition: transform 0.25s, border-color 0.25s, box-shadow 0.25s;
-}
-
-.csr-gallery-item:hover {
-  transform: scale(1.02);
-  border-color: rgba(255, 171, 0, 0.3);
-  box-shadow: 0 20px 56px rgba(0, 0, 0, 0.4);
-}
-
-.csr-gallery-media {
-  width: 100%;
-  height: 240px;
-  object-fit: cover;
-  background: var(--navy);
-}
-
-.csr-gallery-caption {
-  padding: 18px 20px;
-  font-size: 0.88rem;
-  color: var(--muted);
-  line-height: 1.6;
+.csr-about-single {
+  max-width: 850px;
+  margin: 0 auto;
   text-align: center;
 }
 
+.csr-about-single p {
+  color: var(--muted);
+  font-size: 1.05rem;
+  line-height: 1.9;
+}
+
+.csr-about-single strong {
+  color: var(--white);
+}
+
 /* ════════════════════════════════════════════════════════════
-   SECTION 4 — Achievements
+   SECTION 2 — CSR Programs (4 cards grid)
 ════════════════════════════════════════════════════════════ */
 
-.csr-achievements-grid {
+.csr-programs-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+/* ════════════════════════════════════════════════════════════
+   SECTION 3 — Program Impact (4 cards grid)
+════════════════════════════════════════════════════════════ */
+
+.csr-impact-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 20px;
 }
 
-/* Reusing InfoCard component for achievements */
-
 /* ════════════════════════════════════════════════════════════
-   SECTION 5 — Funding Tiers Table
+   SECTION 4 — Funding Options (2x2 grid - FIXED)
 ════════════════════════════════════════════════════════════ */
 
-.csr-funding-intro {
-  color: var(--muted);
-  font-size: 0.97rem;
-  line-height: 1.82;
-  max-width: 800px;
-  margin: 0 auto 40px;
-  text-align: center;
-}
-
-.csr-funding-tiers {
+.csr-funding-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(2, 1fr);
   gap: 24px;
+  max-width: 800px;
+  margin: 0 auto;
 }
 
-.csr-funding-tier {
+.csr-funding-card {
   background: var(--navy-card);
   border: 1px solid var(--border);
   border-radius: 18px;
-  padding: 32px;
+  padding: 36px;
+  text-align: center;
   position: relative;
   overflow: hidden;
   transition: transform 0.28s, border-color 0.28s, box-shadow 0.28s;
 }
 
-.csr-funding-tier:hover {
+.csr-funding-card:hover {
   transform: translateY(-8px);
   box-shadow: 0 24px 64px rgba(0, 0, 0, 0.45);
 }
 
-.csr-funding-tier--bronze:hover {
+.csr-funding-card--bronze:hover {
   border-color: rgba(205, 127, 50, 0.4);
 }
 
-.csr-funding-tier--silver:hover {
+.csr-funding-card--silver:hover {
   border-color: rgba(192, 192, 192, 0.4);
 }
 
-.csr-funding-tier--gold:hover {
+.csr-funding-card--gold:hover {
   border-color: rgba(255, 215, 0, 0.4);
 }
 
-.csr-funding-tier--platinum:hover {
+.csr-funding-card--platinum:hover {
   border-color: rgba(229, 228, 226, 0.4);
 }
 
-.csr-funding-tier-bar {
+.csr-funding-card-bar {
   position: absolute;
   top: 0;
   left: 0;
@@ -330,166 +169,276 @@
   height: 4px;
 }
 
-.csr-funding-tier-bar--bronze {
+.csr-funding-card-bar--bronze {
   background: linear-gradient(90deg, #cd7f32, #b8860b);
 }
 
-.csr-funding-tier-bar--silver {
+.csr-funding-card-bar--silver {
   background: linear-gradient(90deg, #c0c0c0, #a9a9a9);
 }
 
-.csr-funding-tier-bar--gold {
+.csr-funding-card-bar--gold {
   background: linear-gradient(90deg, #ffd700, #ffab00);
 }
 
-.csr-funding-tier-bar--platinum {
+.csr-funding-card-bar--platinum {
   background: linear-gradient(90deg, #e5e4e2, #00e5ff);
 }
 
-.csr-funding-tier-name {
+.csr-funding-card-amount {
   font-family: "Inter", sans-serif;
-  font-size: 0.75rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 1.5px;
-  margin-bottom: 8px;
-}
-
-.csr-funding-tier-name--bronze {
-  color: #cd7f32;
-}
-
-.csr-funding-tier-name--silver {
-  color: #c0c0c0;
-}
-
-.csr-funding-tier-name--gold {
-  color: #ffd700;
-}
-
-.csr-funding-tier-name--platinum {
-  color: #e5e4e2;
-}
-
-.csr-funding-tier-amount {
-  font-family: "Inter", sans-serif;
-  font-size: 2rem;
+  font-size: 2.2rem;
   font-weight: 700;
   color: var(--white);
-  margin-bottom: 16px;
+  margin-bottom: 12px;
+  line-height: 1;
 }
 
-.csr-funding-tier-desc {
+.csr-funding-card-coverage {
   color: var(--muted);
-  font-size: 0.88rem;
-  line-height: 1.68;
-  margin-bottom: 24px;
-}
-
-.csr-funding-tier-benefits {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.csr-funding-tier-benefits li {
-  display: flex;
-  align-items: flex-start;
-  gap: 10px;
-  font-size: 0.85rem;
-  color: var(--muted);
-  line-height: 1.6;
-}
-
-.csr-funding-tier-benefits li::before {
-  content: "✓";
-  color: #14b8a6;
-  font-weight: 700;
-  font-size: 0.85rem;
-  flex-shrink: 0;
-  margin-top: 1px;
+  font-size: 1rem;
+  font-weight: 500;
 }
 
 /* ════════════════════════════════════════════════════════════
-   SECTION 6 — Contact for Payment
+   SECTION 5 — Why Partner (6 cards grid)
 ════════════════════════════════════════════════════════════ */
 
-.csr-contact-intro {
-  color: var(--muted);
-  font-size: 0.97rem;
-  line-height: 1.82;
-  max-width: 700px;
-  margin: 0 auto 40px;
-  text-align: center;
+.csr-why-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 20px;
 }
 
-.csr-contact-grid {
+/* ════════════════════════════════════════════════════════════
+   SECTION 6 — Implementation (5 cards grid)
+════════════════════════════════════════════════════════════ */
+
+.csr-implementation-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 20px;
-  max-width: 900px;
+}
+
+/* ════════════════════════════════════════════════════════════
+   SECTION 7 — Monitoring (4 cards grid)
+════════════════════════════════════════════════════════════ */
+
+.csr-monitoring-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+}
+
+/* ════════════════════════════════════════════════════════════
+   SECTION 9 — Contact Form (EmailJS)
+════════════════════════════════════════════════════════════ */
+
+.csr-contact-form-wrap {
+  max-width: 700px;
   margin: 0 auto;
 }
 
-.csr-contact-card {
+.csr-contact-form {
   background: var(--navy-card);
   border: 1px solid var(--border);
-  border-radius: 16px;
-  padding: 28px;
-  text-align: center;
-  transition: border-color 0.22s, transform 0.22s;
+  border-radius: 18px;
+  padding: 36px;
+  margin-bottom: 32px;
 }
 
-.csr-contact-card:hover {
-  border-color: rgba(0, 229, 255, 0.3);
-  transform: translateY(-4px);
+.csr-form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-bottom: 20px;
 }
 
-.csr-contact-icon {
-  width: 56px;
-  height: 56px;
-  border-radius: 14px;
-  background: rgba(0, 229, 255, 0.1);
-  border: 1px solid rgba(0, 229, 255, 0.2);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.5rem;
-  margin: 0 auto 16px;
+.csr-form-field {
+  margin-bottom: 20px;
 }
 
-.csr-contact-label {
+.csr-form-label {
+  display: block;
   font-family: "Inter", sans-serif;
   font-size: 0.82rem;
   font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 1px;
   color: var(--cyan);
   margin-bottom: 8px;
+  letter-spacing: 0.5px;
 }
 
-.csr-contact-value {
+.csr-form-input,
+.csr-form-select,
+.csr-form-textarea {
+  width: 100%;
+  padding: 12px 16px;
+  background: var(--navy);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--white);
   font-size: 0.95rem;
-  color: var(--white);
-  word-break: break-word;
+  font-family: "Inter", sans-serif;
+  transition: border-color 0.2s, box-shadow 0.2s;
 }
 
-.csr-contact-value a {
+.csr-form-input:focus,
+.csr-form-select:focus,
+.csr-form-textarea:focus {
+  outline: none;
+  border-color: var(--cyan);
+  box-shadow: 0 0 0 3px rgba(0, 229, 255, 0.1);
+}
+
+.csr-form-input::placeholder,
+.csr-form-textarea::placeholder {
+  color: var(--muted);
+  opacity: 0.6;
+}
+
+.csr-form-select {
+  cursor: pointer;
+}
+
+.csr-form-select option {
+  background: var(--navy);
   color: var(--white);
+}
+
+.csr-form-textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.csr-form-submit {
+  width: 100%;
+  margin-top: 8px;
+}
+
+.csr-form-submit:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.csr-form-status {
+  margin-top: 16px;
+  padding: 14px 18px;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+.csr-form-status--success {
+  background: rgba(34, 197, 94, 0.1);
+  border: 1px solid rgba(34, 197, 94, 0.3);
+  color: #22c55e;
+}
+
+.csr-form-status--error {
+  background: rgba(239, 68, 68, 0.1);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  color: #ef4444;
+}
+
+.csr-contact-info {
+  text-align: center;
+  padding: 24px;
+  background: var(--navy-card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+}
+
+.csr-contact-info p {
+  color: var(--muted);
+  font-size: 0.95rem;
+  margin-bottom: 10px;
+}
+
+.csr-contact-info p:last-child {
+  margin-bottom: 0;
+}
+
+.csr-contact-info strong {
+  color: var(--white);
+}
+
+.csr-contact-info a {
+  color: var(--cyan);
   text-decoration: none;
   transition: color 0.2s;
 }
 
-.csr-contact-value a:hover {
-  color: var(--cyan);
+.csr-contact-info a:hover {
+  color: var(--white);
 }
 
 /* ════════════════════════════════════════════════════════════
-   SECTION 7 — Skill India Alignment
+   DISCLAIMER
 ════════════════════════════════════════════════════════════ */
+
+.csr-disclaimer {
+  padding: 48px 5%;
+  background: var(--navy);
+  border-top: 1px solid var(--border);
+  text-align: center;
+}
+
+.csr-disclaimer p {
+  color: var(--muted);
+  font-size: 0.88rem;
+  line-height: 1.7;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.csr-disclaimer strong {
+  color: var(--white);
+}
+
+/* ════════════════════════════════════════════════════════════
+   OLD SECTIONS - REMOVED
+════════════════════════════════════════════════════════════ */
+
+
+/* ── Responsive ── */
+@media (max-width: 960px) {
+  .csr-funding-grid {
+    grid-template-columns: 1fr;
+    max-width: 500px;
+  }
+
+  .csr-form-row {
+    grid-template-columns: 1fr;
+  }
+
+  .csr-skill-india {
+    padding: 32px;
+  }
+}
+
+@media (max-width: 640px) {
+  .csr-section {
+    padding: 72px 5%;
+  }
+
+  .csr-hero {
+    padding: 90px 5% 72px;
+  }
+
+  .csr-programs-grid,
+  .csr-impact-grid,
+  .csr-why-grid,
+  .csr-implementation-grid,
+  .csr-monitoring-grid,
+  .csr-skill-india-pillars {
+    grid-template-columns: 1fr;
+  }
+
+  .csr-contact-form {
+    padding: 24px;
+  }
+}
+
 
 .csr-skill-india {
   background: linear-gradient(135deg, rgba(255, 153, 0, 0.05) 0%, rgba(0, 128, 0, 0.05) 100%);

@@ -35,8 +35,8 @@ export default function Footer() {
             Industry-focused training that turns learners into in-demand professionals.
           </p>
           <div className="footer-contact">
-            <a href="tel:8976509267">📞 +91 89765 09267</a>
-            <a href="mailto:info@thenextgenacademy.co.in">✉️ info@thenextgenacademy.co.in</a>
+            <a href="tel:8976509267">📞 +91 91523 59157</a>
+            <a href="mailto:info.nextgenacadmy@gmail.com">✉️ info.nextgenacadmy@gmail.com</a>
             <span style={{ color: "var(--muted)", fontSize: ".82rem" }}>
               📍 Thane, Mumbai & Online
             </span>
@@ -86,9 +86,9 @@ export default function Footer() {
 
           <h5 style={{ marginTop: 24 }}>Follow Us</h5>
           <ul>
-            <li><a href="https://facebook.com" target="_blank" rel="noopener noreferrer">Facebook</a></li>
-            <li><a href="https://instagram.com" target="_blank" rel="noopener noreferrer">Instagram</a></li>
-            <li><a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+            <li><a href="https://www.facebook.com/people/NextGen-Academy/61566629759195/?mibextid=ZbWKwL" target="_blank" rel="noopener noreferrer">Facebook</a></li>
+            <li><a href="https://instagram.com/nextgenacadmy" target="_blank" rel="noopener noreferrer">Instagram</a></li>
+            <li><a href="https://www.youtube.com/@nextgenacadmy" target="_blank" rel="noopener noreferrer">YouTube</a></li>
           </ul>
         </div>
 

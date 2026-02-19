@@ -35,7 +35,7 @@ export default function ContactPage() {
             <div className="contact-info-card fade-up" ref={fade}>
               {[
                 { icon: "📞", label: "Phone", val: <a href="tel:8976509267">+91 89765 09267</a> },
-                { icon: "✉️", label: "Email", val: <a href="mailto:info@thenextgenacademy.co.in">info@thenextgenacademy.co.in</a> },
+                { icon: "✉️", label: "Email", val: <a href="mailto:info.nextgenacadmy@gmail.com">info.nextgenacadmy@gmail.com</a> },
                 { icon: "📍", label: "Address", val: "Thane West, Mumbai, Maharashtra" },
                 { icon: "🕐", label: "Hours", val: "Mon–Sat: 9:00 AM – 8:00 PM" },
                 { icon: "💬", label: "WhatsApp", val: <a href="https://wa.me/918976509267">Chat on WhatsApp</a> },
