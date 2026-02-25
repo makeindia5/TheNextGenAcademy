@@ -31,15 +31,13 @@ export default function Footer() {
             <span>NEXT</span><span>GEN</span><span> ACADEMY</span>
           </div>
           <p>
-            Top-rated digital skills institute in Mumbai & Thane.
-            Industry-focused training that turns learners into in-demand professionals.
+            Top-rated <strong>Skill India</strong> and <strong>Digital India</strong> partner institute in Mumbai & Thane.
+            Providing <strong>digital india internship</strong> and <strong>skill india internship</strong> opportunities
+            with <strong>Skill India certificate</strong>.
           </p>
           <div className="footer-contact">
-            <a href="tel:8976509267">📞 +91 91523 59157</a>
+            <a href="tel:9152359157">📞 +91 91523 59157</a>
             <a href="mailto:info.nextgenacadmy@gmail.com">✉️ info.nextgenacadmy@gmail.com</a>
-            <span style={{ color: "var(--muted)", fontSize: ".82rem" }}>
-              📍 Thane, Mumbai & Online
-            </span>
           </div>
         </div>
 
@@ -83,6 +81,17 @@ export default function Footer() {
               </li>
             ))}
           </ul>
+        </div>
+
+        {/* Initiatives */}
+        <div className="footer-col">
+          <h5>Initiatives</h5>
+          <ul>
+            <li><button onClick={() => go("/CSR")}>Skill India</button></li>
+            <li><button onClick={() => go("/CSR")}>Digital India</button></li>
+            <li><button onClick={() => go("/CSR")}>Digital India Internship</button></li>
+            <li><button onClick={() => go("/CSR")}>Skill India Digital Portal</button></li>
+          </ul>
 
           <h5 style={{ marginTop: 24 }}>Follow Us</h5>
           <ul>
@@ -90,6 +99,25 @@ export default function Footer() {
             <li><a href="https://instagram.com/nextgenacadmy" target="_blank" rel="noopener noreferrer">Instagram</a></li>
             <li><a href="https://www.youtube.com/@nextgenacadmy" target="_blank" rel="noopener noreferrer">YouTube</a></li>
           </ul>
+        </div>
+
+        {/* Location Map */}
+        <div className="footer-col footer-map-col">
+          <h5>Reach Us</h5>
+          <span style={{ color: "var(--cyan)", fontSize: ".82rem", display: "block", marginBottom: "12px" }}>
+            📍 Vinita Complex, Gokhale Road, Thane West
+          </span>
+          <div className="footer-map-container">
+            <iframe
+              title="NextGen Academy Location"
+              src="https://maps.google.com/maps?q=Vinita%20Complex%2C%20Gokhale%20Road%2C%20Thane%20West&t=&z=15&ie=UTF8&iwloc=&output=embed"
+              width="100%"
+              height="150"
+              style={{ border: 0, borderRadius: "12px", filter: "grayscale(1) invert(0.9) contrast(1.2)" }}
+              allowFullScreen=""
+              loading="lazy"
+            ></iframe>
+          </div>
         </div>
 
       </div>

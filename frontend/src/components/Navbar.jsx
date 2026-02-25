@@ -57,13 +57,15 @@ export default function Navbar() {
     { label: "Impact", id: "csr-impact" },
     { label: "Funding", id: "csr-funding" },
     { label: "Implementation", id: "csr-implementation" },
+    {label:"Skill India Missions",id:"skill-india"},
     { label: "Contact", id: "csr-contact" },
   ];
 
   const navItems = [
     { label: "Home", path: "/" },
     { label: "About Us", path: "/about" },
-    { label: "Testimonials", path: "/testimonials" },
+    { label:"Our Placements", path: "/testimonials" },
+    {label:"Gallery",path:"/gallery"},
     { label: "Contact", path: "/contact" },
   ];
 
@@ -91,7 +93,7 @@ export default function Navbar() {
               {item.label}
             </button>
           ))}
-
+{/* Skill india and digital india */}
           {/* CSR dropdown */}
           <div className="nav-dropdown">
             <button className={`nav-link${isCsrActive ? " active" : ""}`}>

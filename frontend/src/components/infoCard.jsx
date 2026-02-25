@@ -6,7 +6,12 @@ export default function InfoCard({ icon, title, description, accent = "cyan", de
     <div className={`info-card info-card--${accent} info-card-delay-${delay}`}>
       <div className={`info-card-icon info-card-icon--${accent}`}>{icon}</div>
       <h4 className="info-card-title">{title}</h4>
-      {description && <p className="info-card-desc">{description}</p>}
+      {description && (
+        <p
+          className="info-card-desc"
+          dangerouslySetInnerHTML={{ __html: description }}
+        />
+      )}
     </div>
   );
 }

@@ -4,10 +4,10 @@ export const COURSES_DATA = [
     icon: "📈", iconBg: "rgba(0,229,255,0.12)", iconBorder: "rgba(0,229,255,0.22)",
     tag: "Most Popular", tagBg: "rgba(0,229,255,0.13)", tagColor: "#00e5ff",
     title: "Digital Marketing",
-    short: "Master SEO, Google Ads, Social Media, Email Marketing & Analytics with live projects.",
+    short: "Master SEO, Google Ads, and Social Media with <strong>Digital India internship</strong> opportunities and <strong>Skill India certificate</strong>.",
     duration: "4 Months", batch: "Weekday / Weekend", fee: "₹ 25,000", level: "Beginner → Pro",
     accent: "#00e5ff",
-    tools: ["Google Ads","SEMrush","Meta Ads","Canva","Mailchimp","Google Analytics","HubSpot","WordPress","Ahrefs","Hootsuite"],
+    tools: ["Google Ads", "SEMrush", "Meta Ads", "Canva", "Mailchimp", "Google Analytics", "HubSpot", "WordPress", "Ahrefs", "Hootsuite"],
     syllabus: [
       { title: "Digital Marketing Foundations", desc: "Overview, consumer behaviour, digital ecosystem" },
       { title: "Search Engine Optimization", desc: "On-page, off-page, technical SEO & link building" },
@@ -16,19 +16,19 @@ export const COURSES_DATA = [
       { title: "Content Marketing", desc: "Blogging, video, infographics, content calendars" },
       { title: "Email Marketing", desc: "Campaigns, automation, drip sequences" },
       { title: "Web Analytics", desc: "Google Analytics 4, Search Console, data interpretation" },
-      { title: "Capstone Project", desc: "Live brand campaign with real results" },
+      { title: "Capstone Project", desc: "Live brand campaign results for your <strong>skill india deigital portal</strong> profile" },
     ],
-    outcomes: ["Digital Marketing Manager","SEO Specialist","PPC Executive","Social Media Manager","Content Strategist","Freelance Consultant"],
+    outcomes: ["Digital Marketing Manager", "SEO Specialist", "PPC Executive", "Social Media Manager", "Content Strategist", "Freelance Consultant", "Digital India Intern"],
   },
   {
     id: "app-development",
     icon: "📱", iconBg: "rgba(255,171,0,0.12)", iconBorder: "rgba(255,171,0,0.22)",
     tag: "High Demand", tagBg: "rgba(255,171,0,0.13)", tagColor: "#ffab00",
     title: "App Development",
-    short: "Build cross-platform Android & iOS apps using Flutter & Dart. Real client projects.",
+    short: "Build cross-platform Android & iOS apps. Part of the <strong>digital india Internship scheme</strong> with <strong>skill india internship</strong> focus.",
     duration: "3 Months", batch: "Flexible Schedule", fee: "₹ 30,000", level: "Beginner → Mid",
     accent: "#ffab00",
-    tools: ["Flutter","Dart","Firebase","Android Studio","VS Code","GitHub","Figma","REST APIs","SQLite","Google Play Console"],
+    tools: ["Flutter", "Dart", "Firebase", "Android Studio", "VS Code", "GitHub", "Figma", "REST APIs", "SQLite", "Google Play Console"],
     syllabus: [
       { title: "Dart Programming Language", desc: "Syntax, OOP, async/await, data types" },
       { title: "Flutter Fundamentals", desc: "Widgets, state management, layouts" },
@@ -37,9 +37,9 @@ export const COURSES_DATA = [
       { title: "Firebase Integration", desc: "Auth, Firestore, Storage, Push Notifications" },
       { title: "API Integration", desc: "REST APIs, JSON, HTTP requests" },
       { title: "App Deployment", desc: "Play Store, App Store, signing & publishing" },
-      { title: "Capstone Project", desc: "Full featured app for client or portfolio" },
+      { title: "Capstone Project", desc: "Full featured app - earns <strong>skill india certificate</strong>" },
     ],
-    outcomes: ["Flutter Developer","Mobile App Developer","React Native Dev","Android Developer","App UI Designer","Freelance Dev"],
+    outcomes: ["Flutter Developer", "Mobile App Developer", "React Native Dev", "Android Developer", "App UI Designer", "Freelance Dev", "Digital India Trainee"],
   },
   {
     id: "seo",
@@ -49,7 +49,7 @@ export const COURSES_DATA = [
     short: "Deep-dive into Search Engine Optimization. Learn to rank websites and drive organic traffic.",
     duration: "2 Months", batch: "Online / Offline", fee: "₹ 12,000", level: "Beginner → Advanced",
     accent: "#ff6d00",
-    tools: ["Ahrefs","SEMrush","Moz","Screaming Frog","Google Search Console","Google Analytics","Yoast","Surfer SEO","Keyword Planner"],
+    tools: ["Ahrefs", "SEMrush", "Moz", "Screaming Frog", "Google Search Console", "Google Analytics", "Yoast", "Surfer SEO", "Keyword Planner"],
     syllabus: [
       { title: "SEO Fundamentals", desc: "How search engines work, ranking factors" },
       { title: "Keyword Research", desc: "Tools, intent mapping, competitive analysis" },
@@ -60,7 +60,7 @@ export const COURSES_DATA = [
       { title: "SEO Analytics", desc: "Tracking, reporting, Search Console deep dive" },
       { title: "Live SEO Project", desc: "Rank a real website from scratch" },
     ],
-    outcomes: ["SEO Specialist","SEO Analyst","Content SEO Manager","Technical SEO Engineer","Freelance SEO Consultant","Digital Marketing Lead"],
+    outcomes: ["SEO Specialist", "SEO Analyst", "Content SEO Manager", "Technical SEO Engineer", "Freelance SEO Consultant", "Digital Marketing Lead"],
   },
   {
     id: "google-ads",
@@ -70,7 +70,7 @@ export const COURSES_DATA = [
     short: "Run profitable Google Search, Display, Shopping, and YouTube campaigns from day one.",
     duration: "6 Weeks", batch: "Weekday Evenings", fee: "₹ 10,000", level: "Beginner → Pro",
     accent: "#00e5ff",
-    tools: ["Google Ads","Google Analytics 4","Google Keyword Planner","Google Merchant Center","YouTube Studio","Data Studio","Tag Manager"],
+    tools: ["Google Ads", "Google Analytics 4", "Google Keyword Planner", "Google Merchant Center", "YouTube Studio", "Data Studio", "Tag Manager"],
     syllabus: [
       { title: "Google Ads Overview", desc: "Account structure, billing, campaign types" },
       { title: "Search Campaigns", desc: "Keywords, match types, Quality Score" },
@@ -81,7 +81,7 @@ export const COURSES_DATA = [
       { title: "Optimization & Scaling", desc: "Bidding strategies, A/B testing, ROAS" },
       { title: "Live Campaign Project", desc: "Manage a real budget, report results" },
     ],
-    outcomes: ["PPC Manager","Google Ads Specialist","Media Buyer","Performance Marketer","E-commerce Ads Manager","Agency Executive"],
+    outcomes: ["PPC Manager", "Google Ads Specialist", "Media Buyer", "Performance Marketer", "E-commerce Ads Manager", "Agency Executive"],
   },
   {
     id: "social-media",
@@ -91,7 +91,7 @@ export const COURSES_DATA = [
     short: "Build brand presence on Instagram, Facebook, LinkedIn & YouTube with strategy and paid ads.",
     duration: "2 Months", batch: "Weekend Batch", fee: "₹ 10,000", level: "Beginner → Advanced",
     accent: "#ffab00",
-    tools: ["Meta Business Suite","Canva","CapCut","Buffer","Hootsuite","Later","LinkedIn Campaign Manager","YouTube Analytics","Creator Studio"],
+    tools: ["Meta Business Suite", "Canva", "CapCut", "Buffer", "Hootsuite", "Later", "LinkedIn Campaign Manager", "YouTube Analytics", "Creator Studio"],
     syllabus: [
       { title: "Social Media Strategy", desc: "Platform selection, audience personas, content pillars" },
       { title: "Instagram Marketing", desc: "Reels, Stories, growth hacks, collab posts" },
@@ -102,7 +102,7 @@ export const COURSES_DATA = [
       { title: "Content Creation", desc: "Canva, CapCut, copy-writing for social" },
       { title: "Analytics & Reporting", desc: "Insights, KPIs, performance dashboards" },
     ],
-    outcomes: ["Social Media Manager","Content Creator","Community Manager","Influencer Manager","Brand Strategist","Digital Marketing Executive"],
+    outcomes: ["Social Media Manager", "Content Creator", "Community Manager", "Influencer Manager", "Brand Strategist", "Digital Marketing Executive"],
   },
   {
     id: "wordpress",
@@ -112,7 +112,7 @@ export const COURSES_DATA = [
     short: "Build fast, professional websites using WordPress without writing a single line of code.",
     duration: "1 Month", batch: "Online / Offline", fee: "₹ 7,000", level: "Complete Beginner",
     accent: "#ff6d00",
-    tools: ["WordPress","Elementor","WooCommerce","Divi","Yoast SEO","cPanel","Cloudflare","PayU","Razorpay","Google Analytics"],
+    tools: ["WordPress", "Elementor", "WooCommerce", "Divi", "Yoast SEO", "cPanel", "Cloudflare", "PayU", "Razorpay", "Google Analytics"],
     syllabus: [
       { title: "Domain & Hosting", desc: "Setup, cPanel, SSL, file manager" },
       { title: "WordPress Basics", desc: "Dashboard, themes, plugins, settings" },
@@ -123,7 +123,7 @@ export const COURSES_DATA = [
       { title: "Portfolio Website", desc: "Build a complete website as your project" },
       { title: "Client Handling", desc: "Pitching, freelancing, pricing your work" },
     ],
-    outcomes: ["WordPress Developer","Freelance Web Designer","WooCommerce Developer","Digital Agency Executive","Entrepreneur / Self-Brand"],
+    outcomes: ["WordPress Developer", "Freelance Web Designer", "WooCommerce Developer", "Digital Agency Executive", "Entrepreneur / Self-Brand"],
   },
 ];
 

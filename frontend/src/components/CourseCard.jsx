@@ -1,4 +1,4 @@
-export default function CourseCard({ course, index, onClick,fade }) {
+export default function CourseCard({ course, index, onClick, fade }) {
   return (
     <div
       className="course-card fade-up"
@@ -21,7 +21,7 @@ export default function CourseCard({ course, index, onClick,fade }) {
       </span>
 
       <h3>{course.title}</h3>
-      <p>{course.short}</p>
+      <p dangerouslySetInnerHTML={{ __html: course.short }}></p>
 
       <div className="c-footer">
         <div>

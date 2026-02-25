@@ -63,7 +63,7 @@ export default function AppCard({
         <h3 className="ac-title">{title}</h3>
 
         {/* Overview */}
-        <p className="ac-overview">{overview}</p>
+        <p className="ac-overview" dangerouslySetInnerHTML={{ __html: overview }} />
 
         {/* Meta pills: duration / fee */}
         <div className="ac-meta-row">

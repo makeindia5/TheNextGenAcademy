@@ -14,6 +14,8 @@ import SEOPage from "../pages/Seo";
 import SMMPage from "../pages/Smm";
 import WordpressPage from "../pages/Wordpress";
 import CSRPage from "../pages/Csr";
+import ScheduleMeetingPage from "../pages/ScheduleMeeting";
+import GalleryPage from "../pages/Gallery";
 export default function AppRoutes() {
   return (
     
@@ -33,12 +35,14 @@ export default function AppRoutes() {
   <Route path="/google-ads" element={<GoogleAdsPage />} />
   <Route path="/social-media" element={<SMMPage />} />
   <Route path="/wordpress" element={<WordpressPage />} />
+  <Route path="/gallery" element={<GalleryPage />} />
   <Route path="/courses/app-development" element={<AppDevelopmentPage />} />
   <Route path="/courses/digital-marketing" element={<DigitalMarketingPage />} />
   <Route path="/courses/seo" element={<SEOPage />} />
   <Route path="/courses/google-ads" element={<GoogleAdsPage />} />
   <Route path="/courses/social-media" element={<SMMPage />} />
   <Route path="/courses/wordpress" element={<WordpressPage />} />
+  <Route path="/CSR/schedule-meeting" element={<ScheduleMeetingPage />} />
 </Routes>
   );
 }

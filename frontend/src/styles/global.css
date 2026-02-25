@@ -343,7 +343,7 @@ section {
 }
 
 .nav-logo span:nth-child(3) {
-  color: var(--white)
+  color: #ffffff;
 }
 
 .nav-menu {
@@ -399,6 +399,16 @@ section {
   display: none;
   z-index: 300;
   box-shadow: 0 20px 60px rgba(0, 0, 0, .5);
+}
+
+.nav-dropdown-menu::before {
+  content: '';
+  position: absolute;
+  top: -10px;
+  left: 0;
+  right: 0;
+  height: 10px;
+  background: transparent;
 }
 
 .nav-dropdown:hover .nav-dropdown-menu {
@@ -514,26 +524,28 @@ section {
 
 /* ── Footer ── */
 footer {
-  background: var(--navy);
+  background: rgba(5, 13, 26, 0.95);
+  backdrop-filter: blur(22px);
   border-top: 1px solid var(--border);
   padding: 64px 5% 36px;
+  color: #ffffff;
 }
 
 .footer-grid {
   max-width: 1200px;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: 2fr 1fr 1fr 1fr;
-  gap: 56px;
+  grid-template-columns: 1.8fr 1fr 1fr 1fr 1fr 1.8fr;
+  gap: 40px;
   margin-bottom: 44px;
 }
 
 .footer-brand p {
-  color: var(--muted);
+  color: #8892b0;
   font-size: .87rem;
   line-height: 1.7;
   margin-top: 14px;
-  max-width: 260px;
+  max-width: 220px;
 }
 
 .footer-col h5 {
@@ -541,7 +553,7 @@ footer {
   font-size: .72rem;
   letter-spacing: 1.5px;
   text-transform: uppercase;
-  color: var(--muted);
+  color: #ccd6f6;
   margin-bottom: 14px;
 }
 
@@ -555,7 +567,7 @@ footer {
 .footer-col li button {
   background: none;
   border: none;
-  color: var(--muted);
+  color: #8892b0;
   font-family: 'DM Sans', sans-serif;
   font-size: .87rem;
   cursor: pointer;
@@ -579,7 +591,7 @@ footer {
 }
 
 .footer-bottom p {
-  color: var(--muted);
+  color: #8892b0;
   font-size: .78rem;
 }
 
@@ -615,6 +627,24 @@ footer {
 
 .footer-contact a:hover {
   opacity: .75;
+}
+
+.footer-map-container {
+  margin-top: 15px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  transition: transform 0.3s ease, border-color 0.3s ease;
+  background: rgba(11, 61, 145, 0.05);
+}
+
+.footer-map-container:hover {
+  transform: translateY(-3px);
+  border-color: rgba(0, 229, 255, 0.3);
+}
+
+.footer-map-container iframe {
+  display: block;
 }
 
 /* ── WhatsApp ── */
@@ -1397,7 +1427,7 @@ footer {
   }
 
   .footer-grid {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 32px;
   }
 

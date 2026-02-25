@@ -41,16 +41,45 @@ const CSR_PROGRAMS = [
 const PROGRAM_IMPACT = [
   { icon: "🎓", title: "5,000+ Youth", desc: "Training Target (Annually)", accent: "teal" },
   { icon: "💻", title: "300+ Hours", desc: "Training per Student", accent: "cyan" },
-  { icon: "👩", title: "40% Women", desc: "Beneficiaries", accent: "amber" },
+  { icon: "👩", title: "30% Women", desc: "Beneficiaries", accent: "amber" },
   { icon: "🏙", title: "Coverage", desc: "Mumbai | Thane | Navi Mumbai | Maharashtra", accent: "hot" },
 ];
 
 // Funding Options - FIXED: 4 cards in 2x2 grid
 const FUNDING_OPTIONS = [
-  { amount: "₹25 Lakhs", coverage: "250 Students", tier: "bronze" },
-  { amount: "₹50 Lakhs", coverage: "500 Students", tier: "silver" },
-  { amount: "₹1 Crore", coverage: "1000 Students", tier: "gold" },
-  { amount: "₹2 Crore", coverage: "State Level Program", tier: "platinum" },
+  {
+    amount: "₹25 Lakhs",
+    coverage: "250 Students",
+    tier: "bronze",
+    alloc: [30, 18, 15, 10, 5, 22] // Mock distribution
+  },
+  {
+    amount: "₹50 Lakhs",
+    coverage: "500 Students",
+    tier: "silver",
+    alloc: [35, 20, 15, 12, 8, 10]
+  },
+  {
+    amount: "₹1 Crore",
+    coverage: "1000 Students",
+    tier: "gold",
+    alloc: [25, 25, 20, 10, 10, 10]
+  },
+  {
+    amount: "₹2 Crore",
+    coverage: "State Level Program",
+    tier: "platinum",
+    alloc: [30, 18, 5, 10, 5, 32]
+  },
+];
+
+const ALLOC_LABELS = [
+  { label: "Counseling & Mobilisation", color: "#ffb703" }, // Amber
+  { label: "Course Fees", color: "#a67c00" },              // Deep Ochre
+  { label: "Infrastructure Cost", color: "#7a5c00" },       // Brownish Gold
+  { label: "Mentorship", color: "#2d7a9d" },                // Deep Cyan
+  { label: "Program Management", color: "#48cae4" },        // Sky Blue
+  { label: "Other Benefits", color: "#90e0ef" }             // Soft Cyan
 ];
 
 // Why Partner cards
@@ -95,7 +124,19 @@ const SKILL_INDIA_PILLARS = [
 export default function CSRPage() {
   const navigate = useNavigate();
   const go = (p) => { navigate(p); window.scrollTo({ top: 0, behavior: "smooth" }); };
+  const [activeSlab, setActiveSlab] = useState(FUNDING_OPTIONS[3]); // Default 2 Crore
   const fade = useFadeUp();
+
+  // Pie chart calculation
+  const getConicGradient = (alloc) => {
+    let current = 0;
+    const parts = alloc.map((val, i) => {
+      const start = current;
+      current += val;
+      return `${ALLOC_LABELS[i].color} ${start}% ${current}%`;
+    });
+    return `conic-gradient(${parts.join(", ")})`;
+  };
 
   const formRef = useRef();
   const [formStatus, setFormStatus] = useState("");
@@ -132,32 +173,32 @@ export default function CSRPage() {
       {/* ════════════════════════════════════════════════════
           HERO SECTION
       ════════════════════════════════════════════════════ */}
-      <section className="csr-hero">
+      <section id="top" className="csr-hero">
         <div className="csr-hero-glow" />
         <div className="csr-hero-content">
-          <div className="badge csr-hero-badge fade-up" ref={fade}>
-            <span className="badge-dot" />
+          <div className="csr-hero-badge csr-fade-up" ref={fade}>
+            <span className="csr-hero-badge-dot" />
             CSR Partnership Program
           </div>
-          <h1 className="csr-hero-title fade-up" ref={fade}>
+          <h1 className="csr-hero-title csr-fade-up" ref={fade}>
             Skill India &amp; Digital<br />
-            <span className="grad-text">Employment Initiative</span>
+            <span className="csr-hero-grad-text">Employment Initiative</span>
           </h1>
-          <p className="csr-hero-subtitle fade-up" ref={fade}>
+          <p className="csr-hero-subtitle csr-fade-up" ref={fade}>
             Empowering Youth Through Digital Skills, Employment & Entrepreneurship
           </p>
-          <p className="csr-hero-subtitle fade-up" ref={fade}>
+          <p className="csr-hero-subtitle csr-fade-up" ref={fade}>
             Join NextGen Academy in bridging the digital skill gap. Together, we can provide
             quality training, real-world exposure, and sustainable careers to economically
             backward youth across Mumbai, Thane, Navi Mumbai and Maharashtra.
           </p>
-          <div className="btn-group fade-up" ref={fade}>
-            <button className="btn-primary" onClick={() => {
+          <div className="csr-hero-buttons csr-fade-up" ref={fade}>
+            <button className="csr-btn-primary" onClick={() => {
               document.getElementById("csr-contact").scrollIntoView({ behavior: "smooth" });
             }}>
               Request CSR Proposal
             </button>
-            <button className="btn-secondary" onClick={() => go("/contact")}>
+            <button className="csr-btn-secondary" onClick={() => go("/CSR/schedule-meeting")}>
               Schedule CSR Meeting →
             </button>
           </div>
@@ -165,16 +206,27 @@ export default function CSRPage() {
       </section>
 
       {/* ════════════════════════════════════════════════════
-          SECTION 2 — Our CSR Programs (4 cards)
+          SECTION 1 — About the Initiative
+      ════════════════════════════════════════════════════ */}
+      {/* ════════════════════════════════════════════════════
+          SECTION 1 — Programs & Initiative
       ════════════════════════════════════════════════════ */}
       <section id="csr-programs" className="csr-section csr-section--dark">
-        <div className="max-w">
-          <div className="sec-head fade-up" ref={fade}>
-            <div className="sec-label">// Our CSR Programs</div>
-            <h2 className="sec-title">
-              Four Flagship Programs<br />
-              <span className="grad-text">Driving Social Impact</span>
+        <div className="csr-max-w">
+          <div className="csr-sec-head csr-fade-up" ref={fade}>
+            <div className="csr-sec-label">// Programs & Initiative</div>
+            <h2 className="csr-sec-title">
+              Empowering India's Youth<br />
+              <span className="csr-hero-grad-text">Through Digital Skills</span>
             </h2>
+            {/* <div className="csr-about-content" style={{ marginTop: '30px' }}>
+              <p>
+                NextGen Academy is committed to empowering India's youth through industry-relevant
+                digital and IT skills. Our CSR programs focus on <strong>skill development</strong>,<strong>employment generation</strong>, <strong>women empowerment</strong>, and{" "}
+               <strong>digital inclusion</strong> in alignment with national and state-level
+                development missions.
+              </p>
+            </div> */}
           </div>
 
           <div className="csr-programs-grid">
@@ -196,12 +248,12 @@ export default function CSRPage() {
           SECTION 3 — Program Impact (4 cards)
       ════════════════════════════════════════════════════ */}
       <section id="csr-impact" className="csr-section csr-section--mid">
-        <div className="max-w">
-          <div className="sec-head fade-up" ref={fade}>
-            <div className="sec-label">// Program Impact</div>
-            <h2 className="sec-title">
+        <div className="csr-max-w">
+          <div className="csr-sec-head csr-fade-up" ref={fade}>
+            <div className="csr-sec-label">// Program Impact</div>
+            <h2 className="csr-sec-title">
               Measurable Impact<br />
-              <span className="grad-text">Across Maharashtra</span>
+              <span className="csr-hero-grad-text">Across Maharashtra</span>
             </h2>
           </div>
 
@@ -224,30 +276,55 @@ export default function CSRPage() {
           SECTION 4 — Funding Options (4 cards in 2x2)
       ════════════════════════════════════════════════════ */}
       <section id="csr-funding" className="csr-section csr-section--dark">
-        <div className="max-w">
-          <div className="sec-head fade-up" ref={fade}>
-            <div className="sec-label">// CSR Funding Options</div>
-            <h2 className="sec-title">
+        <div className="csr-max-w">
+          <div className="csr-sec-head csr-fade-up" ref={fade}>
+            <div className="csr-sec-label">// CSR Funding Options</div>
+            <h2 className="csr-sec-title">
               Flexible Funding Slabs<br />
-              <span className="grad-text">Choose Your Impact</span>
+              <span className="csr-hero-grad-text">Choose Your Impact</span>
             </h2>
-            <p className="sec-sub">
+            <p className="csr-sec-sub">
               Custom programs can be designed as per your CSR objectives.
             </p>
           </div>
 
-          <div className="csr-funding-grid">
-            {FUNDING_OPTIONS.map((f, i) => (
-              <div
-                className={`csr-funding-card csr-funding-card--${f.tier} csr-delay-${i} fade-up`}
-                key={i}
-                ref={fade}
-              >
-                <div className={`csr-funding-card-bar csr-funding-card-bar--${f.tier}`} />
-                <div className="csr-funding-card-amount">{f.amount}</div>
-                <div className="csr-funding-card-coverage">{f.coverage}</div>
+          <div className="csr-funding-wrapper">
+            <div className="csr-funding-grid">
+              {FUNDING_OPTIONS.map((f, i) => (
+                <div
+                  className={`csr-funding-card csr-funding-card--${f.tier} ${activeSlab.tier === f.tier ? 'active' : ''} csr-delay-${i}`}
+                  key={i}
+                  onClick={() => setActiveSlab(f)}
+                >
+                  <div className="csr-funding-card-amount">{f.amount}</div>
+                  <div className="csr-funding-card-coverage">{f.coverage}</div>
+                </div>
+              ))}
+            </div>
+
+            <div className="csr-funding-chart-box">
+              <div className="csr-chart-container">
+                <div
+                  className="csr-pie-chart"
+                  style={{ background: getConicGradient(activeSlab.alloc) }}
+                >
+                  <div className="csr-chart-center">
+                    <span className="csr-center-amount">{activeSlab.amount}</span>
+                    <span className="csr-center-label">Project Fund<br />Distribution</span>
+                  </div>
+                </div>
+                <div className="csr-chart-legend">
+                  {activeSlab.alloc.map((val, i) => (
+                    <div key={i} className="csr-legend-item">
+                      <span className="csr-legend-dot" style={{ background: ALLOC_LABELS[i].color }} />
+                      <span className="csr-legend-text">
+                        <strong>{val}%</strong> {ALLOC_LABELS[i].label}
+                      </span>
+                    </div>
+                  ))}
+                </div>
               </div>
-            ))}
+            </div>
           </div>
         </div>
       </section>
@@ -255,13 +332,13 @@ export default function CSRPage() {
       {/* ════════════════════════════════════════════════════
           SECTION 5 — Why Partner (6 cards)
       ════════════════════════════════════════════════════ */}
-      <section id="csr-why-partner" className="csr-section csr-section--mid">
-        <div className="max-w">
-          <div className="sec-head fade-up" ref={fade}>
-            <div className="sec-label">// Why Partner with Us</div>
-            <h2 className="sec-title">
+      <section className="csr-section csr-section--mid">
+        <div className="csr-max-w">
+          <div className="csr-sec-head csr-fade-up" ref={fade}>
+            <div className="csr-sec-label">// Why Partner with Us</div>
+            <h2 className="csr-sec-title">
               Strategic CSR Benefits &amp;<br />
-              <span className="grad-text">Transparent Impact</span>
+              <span className="csr-hero-grad-text">Transparent Impact</span>
             </h2>
           </div>
 
@@ -284,12 +361,12 @@ export default function CSRPage() {
           SECTION 6 — Implementation Model (5 cards)
       ════════════════════════════════════════════════════ */}
       <section id="csr-implementation" className="csr-section csr-section--dark">
-        <div className="max-w">
-          <div className="sec-head fade-up" ref={fade}>
-            <div className="sec-label">// Implementation Model</div>
-            <h2 className="sec-title">
+        <div className="csr-max-w">
+          <div className="csr-sec-head csr-fade-up" ref={fade}>
+            <div className="csr-sec-label">// Implementation Model</div>
+            <h2 className="csr-sec-title">
               How We Deliver<br />
-              <span className="grad-text">Quality Training</span>
+              <span className="csr-hero-grad-text">Quality Training</span>
             </h2>
           </div>
 
@@ -311,12 +388,12 @@ export default function CSRPage() {
           SECTION 7 — Monitoring & Reporting (4 cards)
       ════════════════════════════════════════════════════ */}
       {/* <section className="csr-section csr-section--mid">
-        <div className="max-w">
-          <div className="sec-head fade-up" ref={fade}>
-            <div className="sec-label">// Monitoring &amp; Reporting</div>
-            <h2 className="sec-title">
+        <div className="csr-max-w">
+          <div className="csr-sec-head csr-fade-up" ref={fade}>
+            <div className="csr-sec-label">// Monitoring &amp; Reporting</div>
+            <h2 className="csr-sec-title">
               Transparent Tracking &amp;<br />
-              <span className="grad-text">Impact Reporting</span>
+              <span className="csr-hero-grad-text">Impact Reporting</span>
             </h2>
           </div>
 
@@ -337,29 +414,28 @@ export default function CSRPage() {
       {/* ════════════════════════════════════════════════════
           SECTION 8 — Skill India Alignment
       ════════════════════════════════════════════════════ */}
-      {/* <section className="csr-section csr-section--dark">
-        <div className="max-w">
-          <div className="csr-skill-india fade-up" ref={fade}>
+      <section id="skill-india" className="csr-section csr-section--dark">
+        <div className="csr-max-w">
+          <div className="csr-skill-india csr-fade-up" ref={fade}>
             <div className="csr-skill-india-head">
               <div className="csr-skill-india-badge">
                 🇮🇳 Government Initiative Alignment
               </div>
               <h2 className="csr-skill-india-title">
                 Aligned with National<br />
-                <span className="grad-text">Skill Development Missions</span>
+                <span className="csr-hero-grad-text">Skill Development Missions</span>
               </h2>
               <p className="csr-skill-india-desc">
                 Our programs are aligned with <strong>Skill India</strong>,{" "}
                 <strong>Digital India</strong> & <strong>Maharashtra Skill Mission</strong>{" "}
-                initiatives. Government partnership will be undertaken as per applicable
-                approvals and agreements.
+                initiatives. Officially aligned with Government Initiatives.
               </p>
             </div>
 
             <div className="csr-skill-india-pillars">
               {SKILL_INDIA_PILLARS.map((p, i) => (
                 <div
-                  className={`csr-skill-india-pillar csr-delay-${i} fade-up`}
+                  className={`csr-skill-india-pillar csr-delay-${i} csr-fade-up`}
                   key={i}
                   ref={fade}
                 >
@@ -370,124 +446,133 @@ export default function CSRPage() {
             </div>
           </div>
         </div>
-      </section> */}
+      </section>
 
       {/* ════════════════════════════════════════════════════
-          SECTION 9 — Contact Form (EmailJS)
+          SECTION 9 — Contact Form (EmailJS) - SIDE BY SIDE
       ════════════════════════════════════════════════════ */}
       <section id="csr-contact" className="csr-section csr-section--mid">
-        <div className="max-w">
-          <div className="sec-head fade-up" ref={fade}>
-            <div className="sec-label">// Partner with Us</div>
-            <h2 className="sec-title">
-              Request CSR Proposal &amp;<br />
-              <span className="grad-text">Schedule Meeting</span>
-            </h2>
-            <p className="sec-sub">
-              We welcome partnerships with corporates, builders, PSUs, foundations, and CSR
-              organizations to jointly create measurable social impact.
-            </p>
-          </div>
+        <div className="csr-max-w">
+          <div className="csr-contact-wrapper">
 
-          <div className="csr-contact-form-wrap fade-up" ref={fade}>
-            <form ref={formRef} onSubmit={handleSubmit} className="csr-contact-form">
-              <div className="csr-form-row">
-                <div className="csr-form-field">
-                  <label className="csr-form-label">Full Name *</label>
-                  <input
-                    type="text"
-                    name="from_name"
-                    className="csr-form-input"
-                    required
-                    placeholder="Your name"
-                  />
-                </div>
-                <div className="csr-form-field">
-                  <label className="csr-form-label">Organization *</label>
-                  <input
-                    type="text"
-                    name="organization"
-                    className="csr-form-input"
-                    required
-                    placeholder="Company/Foundation name"
-                  />
-                </div>
+            {/* LEFT: Heading & Info */}
+            <div className="csr-contact-left">
+              <div className="csr-contact-heading csr-fade-up" ref={fade}>
+                <div className="csr-contact-sec-label">// Partner with Us</div>
+                <h2 className="csr-contact-sec-title">
+                  Request CSR Proposal &amp;<br />
+                  <span className="csr-hero-grad-text">Schedule Meeting</span>
+                </h2>
+                <p className="csr-contact-sec-desc">
+                  We welcome partnerships with corporates, builders, PSUs, foundations, and CSR
+                  organizations to jointly create measurable social impact.
+                </p>
               </div>
 
-              <div className="csr-form-row">
-                <div className="csr-form-field">
-                  <label className="csr-form-label">Email *</label>
-                  <input
-                    type="email"
-                    name="from_email"
-                    className="csr-form-input"
-                    required
-                    placeholder="your.email@company.com"
-                  />
-                </div>
-                <div className="csr-form-field">
-                  <label className="csr-form-label">Phone *</label>
-                  <input
-                    type="tel"
-                    name="phone"
-                    className="csr-form-input"
-                    required
-                    placeholder="+91 XXXXX XXXXX"
-                  />
-                </div>
+              <div className="csr-contact-info-box csr-fade-up" ref={fade}>
+                <p>
+                  <strong>Email:</strong>{" "}
+                  <a href="mailto:info@nextgenacademy.in">info@nextgenacademy.in</a>
+                </p>
+                <p>
+                  <strong>Phone:</strong>{" "}
+                  <a href="tel:+919152359157">+91-9152359157</a>
+                </p>
               </div>
-
-              <div className="csr-form-field">
-                <label className="csr-form-label">CSR Interest Area *</label>
-                <select name="interest" className="csr-form-select" required>
-                  <option value="">Select program...</option>
-                  <option value="bronze">25 Lakhs</option>
-                  <option value="silver">50 Lakhs</option>
-                  <option value="gold">1 crore</option>
-                  <option value="diamond">2 crore</option>
-                </select>
-              </div>
-
-              <div className="csr-form-field">
-                <label className="csr-form-label">Message</label>
-                <textarea
-                  name="message"
-                  className="csr-form-textarea"
-                  rows="4"
-                  placeholder="Tell us about your CSR objectives..."
-                ></textarea>
-              </div>
-
-              <button
-                type="submit"
-                className="btn-primary csr-form-submit"
-                disabled={isSubmitting}
-              >
-                {isSubmitting ? "Sending..." : "Request CSR Proposal"}
-              </button>
-
-              {formStatus === "success" && (
-                <div className="csr-form-status csr-form-status--success">
-                  ✓ Thank you! We'll get back to you within 24 hours.
-                </div>
-              )}
-              {formStatus === "error" && (
-                <div className="csr-form-status csr-form-status--error">
-                  ✗ Something went wrong. Please email us directly at info@nextgenacademy.in
-                </div>
-              )}
-            </form>
-
-            <div className="csr-contact-info">
-              <p>
-                <strong>Email:</strong>{" "}
-                <a href="mailto:info@nextgenacademy.in">info@nextgenacademy.in</a>
-              </p>
-              <p>
-                <strong>Phone:</strong>{" "}
-                <a href="tel:+919152359157">+91-9152359157</a>
-              </p>
             </div>
+
+            {/* RIGHT: Form */}
+            <div className="csr-fade-up" ref={fade}>
+              <form ref={formRef} onSubmit={handleSubmit} className="csr-contact-form">
+                <div className="csr-form-row">
+                  <div className="csr-form-field">
+                    <label className="csr-form-label">Full Name *</label>
+                    <input
+                      type="text"
+                      name="from_name"
+                      className="csr-form-input"
+                      required
+                      placeholder="Your name"
+                    />
+                  </div>
+                  <div className="csr-form-field">
+                    <label className="csr-form-label">Organization *</label>
+                    <input
+                      type="text"
+                      name="organization"
+                      className="csr-form-input"
+                      required
+                      placeholder="Company/Foundation name"
+                    />
+                  </div>
+                </div>
+
+                <div className="csr-form-row">
+                  <div className="csr-form-field">
+                    <label className="csr-form-label">Email *</label>
+                    <input
+                      type="email"
+                      name="from_email"
+                      className="csr-form-input"
+                      required
+                      placeholder="your.email@company.com"
+                    />
+                  </div>
+                  <div className="csr-form-field">
+                    <label className="csr-form-label">Phone *</label>
+                    <input
+                      type="tel"
+                      name="phone"
+                      className="csr-form-input"
+                      required
+                      placeholder="+91 XXXXX XXXXX"
+                    />
+                  </div>
+                </div>
+
+                <div className="csr-form-field">
+                  <label className="csr-form-label">CSR Interest Area *</label>
+                  <select name="interest" className="csr-form-select" required>
+                    <option value="">Select program...</option>
+                    <option value="MDSEM">Maharashtra Digital Skill & Employment Mission</option>
+                    <option value="MahaTech">MahaTech – Youth IT Skilling & Placement</option>
+                    <option value="MahaWomen">MahaWomen Digital Empowerment</option>
+                    <option value="Smart Maharashtra">Smart Maharashtra – Digital Literacy</option>
+                    <option value="Custom">Custom Program</option>
+                  </select>
+                </div>
+
+                <div className="csr-form-field">
+                  <label className="csr-form-label">Message</label>
+                  <textarea
+                    name="message"
+                    className="csr-form-textarea"
+                    rows="4"
+                    placeholder="Tell us about your CSR objectives..."
+                  ></textarea>
+                </div>
+
+                <button
+                  type="submit"
+                  className="csr-form-submit"
+                  disabled={isSubmitting}
+                >
+                  {isSubmitting ? "Sending..." : "Request CSR Proposal"}
+                </button>
+
+                {formStatus === "success" && (
+                  <div className="csr-form-status csr-form-status--success">
+                    ✓ Thank you! We'll get back to you within 24 hours.
+                  </div>
+                )}
+                {formStatus === "error" && (
+                  <div className="csr-form-status csr-form-status--error">
+                    ✗ Something went wrong. Please email us directly at info@nextgenacademy.in
+                  </div>
+                )}
+              </form>
+            </div>
+
           </div>
         </div>
       </section>
@@ -498,26 +583,26 @@ export default function CSRPage() {
       {/* <section className="csr-cta-section">
         <div className="csr-cta-glow" />
         <div className="csr-cta-content">
-          <h2 className="csr-cta-title fade-up" ref={fade}>
+          <h2 className="csr-cta-title csr-fade-up" ref={fade}>
             Join Us in Building a<br />
-            <span className="grad-text">Digitally Skilled India</span>
+            <span className="csr-hero-grad-text">Digitally Skilled India</span>
           </h2>
 
-          <p className="csr-cta-sub fade-up" ref={fade}>
+          <p className="csr-cta-sub csr-fade-up" ref={fade}>
             Together, we can create measurable social impact, empower youth with industry-ready
             skills, and contribute to India's digital transformation.
           </p>
 
-          <div className="csr-cta-buttons fade-up" ref={fade}>
+          <div className="csr-cta-buttons csr-fade-up" ref={fade}>
             <button
-              className="btn-primary"
+              className="csr-btn-primary"
               onClick={() => {
                 document.getElementById("csr-contact").scrollIntoView({ behavior: "smooth" });
               }}
             >
               Request Detailed CSR Proposal
             </button>
-            <button className="btn-secondary" onClick={() => go("/contact")}>
+            <button className="csr-btn-secondary" onClick={() => go("/CSR/schedule-meeting")}>
               Schedule CSR Presentation Meeting →
             </button>
           </div>
@@ -527,15 +612,14 @@ export default function CSRPage() {
       {/* ════════════════════════════════════════════════════
           DISCLAIMER
       ════════════════════════════════════════════════════ */}
-      <section className="csr-disclaimer">
-        <div className="max-w">
-          <p className="fade-up" ref={fade}>
+      {/* <section className="csr-disclaimer">
+        <div className="csr-max-w">
+          <p className="csr-fade-up" ref={fade}>
             <strong>Disclaimer:</strong> Our programs are aligned with Skill India, Digital
-            India & Maharashtra Skill Mission initiatives. Government partnership will be
-            undertaken as per applicable approvals and agreements.
+            India & Maharashtra Skill Mission initiatives. Inspired from Government Initiatives.
           </p>
         </div>
-      </section>
+      </section> */}
     </>
   );
 }

@@ -113,13 +113,13 @@ export default function AboutPage() {
             </h2>
             <p style={{ color: "var(--muted)", lineHeight: 1.82, marginBottom: 18, fontSize: "0.97rem" }}>
               At NextGen Academy, our goal is to provide you with top-notch training in
-              Digital Marketing. We want to help you learn and grow continuously so you
-              can stay ahead in this fast-changing field.
+              Digital Marketing, aligned with the <strong>Digital India</strong> vision. We want to help you learn and grow continuously so you
+              can stay ahead in this fast-changing field under the <strong>Skill India</strong> mission.
             </p>
             <p style={{ color: "var(--muted)", lineHeight: 1.82, marginBottom: 28, fontSize: "0.97rem" }}>
               Master Your Skills with our SEO, Google Ads, Social Media, App Development,
-              and more — all designed around real industry needs and backed by a
-              100% internship guarantee.
+              and more — all designed around real industry needs. Participate in the <strong>digital india Internship scheme</strong>
+              and earn a recognized <strong>Skill India certificate</strong> to boost your career.
             </p>
             <div style={{ display: "flex", gap: 14 }}>
               <button className="btn-primary" onClick={() => go("/contact")}>

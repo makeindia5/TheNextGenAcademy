@@ -26,8 +26,10 @@ export default function HomePage() {
               with Confidence.
             </h1>
             <p className="hero-p">
-              Industry-focused Digital Marketing & App Development courses in Mumbai.
-              Hands-on training, guaranteed internship, and placement support — all under one roof.
+              Empowering youth through <strong>Skill India</strong> and <strong>Digital India Digital</strong> initiatives.
+              Industry-focused Digital Marketing & App Development courses in Mumbai with <strong>Digital India internship</strong>
+              opportunities and <strong>Skill India certificate</strong> upon completion.
+              Hands-on training, <strong>digital india Internship scheme</strong> benefits, and placement support.
             </p>
             <div className="btn-group">
               <button className="btn-primary" onClick={() => go("contact")}>Get Free Counselling</button>
@@ -51,7 +53,7 @@ export default function HomePage() {
       </section>
 
       {/* Courses preview */}
-      <section style={{ background: "var(--navy-mid)" }}>
+      <section style={{ background: "var(--navy-mid)", padding: "80px 5%" }}>
         <div className="max-w">
           <div className="sec-head fade-up" ref={fade}>
             <div className="sec-label">// Our Programs</div>
@@ -74,7 +76,30 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      {/* National Initiatives */}
+      <section className="initiatives-sec" style={{ background: "var(--navy-dark)", borderTop: "1px solid var(--white-10)", padding: "80px 5%" }}>
+        <div className="max-w">
+          <div className="sec-head fade-up" ref={fade}>
+            <div className="sec-label">// National Initiatives</div>
+            <h2 className="sec-title">Aligned with <span className="grad-text">Digital India</span> & <span className="grad-text">Skill India</span></h2>
+          </div>
+          <div className="initiatives-grid" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: "24px", marginTop: "40px" }}>
+            <div className="initiative-card" style={{ padding: "30px", background: "var(--white-05)", borderRadius: "16px", border: "1px solid var(--white-10)" }}>
+              <h3 style={{ color: "var(--cyan)", marginBottom: "15px" }}>Skill India Digital</h3>
+              <p style={{ color: "var(--silver-text)", fontSize: "0.95rem", lineHeight: "1.6" }}>
+                Our training programs are mapped to the <strong>skill india deigital portal</strong> standards, ensuring every student receives a recognized <strong>skill india certificate</strong> upon graduation. We are committed to the <strong>skill india internship</strong> program to bridge the gap between education and employment.
+              </p>
+            </div>
+            <div className="initiative-card" style={{ padding: "30px", background: "var(--white-05)", borderRadius: "16px", border: "1px solid var(--white-10)" }}>
+              <h3 style={{ color: "var(--cyan)", marginBottom: "15px" }}>Digital India Certification</h3>
+              <p style={{ color: "var(--silver-text)", fontSize: "0.95rem", lineHeight: "1.6" }}>
+                As a part of the <strong>digital india Internship scheme</strong>, we provide students with hands-on experience in real-world projects. Our <strong>digital india internship</strong> programs are designed to empower the next generation of tech leaders in line with the national vision.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
     </>
   );
 }
-
