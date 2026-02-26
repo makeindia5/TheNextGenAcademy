@@ -64,6 +64,10 @@ export default function AdmissionPage() {
       <section>
         <div className="max-w" style={{ maxWidth: 740 }}>
 
+          <div className="fade-up" ref={fade} style={{ marginBottom: '24px', color: 'var(--muted)', fontSize: '1rem', lineHeight: '1.6', textAlign: 'center' }}>
+            Ready to start your journey with NextGen Academy? Complete your admission process by filling out the form below. Once submitted, our team will review your application and get in touch with you within 24 hours to confirm your enrollment and provide batch details.
+          </div>
+
           <form ref={(el) => { formRef.current = el; fade(el); }} onSubmit={handleSubmit} className="card fade-up" style={{ padding: 36 }}>
             <div className="card-top-bar" />
             <div className="form-grid">

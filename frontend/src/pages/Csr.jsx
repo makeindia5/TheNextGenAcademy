@@ -489,6 +489,9 @@ export default function CSRPage() {
 
             {/* RIGHT: Form */}
             <div className="csr-fade-up" ref={fade}>
+              <p className="csr-form-narration" style={{ marginBottom: '20px', color: 'var(--muted)', lineHeight: '1.6' }}>
+                Are you looking to create a meaningful social impact? Fill out the form below to request a detailed CSR proposal or schedule a presentation with our team. We'll help you design a program that aligns with your corporate social responsibility goals and national skill missions.
+              </p>
               <form ref={formRef} onSubmit={handleSubmit} className="csr-contact-form">
                 <div className="csr-form-row">
                   <div className="csr-form-field">

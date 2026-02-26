@@ -91,6 +91,10 @@ export default function ContactPage() {
               Book Free <span className="grad-text">Counselling</span>
             </h2>
 
+            <div className="fade-up" ref={fade} style={{ marginBottom: '24px', color: 'var(--muted)', fontSize: '1rem', lineHeight: '1.6' }}>
+              Take the first step towards a successful career in tech. Whether you have questions about our curriculum, placement assistance, or need help choosing the right course, our expert counsellors are ready to guide you. Fill out the form below to book your free counselling session.
+            </div>
+
             <form ref={(el) => { formRef.current = el; fade(el); }} onSubmit={handleSubmit} className="card fade-up" style={{ padding: 36 }}>
               <div className="card-top-bar" />
               <div className="form-grid">

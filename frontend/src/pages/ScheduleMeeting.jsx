@@ -81,6 +81,10 @@ export default function ScheduleMeetingPage() {
               Schedule <span className="grad-text">Meeting</span>
             </h2>
 
+            <div className="fade-up" ref={fade} style={{ marginBottom: '24px', color: 'var(--muted)', fontSize: '1rem', lineHeight: '1.6' }}>
+              Ready to discuss your CSR goals or have specific questions about our programs? Use the form below to book a meeting with our CSR coordinators. We're here to provide guidance and answer any queries you may have about partnering with NextGen Academy.
+            </div>
+
             <form ref={(el) => { formRef.current = el; fade(el); }} onSubmit={handleSubmit} className="card fade-up" style={{ padding: 36 }}>
               <div className="card-top-bar" />
               <div className="form-grid">
