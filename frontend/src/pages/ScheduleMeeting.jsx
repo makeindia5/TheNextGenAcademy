@@ -30,6 +30,8 @@ export default function ScheduleMeetingPage() {
 
       if (result.success) {
         setSent(true);
+        formRef.current.reset();
+        setTimeout(() => setSent(false), 5000);
       } else {
         setError("Something went wrong. Please try again or contact us.");
       }
@@ -79,70 +81,63 @@ export default function ScheduleMeetingPage() {
               Schedule <span className="grad-text">Meeting</span>
             </h2>
 
-            {sent ? (
-              <div className="card fade-up" ref={fade} style={{ textAlign: "center", padding: 48 }}>
-                <div className="card-top-bar" />
-                <div style={{ fontSize: "2.5rem", marginBottom: 14 }}>✅</div>
-                <h3 style={{ fontFamily: "'Space Mono',monospace", marginBottom: 10 }}>
-                  Meeting Scheduled
-                </h3>
-                <p style={{ color: "var(--muted)", lineHeight: 1.7 }}>
-                  Will call you back within 2 hours. Check your WhatsApp too!
-                </p>
-              </div>
-            ) : (
-              <form ref={(el) => { formRef.current = el; fade(el); }} onSubmit={handleSubmit} className="card fade-up" style={{ padding: 36 }}>
-                <div className="card-top-bar" />
-                <div className="form-grid">
-                  <div className="form-group">
-                    <label className="form-label">Full Name *</label>
-                    <input className="form-input" name="name" placeholder="Your name" required />
-                  </div>
-
-                  <div className="form-group">
-                    <label className="form-label">Phone Number *</label>
-                    <input className="form-input" name="phone" placeholder="+91 98765 43210" required />
-                  </div>
-
-                  <div className="form-group">
-                    <label className="form-label">Email Address</label>
-                    <input className="form-input" name="email" type="email" placeholder="you@email.com" />
-                  </div>
-
-                  <div className="form-group">
-                    <label className="form-label">Interested In</label>
-                    <select className="form-select" name="interest">
-                      <option value="">Select Your Interest</option>
-                      <option value="Bronze">25 lakh</option>
-                      <option value="Silver">50 lakh</option>
-                      <option value="Gold">1 crore</option>
-                      <option value="Diamond">2 crore</option>
-                      <option value="not-sure">Custom</option>
-                    </select>
-                  </div>
-
-                  <div className="form-group full">
-                    <label className="form-label">Message (Optional)</label>
-                    <textarea className="form-textarea" name="message" placeholder="Tell us about your background and career goals." />
-                  </div>
+            <form ref={(el) => { formRef.current = el; fade(el); }} onSubmit={handleSubmit} className="card fade-up" style={{ padding: 36 }}>
+              <div className="card-top-bar" />
+              <div className="form-grid">
+                <div className="form-group">
+                  <label className="form-label">Full Name *</label>
+                  <input className="form-input" name="name" placeholder="Your name" required />
                 </div>
 
-                <button
-                  className="btn-primary"
-                  type="submit"
-                  disabled={isSubmitting}
-                  style={{ marginTop: 20, width: "100%", fontSize: "1rem", padding: "16px" }}
-                >
-                  {isSubmitting ? "Scheduling..." : "Schedule Meeting"}
-                </button>
+                <div className="form-group">
+                  <label className="form-label">Phone Number *</label>
+                  <input className="form-input" name="phone" placeholder="+91 98765 43210" required />
+                </div>
 
-                {error && (
-                  <div style={{ marginTop: 16, color: "#ff4d4d", fontSize: "0.9rem", textAlign: "center" }}>
-                    {error}
-                  </div>
-                )}
-              </form>
-            )}
+                <div className="form-group">
+                  <label className="form-label">Email Address</label>
+                  <input className="form-input" name="email" type="email" placeholder="you@email.com" />
+                </div>
+
+                <div className="form-group">
+                  <label className="form-label">Interested In</label>
+                  <select className="form-select" name="interest">
+                    <option value="">Select Your Interest</option>
+                    <option value="25 Lakhs">25 lakh</option>
+                    <option value="50 Lakhs">50 lakh</option>
+                    <option value="1 crore">1 crore</option>
+                    <option value="2 crore">2 crore</option>
+                    <option value="not-sure">Custom</option>
+                  </select>
+                </div>
+
+                <div className="form-group full">
+                  <label className="form-label">Message (Optional)</label>
+                  <textarea className="form-textarea" name="message" placeholder="Tell us about your background and career goals." />
+                </div>
+              </div>
+
+              <button
+                className="btn-primary"
+                type="submit"
+                disabled={isSubmitting}
+                style={{ marginTop: 20, width: "100%", fontSize: "1rem", padding: "16px" }}
+              >
+                {isSubmitting ? "Scheduling..." : "Schedule Meeting"}
+              </button>
+
+              {sent && (
+                <div style={{ marginTop: 20, color: "#00cc88", fontWeight: "bold", textAlign: "center", fontSize: "1rem" }}>
+                  ✓ Meeting Scheduled Successfully! We will call you within 2 hours.
+                </div>
+              )}
+
+              {error && (
+                <div style={{ marginTop: 16, color: "#ff4d4d", fontSize: "0.9rem", textAlign: "center" }}>
+                  {error}
+                </div>
+              )}
+            </form>
           </div>
         </div>
       </section>

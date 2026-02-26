@@ -38,6 +38,8 @@ export default function AdmissionPage() {
 
       if (result.success) {
         setSubmitted(true);
+        formRef.current.reset();
+        setTimeout(() => setSubmitted(false), 5000);
         window.scrollTo({ top: 0, behavior: "smooth" });
       } else {
         setError("Something went wrong. Please try again or contact us.");
@@ -62,57 +64,50 @@ export default function AdmissionPage() {
       <section>
         <div className="max-w" style={{ maxWidth: 740 }}>
 
-          {submitted ? (
-            <div className="card fade-up" ref={fade} style={{ textAlign: "center", padding: 60 }}>
-              <div className="card-top-bar" />
-              <div style={{ fontSize: "2.5rem", marginBottom: 16 }}>🎉</div>
-              <h3 style={{ fontFamily: "'Space Mono',monospace", marginBottom: 12 }}>
-                Application Submitted!
-              </h3>
-              <p style={{ color: "var(--muted)", lineHeight: 1.7 }}>
-                Our admissions team will contact you within 24 hours with next steps.
-              </p>
-            </div>
-          ) : (
-            <form ref={(el) => { formRef.current = el; fade(el); }} onSubmit={handleSubmit} className="card fade-up" style={{ padding: 36 }}>
-              <div className="card-top-bar" />
-              <div className="form-grid">
-                <div className="form-group">
-                  <label className="form-label">Full Name *</label>
-                  <input className="form-input" name="name" required />
-                </div>
-
-                <div className="form-group">
-                  <label className="form-label">Phone *</label>
-                  <input className="form-input" name="phone" required />
-                </div>
-                <div className="form-group">
-                  <label className="form-label">Email *</label>
-                  <input className="form-input" name="email" required />
-                </div>
-
-                <div className="form-group">
-                  <label className="form-label">Course *</label>
-                  <select className="form-select" name="course" required>
-                    <option value="">Select Course</option>
-                    {COURSES_DATA.map(c => (
-                      <option key={c.id} value={c.title}>{c.title}</option>
-                    ))}
-                  </select>
-                </div>
+          <form ref={(el) => { formRef.current = el; fade(el); }} onSubmit={handleSubmit} className="card fade-up" style={{ padding: 36 }}>
+            <div className="card-top-bar" />
+            <div className="form-grid">
+              <div className="form-group">
+                <label className="form-label">Full Name *</label>
+                <input className="form-input" name="name" required />
               </div>
 
-              <button className="btn-primary" type="submit" disabled={isSubmitting} style={{ marginTop: 20, width: "100%" }}>
-                {isSubmitting ? "Submitting..." : "Submit Application"}
-              </button>
+              <div className="form-group">
+                <label className="form-label">Phone *</label>
+                <input className="form-input" name="phone" required />
+              </div>
+              <div className="form-group">
+                <label className="form-label">Email *</label>
+                <input className="form-input" name="email" required />
+              </div>
 
-              {error && (
-                <div style={{ marginTop: 16, color: "#ff4d4d", fontSize: "0.9rem", textAlign: "center" }}>
-                  {error}
-                </div>
-              )}
-            </form>
-          )}
+              <div className="form-group">
+                <label className="form-label">Course *</label>
+                <select className="form-select" name="course" required>
+                  <option value="">Select Course</option>
+                  {COURSES_DATA.map(c => (
+                    <option key={c.id} value={c.title}>{c.title}</option>
+                  ))}
+                </select>
+              </div>
+            </div>
+
+            <button className="btn-primary" type="submit" disabled={isSubmitting} style={{ marginTop: 20, width: "100%" }}>
+              {isSubmitting ? "Submitting..." : "Submit Application"}
+            </button>
+
+            {submitted && (
+              <div style={{ marginTop: 20, color: "#00cc88", fontWeight: "bold", textAlign: "center", fontSize: "1rem" }}>
+                ✓ Application Submitted Successfully! Our team will contact you within 24 hours.
+              </div>
+            )}
+
+            {error && (
+              <div style={{ marginTop: 16, color: "#ff4d4d", fontSize: "0.9rem", textAlign: "center" }}>
+                {error}
+              </div>
+            )}
+          </form>
         </div>
       </section>
     </>

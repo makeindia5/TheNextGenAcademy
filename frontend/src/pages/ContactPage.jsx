@@ -32,6 +32,9 @@ export default function ContactPage() {
 
       if (result.success) {
         setSent(true);
+        formRef.current.reset();
+        // Hide success message after 5 seconds if desired, or keep it
+        setTimeout(() => setSent(false), 5000);
       } else {
         setError("Something went wrong. Please try again or email us directly.");
       }
@@ -88,69 +91,62 @@ export default function ContactPage() {
               Book Free <span className="grad-text">Counselling</span>
             </h2>
 
-            {sent ? (
-              <div className="card fade-up" ref={fade} style={{ textAlign: "center", padding: 48 }}>
-                <div className="card-top-bar" />
-                <div style={{ fontSize: "2.5rem", marginBottom: 14 }}>✅</div>
-                <h3 style={{ fontFamily: "'Space Mono',monospace", marginBottom: 10 }}>
-                  Message Sent!
-                </h3>
-                <p style={{ color: "var(--muted)", lineHeight: 1.7 }}>
-                  Our counsellor will call you back within 2 hours. Check your WhatsApp too!
-                </p>
-              </div>
-            ) : (
-              <form ref={(el) => { formRef.current = el; fade(el); }} onSubmit={handleSubmit} className="card fade-up" style={{ padding: 36 }}>
-                <div className="card-top-bar" />
-                <div className="form-grid">
-                  <div className="form-group">
-                    <label className="form-label">Full Name *</label>
-                    <input className="form-input" name="name" placeholder="Your name" required />
-                  </div>
-
-                  <div className="form-group">
-                    <label className="form-label">Phone Number *</label>
-                    <input className="form-input" name="phone" placeholder="+91 98765 43210" required />
-                  </div>
-
-                  <div className="form-group">
-                    <label className="form-label">Email Address</label>
-                    <input className="form-input" name="email" type="email" placeholder="you@email.com" />
-                  </div>
-
-                  <div className="form-group">
-                    <label className="form-label">Interested In</label>
-                    <select className="form-select" name="interest">
-                      <option value="">Select a course</option>
-                      {COURSES_DATA.map(c => (
-                        <option key={c.id} value={c.title}>{c.title}</option>
-                      ))}
-                      <option value="not-sure">Not Sure Yet</option>
-                    </select>
-                  </div>
-
-                  <div className="form-group full">
-                    <label className="form-label">Message (Optional)</label>
-                    <textarea className="form-textarea" name="message" placeholder="Tell us about your background and career goals." />
-                  </div>
+            <form ref={(el) => { formRef.current = el; fade(el); }} onSubmit={handleSubmit} className="card fade-up" style={{ padding: 36 }}>
+              <div className="card-top-bar" />
+              <div className="form-grid">
+                <div className="form-group">
+                  <label className="form-label">Full Name *</label>
+                  <input className="form-input" name="name" placeholder="Your name" required />
                 </div>
 
-                <button
-                  className="btn-primary"
-                  type="submit"
-                  disabled={isSubmitting}
-                  style={{ marginTop: 20, width: "100%", fontSize: "1rem", padding: "16px" }}
-                >
-                  {isSubmitting ? "Sending..." : "Send Message & Book Counselling"}
-                </button>
+                <div className="form-group">
+                  <label className="form-label">Phone Number *</label>
+                  <input className="form-input" name="phone" placeholder="+91 98765 43210" required />
+                </div>
 
-                {error && (
-                  <div style={{ marginTop: 16, color: "#ff4d4d", fontSize: "0.9rem", textAlign: "center" }}>
-                    {error}
-                  </div>
-                )}
-              </form>
-            )}
+                <div className="form-group">
+                  <label className="form-label">Email Address</label>
+                  <input className="form-input" name="email" type="email" placeholder="you@email.com" />
+                </div>
+
+                <div className="form-group">
+                  <label className="form-label">Interested In</label>
+                  <select className="form-select" name="interest">
+                    <option value="">Select a course</option>
+                    {COURSES_DATA.map(c => (
+                      <option key={c.id} value={c.title}>{c.title}</option>
+                    ))}
+                    <option value="not-sure">Not Sure Yet</option>
+                  </select>
+                </div>
+
+                <div className="form-group full">
+                  <label className="form-label">Message (Optional)</label>
+                  <textarea className="form-textarea" name="message" placeholder="Tell us about your background and career goals." />
+                </div>
+              </div>
+
+              <button
+                className="btn-primary"
+                type="submit"
+                disabled={isSubmitting}
+                style={{ marginTop: 20, width: "100%", fontSize: "1rem", padding: "16px" }}
+              >
+                {isSubmitting ? "Sending..." : "Send Message & Book Counselling"}
+              </button>
+
+              {sent && (
+                <div style={{ marginTop: 20, color: "#00cc88", fontWeight: "bold", textAlign: "center", fontSize: "1rem" }}>
+                  ✓ Message Sent Successfully! Our counsellor will call you shortly.
+                </div>
+              )}
+
+              {error && (
+                <div style={{ marginTop: 16, color: "#ff4d4d", fontSize: "0.9rem", textAlign: "center" }}>
+                  {error}
+                </div>
+              )}
+            </form>
           </div>
         </div>
       </section>

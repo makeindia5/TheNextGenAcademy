@@ -53,53 +53,29 @@ const sendMail = (subject, text, res, senderName, replyTo) => {
 // API Endpoints
 app.post('/api/contact', (req, res) => {
     const { name, phone, email, interest, message } = req.body;
-    const subject = `New Contact Form Submission from ${name}`;
-    const text = `
-        Name: ${name}
-        Phone: ${phone}
-        Email: ${email}
-        Interested In: ${interest}
-        Message: ${message}
-    `;
+    const subject = `Regarding Application/Enquiry - ${interest}`;
+    const text = `Dear Sir\n\nSubject: ${subject}\n\nName: ${name}\nPhone: ${phone}\nEmail: ${email}\nInterested In: ${interest}\nMessage: ${message}\n\nThank you`;
     sendMail(subject, text, res, name, email);
 });
 
 app.post('/api/admission', (req, res) => {
     const { name, phone, email, course } = req.body;
-    const subject = `New Admission Application from ${name}`;
-    const text = `
-        Name: ${name}
-        Phone: ${phone}
-        Email: ${email}
-        Course: ${course}
-    `;
+    const subject = `Regarding Course Purchase - ${course}`;
+    const text = `Dear Sir\n\nSubject: ${subject}\n\nName: ${name}\nPhone: ${phone}\nEmail: ${email}\nCourse: ${course}\n\nThank you`;
     sendMail(subject, text, res, name, email);
 });
 
 app.post('/api/meeting', (req, res) => {
     const { name, phone, email, interest, message } = req.body;
-    const subject = `New Meeting Scheduled by ${name}`;
-    const text = `
-        Name: ${name}
-        Phone: ${phone}
-        Email: ${email}
-        Interested In: ${interest}
-        Message: ${message}
-    `;
+    const subject = `Regarding Scheduling a Meeting - ${interest}`;
+    const text = `Dear Sir\n\nSubject: ${subject}\n\nName: ${name}\nPhone: ${phone}\nEmail: ${email}\nInterested In: ${interest}\nMessage: ${message}\n\nThank you`;
     sendMail(subject, text, res, name, email);
 });
 
 app.post('/api/csr', (req, res) => {
     const { from_name, organization, from_email, phone, interest, message } = req.body;
-    const subject = `New CSR Proposal Request from ${from_name}`;
-    const text = `
-        Name: ${from_name}
-        Organization: ${organization}
-        Email: ${from_email}
-        Phone: ${phone}
-        Interest Area: ${interest}
-        Message: ${message}
-    `;
+    const subject = `Regarding CSR/Partnership - ${interest}`;
+    const text = `Dear Sir\n\nSubject: ${subject}\n\nName: ${from_name}\nOrganization: ${organization}\nEmail: ${from_email}\nPhone: ${phone}\nInterest Area: ${interest}\nMessage: ${message}\n\nThank you`;
     sendMail(subject, text, res, from_name, from_email);
 });
 
