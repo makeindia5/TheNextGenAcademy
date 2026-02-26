@@ -31,10 +31,11 @@ transporter.verify((error, success) => {
 });
 
 // Helper function to send email
-const sendMail = (subject, text, res) => {
+const sendMail = (subject, text, res, senderName, replyTo) => {
     const mailOptions = {
-        from: process.env.EMAIL_USER,
+        from: `"${senderName}" <${process.env.EMAIL_USER}>`,
         to: process.env.RECEIVER_EMAIL,
+        replyTo: replyTo,
         subject: subject,
         text: text
     };
@@ -60,7 +61,7 @@ app.post('/api/contact', (req, res) => {
         Interested In: ${interest}
         Message: ${message}
     `;
-    sendMail(subject, text, res);
+    sendMail(subject, text, res, name, email);
 });
 
 app.post('/api/admission', (req, res) => {
@@ -72,7 +73,7 @@ app.post('/api/admission', (req, res) => {
         Email: ${email}
         Course: ${course}
     `;
-    sendMail(subject, text, res);
+    sendMail(subject, text, res, name, email);
 });
 
 app.post('/api/meeting', (req, res) => {
@@ -85,7 +86,7 @@ app.post('/api/meeting', (req, res) => {
         Interested In: ${interest}
         Message: ${message}
     `;
-    sendMail(subject, text, res);
+    sendMail(subject, text, res, name, email);
 });
 
 app.post('/api/csr', (req, res) => {
@@ -99,7 +100,7 @@ app.post('/api/csr', (req, res) => {
         Interest Area: ${interest}
         Message: ${message}
     `;
-    sendMail(subject, text, res);
+    sendMail(subject, text, res, from_name, from_email);
 });
 
 app.get('/', (req, res) => {
