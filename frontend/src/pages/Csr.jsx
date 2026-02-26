@@ -150,7 +150,7 @@ export default function CSRPage() {
     const data = Object.fromEntries(formData.entries());
 
     try {
-      const response = await fetch("http://localhost:5000/api/csr", {
+      const response = await fetch("/api/csr", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

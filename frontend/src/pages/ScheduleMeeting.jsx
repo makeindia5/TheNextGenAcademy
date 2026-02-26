@@ -18,7 +18,7 @@ export default function ScheduleMeetingPage() {
     const data = Object.fromEntries(formData.entries());
 
     try {
-      const response = await fetch("http://localhost:5000/api/meeting", {
+      const response = await fetch("/api/meeting", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

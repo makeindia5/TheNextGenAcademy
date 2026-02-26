@@ -24,7 +24,7 @@ const transporter = nodemailer.createTransport({
 // Verify Transporter
 transporter.verify((error, success) => {
     if (error) {
-        console.log('Error with transporter:', error);
+        console.warn('⚠️  Transporter verification failed. Emails will not be sent until credentials are fixed in .env:', error.response || error.message);
     } else {
         console.log('Server is ready to send emails');
     }
