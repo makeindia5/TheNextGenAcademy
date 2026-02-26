@@ -81,8 +81,8 @@
   background-clip: text;
   -webkit-text-fill-color: transparent;
   font-family: "Space Mono", monospace;
-  font-size: 0.85rem;
-  font-weight: 700;
+  font-size: 1rem;
+  font-weight: 800;
   margin-bottom: 24px;
 }
 
@@ -114,7 +114,7 @@
 .csr-hero-subtitle {
   font-size: 1.15rem;
   line-height: 1.7;
-  color: var(--muted, #8892b0);
+  color: #ffffff;
   margin-bottom: 20px;
   max-width: 750px;
 }
@@ -243,6 +243,19 @@
 }
 
 /* ── Funding Cards ── */
+#csr-funding {
+  background: linear-gradient(rgba(10, 25, 47, 0.75), rgba(10, 25, 47, 0.75)), url('/assets/gallery/hero.png');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  color: #ffffff;
+}
+
+#csr-funding .csr-sec-title,
+#csr-funding .csr-sec-sub {
+  color: #ffffff;
+}
+
 .csr-funding-wrapper {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -290,7 +303,16 @@
 }
 
 .csr-funding-card--gold {
-  background: rgba(255, 215, 0, 0.05);
+  background: #ffffff;
+  border-color: #ffffff;
+}
+
+.csr-funding-card--gold .csr-funding-card-amount {
+  color: #0b3d91;
+}
+
+.csr-funding-card--gold .csr-funding-card-coverage {
+  color: #4b5563;
 }
 
 .csr-funding-card-amount {

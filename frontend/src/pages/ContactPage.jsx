@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import useFadeUp from "../hooks/useFadeUp";
 import PageHero from "../components/PageHero";
 import { COURSES_DATA } from "../data/courses";
@@ -7,10 +7,40 @@ import CourseCard from "../components/CourseCard";
 export default function ContactPage() {
   const fade = useFadeUp();
   const [sent, setSent] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [error, setError] = useState(null);
+  const formRef = useRef();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setSent(true);
+    setIsSubmitting(true);
+    setError(null);
+
+    const formData = new FormData(formRef.current);
+    const data = Object.fromEntries(formData.entries());
+
+    try {
+      const response = await fetch("http://localhost:5000/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+
+      const result = await response.json();
+
+      if (result.success) {
+        setSent(true);
+      } else {
+        setError("Something went wrong. Please try again or email us directly.");
+      }
+    } catch (err) {
+      console.error("Submission Error:", err);
+      setError("Server error. Please check your internet connection and try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -70,30 +100,30 @@ export default function ContactPage() {
                 </p>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} className="card fade-up" ref={fade} style={{ padding: 36 }}>
+              <form ref={(el) => { formRef.current = el; fade(el); }} onSubmit={handleSubmit} className="card fade-up" style={{ padding: 36 }}>
                 <div className="card-top-bar" />
                 <div className="form-grid">
                   <div className="form-group">
                     <label className="form-label">Full Name *</label>
-                    <input className="form-input" placeholder="Your name" required />
+                    <input className="form-input" name="name" placeholder="Your name" required />
                   </div>
 
                   <div className="form-group">
                     <label className="form-label">Phone Number *</label>
-                    <input className="form-input" placeholder="+91 98765 43210" required />
+                    <input className="form-input" name="phone" placeholder="+91 98765 43210" required />
                   </div>
 
                   <div className="form-group">
                     <label className="form-label">Email Address</label>
-                    <input className="form-input" type="email" placeholder="you@email.com" />
+                    <input className="form-input" name="email" type="email" placeholder="you@email.com" />
                   </div>
 
                   <div className="form-group">
                     <label className="form-label">Interested In</label>
-                    <select className="form-select">
+                    <select className="form-select" name="interest">
                       <option value="">Select a course</option>
                       {COURSES_DATA.map(c => (
-                        <option key={c.id} value={c.id}>{c.title}</option>
+                        <option key={c.id} value={c.title}>{c.title}</option>
                       ))}
                       <option value="not-sure">Not Sure Yet</option>
                     </select>
@@ -101,17 +131,24 @@ export default function ContactPage() {
 
                   <div className="form-group full">
                     <label className="form-label">Message (Optional)</label>
-                    <textarea className="form-textarea" placeholder="Tell us about your background and career goals." />
+                    <textarea className="form-textarea" name="message" placeholder="Tell us about your background and career goals." />
                   </div>
                 </div>
 
                 <button
                   className="btn-primary"
                   type="submit"
+                  disabled={isSubmitting}
                   style={{ marginTop: 20, width: "100%", fontSize: "1rem", padding: "16px" }}
                 >
-                  Send Message & Book Counselling
+                  {isSubmitting ? "Sending..." : "Send Message & Book Counselling"}
                 </button>
+
+                {error && (
+                  <div style={{ marginTop: 16, color: "#ff4d4d", fontSize: "0.9rem", textAlign: "center" }}>
+                    {error}
+                  </div>
+                )}
               </form>
             )}
           </div>

@@ -1,14 +1,44 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import useFadeUp from "../hooks/useFadeUp";
 
 
 export default function ScheduleMeetingPage() {
   const fade = useFadeUp();
   const [sent, setSent] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [error, setError] = useState(null);
+  const formRef = useRef();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setSent(true);
+    setIsSubmitting(true);
+    setError(null);
+
+    const formData = new FormData(formRef.current);
+    const data = Object.fromEntries(formData.entries());
+
+    try {
+      const response = await fetch("http://localhost:5000/api/meeting", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+
+      const result = await response.json();
+
+      if (result.success) {
+        setSent(true);
+      } else {
+        setError("Something went wrong. Please try again or contact us.");
+      }
+    } catch (err) {
+      console.error("Submission Error:", err);
+      setError("Server error. Please check your internet connection.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -54,34 +84,34 @@ export default function ScheduleMeetingPage() {
                 <div className="card-top-bar" />
                 <div style={{ fontSize: "2.5rem", marginBottom: 14 }}>✅</div>
                 <h3 style={{ fontFamily: "'Space Mono',monospace", marginBottom: 10 }}>
-                   Meeting Scheduled
+                  Meeting Scheduled
                 </h3>
                 <p style={{ color: "var(--muted)", lineHeight: 1.7 }}>
-                   Will call you back within 2 hours. Check your WhatsApp too!
+                  Will call you back within 2 hours. Check your WhatsApp too!
                 </p>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} className="card fade-up" ref={fade} style={{ padding: 36 }}>
+              <form ref={(el) => { formRef.current = el; fade(el); }} onSubmit={handleSubmit} className="card fade-up" style={{ padding: 36 }}>
                 <div className="card-top-bar" />
                 <div className="form-grid">
                   <div className="form-group">
                     <label className="form-label">Full Name *</label>
-                    <input className="form-input" placeholder="Your name" required />
+                    <input className="form-input" name="name" placeholder="Your name" required />
                   </div>
 
                   <div className="form-group">
                     <label className="form-label">Phone Number *</label>
-                    <input className="form-input" placeholder="+91 98765 43210" required />
+                    <input className="form-input" name="phone" placeholder="+91 98765 43210" required />
                   </div>
 
                   <div className="form-group">
                     <label className="form-label">Email Address</label>
-                    <input className="form-input" type="email" placeholder="you@email.com" />
+                    <input className="form-input" name="email" type="email" placeholder="you@email.com" />
                   </div>
 
                   <div className="form-group">
                     <label className="form-label">Interested In</label>
-                    <select className="form-select">
+                    <select className="form-select" name="interest">
                       <option value="">Select Your Interest</option>
                       <option value="Bronze">25 lakh</option>
                       <option value="Silver">50 lakh</option>
@@ -93,17 +123,24 @@ export default function ScheduleMeetingPage() {
 
                   <div className="form-group full">
                     <label className="form-label">Message (Optional)</label>
-                    <textarea className="form-textarea" placeholder="Tell us about your background and career goals." />
+                    <textarea className="form-textarea" name="message" placeholder="Tell us about your background and career goals." />
                   </div>
                 </div>
 
                 <button
                   className="btn-primary"
                   type="submit"
+                  disabled={isSubmitting}
                   style={{ marginTop: 20, width: "100%", fontSize: "1rem", padding: "16px" }}
                 >
-                  Schedule Meeting
+                  {isSubmitting ? "Scheduling..." : "Schedule Meeting"}
                 </button>
+
+                {error && (
+                  <div style={{ marginTop: 16, color: "#ff4d4d", fontSize: "0.9rem", textAlign: "center" }}>
+                    {error}
+                  </div>
+                )}
               </form>
             )}
           </div>

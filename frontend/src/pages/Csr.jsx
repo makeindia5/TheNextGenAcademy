@@ -1,6 +1,5 @@
 import { useNavigate } from "react-router-dom";
 import { useRef, useState } from "react";
-import emailjs from "@emailjs/browser";
 import useFadeUp from "../hooks/useFadeUp";
 import InfoCard from "../components/InfoCard";
 import "../styles/CSR.css";
@@ -142,30 +141,37 @@ export default function CSRPage() {
   const [formStatus, setFormStatus] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
     setFormStatus("");
 
-    emailjs
-      .sendForm(
-        "YOUR_SERVICE_ID",  // Replace with your EmailJS service ID
-        "YOUR_TEMPLATE_ID", // Replace with your EmailJS template ID
-        formRef.current,
-        "YOUR_PUBLIC_KEY"   // Replace with your EmailJS public key
-      )
-      .then(
-        () => {
-          setFormStatus("success");
-          setIsSubmitting(false);
-          formRef.current.reset();
+    const formData = new FormData(formRef.current);
+    const data = Object.fromEntries(formData.entries());
+
+    try {
+      const response = await fetch("http://localhost:5000/api/csr", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
         },
-        (error) => {
-          setFormStatus("error");
-          setIsSubmitting(false);
-          console.error("EmailJS Error:", error);
-        }
-      );
+        body: JSON.stringify(data),
+      });
+
+      const result = await response.json();
+
+      if (result.success) {
+        setFormStatus("success");
+        formRef.current.reset();
+      } else {
+        setFormStatus("error");
+      }
+    } catch (error) {
+      setFormStatus("error");
+      console.error("Submission Error:", error);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -534,10 +540,10 @@ export default function CSRPage() {
                   <label className="csr-form-label">CSR Interest Area *</label>
                   <select name="interest" className="csr-form-select" required>
                     <option value="">Select program...</option>
-                    <option value="MDSEM">Maharashtra Digital Skill & Employment Mission</option>
-                    <option value="MahaTech">MahaTech – Youth IT Skilling & Placement</option>
-                    <option value="MahaWomen">MahaWomen Digital Empowerment</option>
-                    <option value="Smart Maharashtra">Smart Maharashtra – Digital Literacy</option>
+                    <option value="25 Lakhs">25 Lakhs</option>
+                    <option value="50 Lakhs">50 Lakhs</option>
+                    <option value="1 crore">1 crore</option>
+                    <option value="2 crore">2 crores</option>
                     <option value="Custom">Custom Program</option>
                   </select>
                 </div>
