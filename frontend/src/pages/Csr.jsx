@@ -34,6 +34,18 @@ const CSR_PROGRAMS = [
     title: "Smart Maharashtra – Digital Literacy Program",
     desc: "Basic to advanced digital literacy training for students, MSMEs and underprivileged communities.",
   },
+  {
+    icon: "🌍",
+    accent: "teal",
+    title: "MahaGreen – Digital Sustainability Initiative",
+    desc: "Training youth in green technologies, digital waste management, and sustainable IT practices.",
+  },
+  {
+    icon: "🚀",
+    accent: "cyan",
+    title: "MahaStart – Rural Entrepreneurship Program",
+    desc: "Empowering rural youth to start digital service centers and small-scale IT businesses in their villages.",
+  },
 ];
 
 // Program Impact Stats
@@ -42,6 +54,8 @@ const PROGRAM_IMPACT = [
   { icon: "💻", title: "300+ Hours", desc: "Training per Student", accent: "cyan" },
   { icon: "👩", title: "30% Women", desc: "Beneficiaries", accent: "amber" },
   { icon: "🏙", title: "Coverage", desc: "Mumbai | Thane | Navi Mumbai | Maharashtra", accent: "hot" },
+  { icon: "📈", title: "85%+ Placement", desc: "Employment Support Rate", accent: "teal" },
+  { icon: "🤝", title: "50+ Partners", desc: "Corporate Hiring Network", accent: "cyan" },
 ];
 
 // Funding Options - FIXED: 4 cards in 2x2 grid
@@ -98,6 +112,7 @@ const IMPLEMENTATION = [
   { icon: "🛠", title: "Practical Hands-On Training", accent: "amber" },
   { icon: "💼", title: "Internship & Placement Assistance", accent: "hot" },
   { icon: "📊", title: "Continuous Monitoring & Reporting", accent: "teal" },
+  { icon: "🤝", title: "Career Mentorship & Alumni Support", accent: "cyan" },
 ];
 
 // Monitoring & Reporting

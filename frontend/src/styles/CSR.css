@@ -37,15 +37,15 @@
 
 /* ── Hero Section ── */
 .csr-hero {
-  min-height: 90vh;
+  min-height: 48rem;
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  padding: 120px 5% 80px;
+  padding: 12rem 5% 8rem;
   background: linear-gradient(rgba(10, 25, 47, 0.45), rgba(10, 25, 47, 0.45)), url('/assets/gallery/hero.png');
   background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
+  background-position: center 25%;
+  background-repeat: no-repeat;
   position: relative;
   overflow: hidden;
   text-align: left;
@@ -224,7 +224,7 @@
 /* ── Grids ── */
 .csr-programs-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
   gap: 24px;
 }
 
@@ -232,13 +232,13 @@
 .csr-why-grid,
 .csr-monitoring-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
   gap: 24px;
 }
 
 .csr-implementation-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
   gap: 20px;
 }
 
@@ -294,25 +294,25 @@
 
 
 
-/* Tier-specific card styles */
-
-/* Tier-specific card styles */
-.csr-funding-card--platinum {
-  background: var(--navy-mid, #112240);
-  border-color: var(--cyan, #00e5ff);
+/* Tier-specific overrides removed to keep all cards white by default */
+.csr-funding-card--platinum,
+.csr-funding-card--gold,
+.csr-funding-card--silver,
+.csr-funding-card--bronze {
+  background: #ffffff !important;
+  border-color: var(--border) !important;
 }
 
-.csr-funding-card--gold {
-  background: #ffffff;
-  border-color: #ffffff;
+.csr-funding-card:hover {
+  transform: translateY(-8px);
+  background: var(--primary) !important;
+  border-color: var(--primary) !important;
+  box-shadow: 0 12px 30px rgba(11, 61, 145, 0.15);
 }
 
-.csr-funding-card--gold .csr-funding-card-amount {
-  color: #0b3d91;
-}
-
-.csr-funding-card--gold .csr-funding-card-coverage {
-  color: #4b5563;
+.csr-funding-card:hover .csr-funding-card-amount,
+.csr-funding-card:hover .csr-funding-card-coverage {
+  color: #ffffff !important;
 }
 
 .csr-funding-card-amount {
@@ -322,12 +322,14 @@
   color: var(--primary);
   margin-bottom: 8px;
   text-align: center;
+  transition: color 0.3s ease;
 }
 
 .csr-funding-card-coverage {
   font-size: 1rem;
   color: var(--muted);
   text-align: center;
+  transition: color 0.3s ease;
 }
 
 /* ── Funding Chart ── */

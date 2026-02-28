@@ -355,7 +355,7 @@ section {
 .nav-link {
   background: none;
   border: none;
-  color: var(--muted);
+  color: #ffffff;
   font-size: .875rem;
   font-weight: 500;
   cursor: pointer;
@@ -368,8 +368,8 @@ section {
 
 .nav-link:hover,
 .nav-link.active {
-  color: var(--cyan);
-  background: rgba(0, 229, 255, .07);
+  color: #ffffff;
+  background: rgba(255, 255, 255, .1);
 }
 
 .nav-link.active::after {
@@ -379,7 +379,7 @@ section {
   left: 14px;
   right: 14px;
   height: 2px;
-  background: var(--cyan);
+  background: #ffffff;
   border-radius: 2px;
 }
 
@@ -488,7 +488,7 @@ section {
 .mobile-link {
   background: none;
   border: none;
-  color: var(--muted);
+  color: #ffffff;
   font-family: 'DM Sans', sans-serif;
   font-size: .95rem;
   font-weight: 500;
@@ -502,8 +502,8 @@ section {
 
 .mobile-link:hover,
 .mobile-link.active {
-  color: var(--cyan);
-  background: rgba(0, 229, 255, .07);
+  color: #ffffff;
+  background: rgba(255, 255, 255, .1);
 }
 
 .mobile-divider {
@@ -814,7 +814,7 @@ footer {
 /* ── Courses grid ── */
 .courses-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
   gap: 22px;
 }
 
@@ -1012,7 +1012,7 @@ footer {
 /* ── Testimonials ── */
 .testi-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
   gap: 22px;
 }
 
