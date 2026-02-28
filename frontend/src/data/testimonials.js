@@ -7,5 +7,5 @@ export const TESTIMONIALS = [
   { text: "From SEO to Facebook ads — this course covered everything. The SEO modules alone were worth the entire fee. Highly recommend to anyone serious about digital careers.", name: "Priti Shah", location: "Navi Mumbai", initials: "PS", color: "#ff6d00" },
   { text: "I was a fresher with no idea about digital marketing. After 4 months, I am now working at a startup managing their entire digital strategy. NextGen changed my life!", name: "Aarav Mehta", location: "Dombivli", initials: "AM", color: "#00e5ff" },
   { text: "The Flutter course gave me real confidence. I built two apps during training itself — both are now on the Play Store. My portfolio stood out in every interview.", name: "Kavya Nair", location: "Thane", initials: "KN", color: "#ffab00" },
-   { text: "I did the online course from Chikhloli — as good as in-person! Interactive sessions, real tools, and constant mentor feedback helped me get my first freelance client.", name: "Soham Attarde", location: "Chikhloli", initials: "SA", color: "#ffab00" },
+  { text: "I did the online course from Chikhloli — as good as in-person! Interactive sessions, real tools, and constant mentor feedback helped me get my first freelance client.", name: "Soham Attarde", location: "Chikhloli", initials: "SA", color: "#ffab00" },
 ];
