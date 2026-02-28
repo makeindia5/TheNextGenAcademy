@@ -287,10 +287,8 @@
   transform: translateY(-5px);
 }
 
-.csr-funding-card.active {
-  border: 2px solid var(--cyan);
-  box-shadow: 0 15px 35px rgba(0, 168, 204, 0.2);
-}
+/* Active state is now handled along with hover below */
+
 
 
 
@@ -303,15 +301,18 @@
   border-color: var(--border) !important;
 }
 
-.csr-funding-card:hover {
+.csr-funding-card:hover,
+.csr-funding-card.active {
   transform: translateY(-8px);
   background: var(--primary) !important;
   border-color: var(--primary) !important;
-  box-shadow: 0 12px 30px rgba(11, 61, 145, 0.15);
+  box-shadow: 0 12px 30px rgba(11, 61, 145, 0.2);
 }
 
 .csr-funding-card:hover .csr-funding-card-amount,
-.csr-funding-card:hover .csr-funding-card-coverage {
+.csr-funding-card:hover .csr-funding-card-coverage,
+.csr-funding-card.active .csr-funding-card-amount,
+.csr-funding-card.active .csr-funding-card-coverage {
   color: #ffffff !important;
 }
 
