@@ -74,6 +74,8 @@ export default function AboutPage() {
     { name: "Priya Iyer", role: "Head of SEO & Content", exp: "9 yrs, Ex-Agency Lead", initials: "PI", color: "#ffab00" },
     { name: "Nikhil Verma", role: "App Dev Lead", exp: "8 yrs Flutter / React Native", initials: "NV", color: "#ff6d00" },
     { name: "Sneha Joshi", role: "Placement Coordinator", exp: "6 yrs HR & Career Coaching", initials: "SJ", color: "#00e5ff" },
+    { name: "Anjali Nair", role: "Google Ads Specialist", exp: "7 yrs, Performance Marketing", initials: "AN", color: "#ffab00" },
+    { name: "Vikram Malhotra", role: "Social Media Strategist", exp: "5 yrs, Brand Storytelling", initials: "VM", color: "#ff6d00" },
   ];
 
   const milestones = [
