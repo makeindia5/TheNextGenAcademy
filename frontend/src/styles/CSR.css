@@ -692,6 +692,7 @@
   .csr-funding-grid,
   .csr-contact-wrapper,
   .csr-skill-india {
+    display: grid !important;
     grid-template-columns: 1fr !important;
     gap: 40px;
   }
