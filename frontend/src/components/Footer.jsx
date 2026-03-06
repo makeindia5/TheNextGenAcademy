@@ -113,7 +113,7 @@ export default function Footer() {
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3767.88604313038!2d72.97155667500366!3d19.190369282033!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7b9067160752f%3A0xc39209f874f67623!2sVinita%20Complex!5e0!3m2!1sen!2sin!4v1740557451458!5m2!1sen!2sin"
               width="100%"
               height="150"
-              style={{ border: 0, borderRadius: "12px", filter: "grayscale(1) invert(0.9) contrast(1.2)" }}
+              style={{ border: 0, borderRadius: "12px" }}
               allowFullScreen=""
               loading="lazy"
             ></iframe>
