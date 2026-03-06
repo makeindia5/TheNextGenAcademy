@@ -460,7 +460,7 @@ section {
   display: none;
   background: none;
   border: none;
-  color: var(--white);
+  color: #ffffff;
   cursor: pointer;
   padding: 8px;
 }
@@ -472,7 +472,8 @@ section {
   left: 0;
   right: 0;
   z-index: 199;
-  background: var(--navy-card);
+  background: rgba(5, 13, 26, 0.98);
+  backdrop-filter: blur(22px);
   border-bottom: 1px solid var(--border);
   padding: 16px 5% 24px;
   flex-direction: column;
