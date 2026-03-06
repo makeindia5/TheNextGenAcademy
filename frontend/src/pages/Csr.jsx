@@ -199,28 +199,28 @@ export default function CSRPage() {
         <div className="csr-hero-content">
           <div className="csr-hero-badge csr-fade-up" ref={fade}>
             <span className="csr-hero-badge-dot" />
-            CSR Partnership Program
+            Scalable CSR Partnerships
           </div>
           <h1 className="csr-hero-title csr-fade-up" ref={fade}>
-            Skill India &amp; Digital<br />
-            <span className="csr-hero-grad-text">Employment Initiative</span>
+            Empower 5,000+ Youth<br />
+            <span className="csr-hero-grad-text">Invest your CSR Funds Today</span>
           </h1>
           <p className="csr-hero-subtitle csr-fade-up" ref={fade}>
-            Empowering Youth Through Digital Skills, Employment & Entrepreneurship
+            Direct Impact. Verified Outcomes. Scalable Social Change.
           </p>
           <p className="csr-hero-subtitle csr-fade-up" ref={fade}>
-            Join NextGen Academy in bridging the digital skill gap. Together, we can provide
-            quality training, real-world exposure, and sustainable careers to economically
-            backward youth across Mumbai, Thane, Navi Mumbai and Maharashtra.
+            Partner with NextGen Academy to drive national skill missions. We convert your
+            CSR contributions into job-ready skills and guaranteed placements for
+            Maharashtra's underprivileged talent.
           </p>
           <div className="csr-hero-buttons csr-fade-up" ref={fade}>
             <button className="csr-btn-primary" onClick={() => {
               document.getElementById("csr-contact").scrollIntoView({ behavior: "smooth" });
             }}>
-              Request CSR Proposal
+              Partner with Us Today
             </button>
             <button className="csr-btn-secondary" onClick={() => go("/CSR/schedule-meeting")}>
-              Schedule CSR Meeting →
+              Schedule Meeting →
             </button>
           </div>
         </div>
@@ -235,10 +235,10 @@ export default function CSRPage() {
       <section id="csr-programs" className="csr-section csr-section--dark">
         <div className="csr-max-w">
           <div className="csr-sec-head csr-fade-up" ref={fade}>
-            <div className="csr-sec-label">// Programs & Initiative</div>
+            <div className="csr-sec-label">// Funding for Impact</div>
             <h2 className="csr-sec-title">
-              Empowering India's Youth<br />
-              <span className="csr-hero-grad-text">Through Digital Skills</span>
+              Direct Your CSR Budget<br />
+              <span className="csr-hero-grad-text">To High-Impact Skill Missions</span>
             </h2>
             {/* <div className="csr-about-content" style={{ marginTop: '30px' }}>
               <p>
@@ -271,10 +271,10 @@ export default function CSRPage() {
       <section id="csr-impact" className="csr-section csr-section--mid">
         <div className="csr-max-w">
           <div className="csr-sec-head csr-fade-up" ref={fade}>
-            <div className="csr-sec-label">// Program Impact</div>
+            <div className="csr-sec-label">// CSR Outcomes</div>
             <h2 className="csr-sec-title">
-              Measurable Impact<br />
-              <span className="csr-hero-grad-text">Across Maharashtra</span>
+              ROI on Social Investment<br />
+              <span className="csr-hero-grad-text">Measurable Results You Can Trust</span>
             </h2>
           </div>
 
