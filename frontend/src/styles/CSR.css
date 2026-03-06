@@ -711,6 +711,8 @@
     justify-content: center;
     text-align: center;
     padding-top: 100px;
+    background-position: 80% center;
+    background-image: linear-gradient(rgba(10, 25, 47, 0.3), rgba(10, 25, 47, 0.3)), url('/assets/gallery/hero.png');
   }
 
   .csr-hero-buttons {
